@@ -23,9 +23,6 @@ public class Deck implements Pile{
 	}
 
 
-
-
-
 	@Override
 	public void addCard(Card card) {
 		// TODO Auto-generated method stub
@@ -39,13 +36,19 @@ public class Deck implements Pile{
 	}
 
 	@Override
-	public Card getNumCards() {
+	public int getNumCards() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Card getCard() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Card getCard() {
+	public Card takeCard() {
 		// TODO Auto-generated method stub
 		return null;
 	}

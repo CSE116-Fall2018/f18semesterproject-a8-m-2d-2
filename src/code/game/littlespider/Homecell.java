@@ -26,13 +26,19 @@ public class Homecell implements Pile {
 	}
 
 	@Override
-	public Card getNumCards() {
+	public int getNumCards() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Card getCard() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Card getCard() {
+	public Card takeCard() {
 		// TODO Auto-generated method stub
 		return null;
 	}
