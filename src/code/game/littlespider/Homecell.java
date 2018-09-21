@@ -10,6 +10,12 @@ public class Homecell implements Pile {
 	private ArrayList<Card> cards;
 	private Card topCard;
 	
+	/**
+	 * Constructor for Homecell. Adds @param as topCard and adds card to cards list.
+	 * 
+	 * @param firstCard Card that homecell pile starts faceUp with
+	 */
+	
 	public Homecell(Card firstCard) {
 		cards.add(firstCard);
 		topCard = firstCard;
@@ -17,31 +23,38 @@ public class Homecell implements Pile {
 	
 	@Override
 	public void addCard(Card card) {
-		
+		int difference = Math.abs(card.getValue() - topCard.getValue());
+		if(difference == 1) {
+			cards.add(0, card);
+			topCard = card;
+		}
 	}
 
 	@Override
 	public void removeCard() {
-		// TODO Auto-generated method stub
+		if(cards.size() == 1) {
+			//error - cannot take last card
+		}else {
+			cards.remove(0);
+			topCard = cards.get(0);
+		}
 		
 	}
 
 	@Override
 	public int getNumCards() {
-		// TODO Auto-generated method stub
-		return 0;
+		return cards.size();
 	}
 
 	@Override
 	public Card getCard() {
-		// TODO Auto-generated method stub
-		return null;
+		return topCard;
 	}
 
 	@Override
 	public Card takeCard() {
-		// TODO Auto-generated method stub
-		return null;
+		removeCard();
+		return topCard;
 	}
 
 }
