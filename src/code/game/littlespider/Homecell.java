@@ -8,6 +8,7 @@ import code.cards.Pile;
 public class Homecell implements Pile {
 
 	private ArrayList<Card> cards;
+	private Card topCard;
 	
 	public Homecell() {
 		// TODO Write Homecell constructor
@@ -15,7 +16,6 @@ public class Homecell implements Pile {
 	
 	@Override
 	public void addCard(Card card) {
-		// TODO Auto-generated method stub
 		
 	}
 

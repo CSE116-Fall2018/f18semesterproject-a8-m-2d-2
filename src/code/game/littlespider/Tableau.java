@@ -10,7 +10,7 @@ public class Tableau implements Pile {
 	private ArrayList<Card> cards;
 	
 	public Tableau() {
-		// TODO Write Tableau constructor
+		
 	}
 	
 	@Override
