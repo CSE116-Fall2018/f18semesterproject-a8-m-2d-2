@@ -56,14 +56,14 @@ public class Deck implements Pile{
 	@Override
 	public Card getCard() {
 		Card result = deck.get(0);
-		deck.remove(result);
 		return result;
 	}
 
 	@Override
 	public Card takeCard() {
-		// TODO Auto-generated method stub
-		return null;
+		Card result = deck.get(0);
+		deck.remove(result);
+		return result;
 	}
 
 }
