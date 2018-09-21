@@ -17,6 +17,7 @@ public class Homecell implements Pile {
 	 */
 	
 	public Homecell(Card firstCard) {
+		cards = new ArrayList<>();
 		cards.add(firstCard);
 		topCard = firstCard;
 	}
