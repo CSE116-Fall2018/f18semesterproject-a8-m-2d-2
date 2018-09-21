@@ -20,7 +20,12 @@ public class Homecell implements Pile {
 		cards.add(firstCard);
 		topCard = firstCard;
 	}
-	
+	/**
+	 * Takes a card and adds it to the top of the pile if and only if it 
+	 * is within one rank of the current top card.
+	 * 
+	 * @param card Card to be put on the top of the pile.
+	 */
 	@Override
 	public void addCard(Card card) {
 		int difference = Math.abs(card.getValue() - topCard.getValue());
@@ -30,6 +35,9 @@ public class Homecell implements Pile {
 		}
 	}
 
+	/**
+	 * Removes top card if it is not the last card in the pile.
+	 */
 	@Override
 	public void removeCard() {
 		if(cards.size() == 1) {
@@ -50,11 +58,15 @@ public class Homecell implements Pile {
 	public Card getCard() {
 		return topCard;
 	}
-
+	/**
+	 * Removes the top card and returns the top card for use by another method.
+	 * If its the last card, takeCard() returns null as this is an invalid move.
+	 */
 	@Override
 	public Card takeCard() {
 		removeCard();
-		return topCard;
+		if(cards.size() == 1) return null;
+		else return topCard;
 	}
 
 }
