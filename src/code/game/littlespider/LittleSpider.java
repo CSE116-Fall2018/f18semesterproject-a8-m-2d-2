@@ -8,7 +8,7 @@ public class LittleSpider {
 	
 	private Deck deck;
 
-	//testing commit and push
+	//test 2
 	
 	public LittleSpider(Deck deck) {
 		
