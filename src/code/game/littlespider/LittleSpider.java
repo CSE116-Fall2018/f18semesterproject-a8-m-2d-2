@@ -37,7 +37,7 @@ public class LittleSpider {
 		tableaus = new Tableau[8];
 		for(int i=0; i<tableaus.length; i++) {
 			for(int j=1; j<=6; j++) {
-				tableaus[1].addCard(deck.getCard().setFaceUp());
+				tableaus[1].addCard(deck.takeCard().setFaceUp());
 			}
 		}
 	}
