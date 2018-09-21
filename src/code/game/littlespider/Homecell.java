@@ -10,8 +10,9 @@ public class Homecell implements Pile {
 	private ArrayList<Card> cards;
 	private Card topCard;
 	
-	public Homecell() {
-		// TODO Write Homecell constructor
+	public Homecell(Card firstCard) {
+		cards.add(firstCard);
+		topCard = firstCard;
 	}
 	
 	@Override

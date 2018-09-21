@@ -20,22 +20,18 @@ public class LittleSpider {
 	private void init() {
 		homecells = new Homecell[4];
 		
-		Homecell homecell1 = new Homecell();
-		homecell1.addCard(deck.getSpecificCard("ace", "diamond").setFaceUp());
+		Homecell homecell1 = new Homecell(deck.getSpecificCard("ace", "diamond").setFaceUp());
 		homecells[0] = homecell1;
 		
 		//need to discuss faceUp faceDown implementation
 		
-		Homecell homecell2 = new Homecell();
-		homecell2.addCard(deck.getSpecificCard("ace", "heart").setFaceUp());
+		Homecell homecell2 = new Homecell(deck.getSpecificCard("ace", "heart").setFaceUp());
 		homecells[0] = homecell2;
 		
-		Homecell homecell3 = new Homecell();
-		homecell3.addCard(deck.getSpecificCard("king", "club").setFaceUp());
+		Homecell homecell3 = new Homecell(deck.getSpecificCard("king", "club").setFaceUp());
 		homecells[0] = homecell3;
 		
-		Homecell homecell4 = new Homecell();
-		homecell4.addCard(deck.getSpecificCard("king", "spade").setFaceUp());
+		Homecell homecell4 = new Homecell(deck.getSpecificCard("king", "spade").setFaceUp());
 		homecells[0] = homecell4;
 		
 		tableaus = new Tableau[8];
