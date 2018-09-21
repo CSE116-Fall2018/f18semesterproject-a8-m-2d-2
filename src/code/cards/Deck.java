@@ -26,6 +26,16 @@ public class Deck implements Pile{
 		return this.deck;
 	}
 
+	public Card getSpecificCard(String suit, String rank) {
+		for(Card c : deck) {
+			if(c.getSuit().equals(suit) && c.getRank().equals(rank)) {
+				deck.remove(c);
+				return c;
+			}
+		}
+		return null;
+	}
+	
 	@Override
 	public void addCard(Card card) {
 		// TODO Auto-generated method stub
@@ -45,8 +55,9 @@ public class Deck implements Pile{
 
 	@Override
 	public Card getCard() {
-		// TODO Auto-generated method stub
-		return null;
+		Card result = deck.get(0);
+		deck.remove(result);
+		return result;
 	}
 
 	@Override
