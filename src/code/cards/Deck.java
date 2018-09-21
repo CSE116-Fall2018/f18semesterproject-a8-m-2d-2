@@ -22,9 +22,9 @@ public class Deck implements Pile{
 		Collections.shuffle(this.deck);
 	}
 
-
-
-
+	public ArrayList<Card> getDeck(){
+		return this.deck;
+	}
 
 	@Override
 	public void addCard(Card card) {
@@ -39,13 +39,18 @@ public class Deck implements Pile{
 	}
 
 	@Override
-	public Card getNumCards() {
+	public int getNumCards() {
+		return this.deck.size();
+	}
+
+	@Override
+	public Card getCard() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Card getCard() {
+	public Card takeCard() {
 		// TODO Auto-generated method stub
 		return null;
 	}

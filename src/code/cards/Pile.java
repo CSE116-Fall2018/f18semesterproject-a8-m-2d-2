@@ -19,7 +19,7 @@ public interface Pile {
 	 * 
 	 * @return int of amount of cards in the Pile.
 	 */
-	public Card getNumCards();
+	public int getNumCards();
 	
 	/**
 	 * Returns the Card object on the top of a pile.
@@ -27,4 +27,11 @@ public interface Pile {
 	 * @return the Card object first in the cards ArrayList
 	 */
 	public Card getCard();
+	
+	/**
+	 * Gets & removes the card at the top of the pile.
+	 * 
+	 * @return Card at the top of the pile.
+	 */
+	public Card takeCard();
 }
