@@ -37,9 +37,9 @@ public class Deck implements Pile{
 	}
 	
 	@Override
-	public void addCard(Card card) {
+	public boolean addCard(Card card) {
 		// TODO Auto-generated method stub
-
+		return true;
 	}
 
 	@Override
