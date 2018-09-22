@@ -44,7 +44,11 @@ public class Card {
 			this.rank = "king";
 		this.faceUp = faceUp;
 	}
-	
+
+	public void setFaceUp() {
+		this.faceUp = true;
+	}
+
 	public String getRank() {
 		return this.rank;
 	}
