@@ -6,6 +6,7 @@ import java.util.HashSet;
 import org.junit.Before;
 import org.junit.Test;
 
+import code.cards.Card;
 import code.game.golf.Golf;
 import code.game.golf.Homecell;
 import code.game.golf.Stockpile;
@@ -13,6 +14,7 @@ import code.game.golf.Tableau;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class GolfTest {
 	Golf g;
@@ -32,6 +34,15 @@ public class GolfTest {
 		assertEquals("getTableaus() should return an array with no duplicates", new HashSet<Tableau>(Arrays.asList(t)).size(), 7);
 		for (Tableau b : t) {
 			assertEquals("All Tableaus should be instantiated with 5 cards", b.getNumCards(), 5);
+			Card[] cards = new Card[5];
+			cards[0] = b.takeCard();
+			cards[1] = b.takeCard();
+			cards[2] = b.takeCard();
+			cards[3] = b.takeCard();
+			cards[4] = b.takeCard();
+			for (Card c : cards) {
+				assertTrue("All cards should be instantiated as face up in Tableaus", c.faceUp);
+			}
 		}
 	}
 	
