@@ -18,7 +18,7 @@ public class Deck implements Pile{
 		}
 	}
 
-	public void shuffle(int RNG1, int RNG2) {
+	public void shuffle() {
 		Collections.shuffle(this.deck);
 	}
 

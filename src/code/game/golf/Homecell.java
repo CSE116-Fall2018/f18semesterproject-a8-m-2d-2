@@ -14,15 +14,22 @@ public class Homecell implements Pile {
 	}
 	
 	/**
-	 * Adds a card to the pile iff its rank differs by 1 from the top card in the pile.
+	 * Adds a card to the pile iff the homecell is empty, or if the rank of the card
+	 * at the top of the homecell differs by 1 from the top card in the pile.
 	 * 
 	 * @param card The card to be added.
 	 */
 	@Override
 	public boolean addCard(Card card) {
-		int rankGap = Math.abs(card.getValue() - this.getCard().getValue());
+		// No cards are currently in the Homecell
+		if (this.cards.size() == 0) {
+			this.cards.add(card);
+			return true;
+		}
 		
-		if (rankGap == 1) {
+		int difference = Math.abs(card.getValue() - this.getCard().getValue());
+		
+		if (difference == 1) {
 			this.cards.add(0, card);
 			return true;
 		}

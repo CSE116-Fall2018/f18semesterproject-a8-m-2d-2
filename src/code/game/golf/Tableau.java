@@ -31,7 +31,7 @@ public class Tableau implements Pile {
 	@Override
 	public boolean addCard(Card card) {
 		if (this.canAdd) {
-			this.cards.add(card);
+			this.cards.add(0, card);
 			return true;
 		}
 		
@@ -64,6 +64,10 @@ public class Tableau implements Pile {
 	 */
 	@Override
 	public Card getCard() {
+		if (getNumCards() == 0) {
+			return null;
+		}
+		
 		return this.cards.get(0);
 	}
 
@@ -74,6 +78,10 @@ public class Tableau implements Pile {
 	 */
 	@Override
 	public Card takeCard() {
+		if (getNumCards() == 0) {
+			return null;
+		}
+		
 		Card card = getCard();
 		this.removeCard();
 		return card;
