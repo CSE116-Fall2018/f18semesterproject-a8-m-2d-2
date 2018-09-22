@@ -13,33 +13,53 @@ public class Stockpile implements Pile {
 		this.cards = remainingDeck;
 	}
 	
+	/**
+	 * Attempts to add a card to the Stockpile, which is an illegal action in golf, so it returns false.
+	 * 
+	 * @param card Card to be added
+	 * @return false Cards cannot be added to this pile in Golf.
+	 */
 	@Override
 	public boolean addCard(Card card) {
+		System.out.println("Cannot add cards to this pile.");
 		return false;
 	}
 
 	@Override
 	public void removeCard() {
-		// TODO Auto-generated method stub
-		
+		this.cards.remove(0);
 	}
 
+	/**
+	 * Returns an int of the remaining cards in the stockpile.
+	 * 
+	 * @return int Number of cards in the stockpile.
+	 */
 	@Override
 	public int getNumCards() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.cards.size();
 	}
 
+	/**
+	 * Returns the card at the top of the stockpile. Does not remove the card from the pile.
+	 * 
+	 * @return Card The card at index 0 of the Stockpile.
+	 */
 	@Override
 	public Card getCard() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.cards.get(0);
 	}
 
+	/**
+	 * Attempts to take the card from the top of the Stockpile. Does not remove it unless certain conditions are met.
+	 * 
+	 * @return Card The card at the top of the Stockpile.
+	 */
 	@Override
 	public Card takeCard() {
-		// TODO Auto-generated method stub
-		return null;
+		Card card = getCard();
+		this.removeCard();
+		return card;
 	}
 
 }

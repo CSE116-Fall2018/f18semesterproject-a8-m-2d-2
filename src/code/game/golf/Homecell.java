@@ -16,9 +16,9 @@ public class Homecell implements Pile {
 	 */
 	@Override
 	public boolean addCard(Card card) {
-		int rankGap = card.getValue() - this.getCard().getValue();
+		int rankGap = Math.abs(card.getValue() - this.getCard().getValue());
 		
-		if (Math.abs(rankGap) == 1) {
+		if (rankGap == 1) {
 			this.cards.add(0, card);
 			return true;
 		}

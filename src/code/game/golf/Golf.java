@@ -5,14 +5,13 @@ import code.cards.Deck;
 
 public class Golf {
 	
-	Deck cards;
-	Tableau[] tableaus;
-	Homecell homecell;
-	Stockpile stockpile;
-	boolean started = false;
+	private Deck cards;
+	private Tableau[] tableaus;
+	private Homecell homecell;
+	private Stockpile stockpile;
 
 	public Golf() {
-		cards = new Deck();
+		this.cards = new Deck();
 		init();
 	}
 	
@@ -20,19 +19,45 @@ public class Golf {
 	 * Initializes the Golf game, creating the tableaus, Homecell, and Stockpile.
 	 */
 	private void init() {
-		tableaus = new Tableau[7];
+		this.tableaus = new Tableau[7];
 		
 		// for each tableau, add 5 cards from the deck
 		for (int i = 0; i < tableaus.length; i++) {
 			for (int j = 0; j < 5; j++) {
-				tableaus[i].addCard(cards.getCard().setFaceUp());
+				this.tableaus[i].addCard(cards.getCard().setFaceUp());
 			}
-			// disallows adding anymore cards to the current tableau after it 
-			// receives its initial 5
-			tableaus[i].canAdd = false;
+			// disallows adding anymore cards to the current tableau after it receives its initial 5
+			this.tableaus[i].setCanAdd(false);
 		}
 		
-		homecell = new Homecell();
-		stockpile = new Stockpile(cards.deck);
+		this.homecell = new Homecell();
+		this.stockpile = new Stockpile(this.cards.getDeck());
+	}
+	
+	/**
+	 * Returns an array of the tableaus in the game.
+	 * 
+	 * @return Tableau[] The array of tableaus in the game.
+	 */
+	public Tableau[] getTableaus() {
+		return this.tableaus;
+	}
+	
+	/**
+	 * Returns the Homecell pile.
+	 * 
+	 * @return Homecell The homecell pile.
+	 */
+	public Homecell getHomecell() {
+		return this.homecell;
+	}
+	
+	/**
+	 * Returns the Stockpile pile.
+	 * 
+	 * @return Stockpile The stockpile pile.
+	 */
+	public Stockpile getStockpile() {
+		return this.stockpile;
 	}
 }

@@ -8,10 +8,28 @@ import code.cards.Pile;
 public class Tableau implements Pile {
 
 	private ArrayList<Card> cards;
-	boolean canAdd = true;
-	
+	private boolean canAdd = true;
+
 	public Tableau() {
 		this.cards = new ArrayList<Card>();
+	}
+	
+	/**
+	 * Returns whether or not a card can be added to this pile.
+	 * 
+	 * @return boolean Whether a card can be added or not
+	 */
+	public boolean isCanAdd() {
+		return canAdd;
+	}
+
+	/**
+	 * Sets whether or not cards can be added to this pile.
+	 * 
+	 * @param canAdd True if cards can be added, false if not.
+	 */
+	public void setCanAdd(boolean canAdd) {
+		this.canAdd = canAdd;
 	}
 	
 	/**
@@ -21,13 +39,13 @@ public class Tableau implements Pile {
 	 */
 	@Override
 	public boolean addCard(Card card) {
-		if (!this.canAdd) {
-			System.out.println("Cannot add cards to this pile.");
-			return false;
+		if (this.canAdd) {
+			this.cards.add(card);
+			return true;
 		}
 		
-		this.cards.add(card);
-		return true;
+		System.out.println("Cannot add cards to this pile.");
+		return false;
 	}
 
 	/**
@@ -65,9 +83,9 @@ public class Tableau implements Pile {
 	 */
 	@Override
 	public Card takeCard() {
-		Card c = getCard();
-		removeCard();
-		return c;
+		Card card = getCard();
+		this.removeCard();
+		return card;
 	}
 
 }
