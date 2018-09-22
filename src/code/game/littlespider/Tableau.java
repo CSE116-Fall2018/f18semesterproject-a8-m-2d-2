@@ -15,7 +15,7 @@ public class Tableau implements Pile {
 	}
 	
 	@Override
-	public void addCard(Card card) {
+	public boolean addCard(Card card) {
 		//groups diamonds and hearts per rules of the game
 		if(card.getSuit().equals("diamond") || card.getSuit().equals("heart")) {
 			//checks if suits match and input card is one above

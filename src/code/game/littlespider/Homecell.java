@@ -28,7 +28,7 @@ public class Homecell implements Pile {
 	 * @param card Card to be put on the top of the pile.
 	 */
 	@Override
-	public void addCard(Card card) {
+	public boolean addCard(Card card) {
 		int difference = Math.abs(card.getValue() - topCard.getValue());
 		if(difference == 1) {
 			cards.add(0, card);

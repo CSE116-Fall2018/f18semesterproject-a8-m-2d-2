@@ -11,7 +11,7 @@ public class Tableau implements Pile {
 	boolean canAdd = true;
 	
 	public Tableau() {
-		// TODO Write Tableau constructor
+		this.cards = new ArrayList<Card>();
 	}
 	
 	/**
@@ -20,13 +20,14 @@ public class Tableau implements Pile {
 	 * @param card The Card to be added.
 	 */
 	@Override
-	public void addCard(Card card) {
-		if (!canAdd) {
-			// TODO Placeholder functionality until GUI
+	public boolean addCard(Card card) {
+		if (!this.canAdd) {
 			System.out.println("Cannot add cards to this pile.");
+			return false;
 		}
 		
-		cards.add(card);
+		this.cards.add(card);
+		return true;
 	}
 
 	/**
@@ -34,7 +35,7 @@ public class Tableau implements Pile {
 	 */
 	@Override
 	public void removeCard() {
-		cards.remove(0);
+		this.cards.remove(0);
 	}
 
 	/**
@@ -44,7 +45,7 @@ public class Tableau implements Pile {
 	 */
 	@Override
 	public int getNumCards() {
-		return cards.size();
+		return this.cards.size();
 	}
 
 	/**
@@ -54,7 +55,7 @@ public class Tableau implements Pile {
 	 */
 	@Override
 	public Card getCard() {
-		return cards.get(0);
+		return this.cards.get(0);
 	}
 
 	/**

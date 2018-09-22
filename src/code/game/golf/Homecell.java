@@ -15,12 +15,15 @@ public class Homecell implements Pile {
 	 * @param card The card to be added.
 	 */
 	@Override
-	public void addCard(Card card) {
-		int rankGap = card.getValue() - getCard().getValue();
+	public boolean addCard(Card card) {
+		int rankGap = card.getValue() - this.getCard().getValue();
 		
 		if (Math.abs(rankGap) == 1) {
-			cards.add(0, card);
+			this.cards.add(0, card);
+			return true;
 		}
+		
+		return false;
 	}
 	
 	/**
@@ -39,7 +42,7 @@ public class Homecell implements Pile {
 	 */
 	@Override
 	public int getNumCards() {
-		return cards.size();
+		return this.cards.size();
 	}
 
 	/**
@@ -49,7 +52,7 @@ public class Homecell implements Pile {
 	 */
 	@Override
 	public Card getCard() {
-		return cards.get(0);
+		return this.cards.get(0);
 	}
 
 	/**

@@ -9,14 +9,13 @@ public class Stockpile implements Pile {
 
 	private ArrayList<Card> cards;
 	
-	public Stockpile(ArrayList<Card> deck) {
-		// TODO Write Stockpile constructor
+	public Stockpile(ArrayList<Card> remainingDeck) {
+		this.cards = remainingDeck;
 	}
 	
 	@Override
-	public void addCard(Card card) {
-		// TODO Auto-generated method stub
-		
+	public boolean addCard(Card card) {
+		return false;
 	}
 
 	@Override

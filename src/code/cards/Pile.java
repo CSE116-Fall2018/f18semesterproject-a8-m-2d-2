@@ -5,9 +5,9 @@ public interface Pile {
 	/**
 	 * Adds a card to the top of the Pile.
 	 * 
-	 * @param	card	The Card object to be added
+	 * @param card The Card object to be added
 	 */
-	public void addCard(Card card);
+	public boolean addCard(Card card);
 	
 	/**
 	 * Removes the Card object first in the cards ArrayList.
