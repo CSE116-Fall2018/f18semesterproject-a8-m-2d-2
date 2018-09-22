@@ -13,15 +13,6 @@ public class Tableau implements Pile {
 	public Tableau() {
 		this.cards = new ArrayList<Card>();
 	}
-	
-	/**
-	 * Returns whether or not a card can be added to this pile.
-	 * 
-	 * @return boolean Whether a card can be added or not
-	 */
-	public boolean isCanAdd() {
-		return canAdd;
-	}
 
 	/**
 	 * Sets whether or not cards can be added to this pile.

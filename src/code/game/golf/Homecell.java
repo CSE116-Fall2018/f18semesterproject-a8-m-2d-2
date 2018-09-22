@@ -9,6 +9,10 @@ public class Homecell implements Pile {
 
 	private ArrayList<Card> cards;
 	
+	public Homecell() {
+		this.cards = new ArrayList<Card>();
+	}
+	
 	/**
 	 * Adds a card to the pile iff its rank differs by 1 from the top card in the pile.
 	 * 
@@ -25,6 +29,22 @@ public class Homecell implements Pile {
 		
 		return false;
 	}
+	
+	/**
+	 * Adds a card to the pile if it's from the Stockpile without checking or complaint, as long as it's not false.
+	 * 
+	 * @param fromStockpile boolean value denoting whether it's from stockpile
+	 * @param card The card to be added.
+	 */
+	public boolean addCard(boolean fromStockpile, Card card) {
+		if (fromStockpile == false) {
+			return false;
+		}
+		
+		this.cards.add(0, card);
+		return true;
+	}
+	
 	
 	/**
 	 * In the future, will disallow cards to be removed from the pile.
@@ -66,5 +86,4 @@ public class Homecell implements Pile {
 		removeCard();
 		return null;
 	}
-
 }
