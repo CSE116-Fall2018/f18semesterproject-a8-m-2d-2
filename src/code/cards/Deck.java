@@ -44,8 +44,7 @@ public class Deck implements Pile{
 
 	@Override
 	public void removeCard() {
-		// TODO Auto-generated method stub
-
+		this.deck.remove(0);
 	}
 
 	@Override
