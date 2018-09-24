@@ -18,7 +18,7 @@ public class Tableau implements Pile {
 	private Card topCard;
 	
 	/**
-	 * Instatiats the ArrayList of cards in the pile.
+	 * Instatiates the ArrayList of cards in the pile.
 	 */
 	public Tableau() {
 		cards = new ArrayList<>();
@@ -32,6 +32,7 @@ public class Tableau implements Pile {
 	public boolean addCard(Card card) {
 		
 		if(cards.size() == 0) return false;
+		if(card == null) return false;
 		
 		int difference = Math.abs(card.getValue() - topCard.getValue());
 		if(difference == 1) {
@@ -60,6 +61,8 @@ public class Tableau implements Pile {
 	 */
 	@Override
 	public Card getCard() {
+		
+		if(cards.size() == 0) return null;
 		return topCard;
 	}
 

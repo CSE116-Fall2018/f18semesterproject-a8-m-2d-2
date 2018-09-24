@@ -63,7 +63,7 @@ public class LittleSpider {
 	}
 	/**
 	 * returns homecell array.
-	 * @return array of homecells
+	 * @return Homecell[] array of homecells
 	 */
 	public Homecell[] getHomecells() {
 		return homecells;
