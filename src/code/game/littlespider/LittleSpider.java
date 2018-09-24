@@ -50,4 +50,12 @@ public class LittleSpider {
 			}
 		}
 	}
+	public Homecell[] getHomecells() {
+		return homecells;
+	}
+	public Tableau[] getTableaus() {
+		return tableaus;
+	}
+	
+	
 }
