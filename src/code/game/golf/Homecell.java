@@ -15,7 +15,7 @@ public class Homecell implements Pile {
 	
 	/**
 	 * Adds a card to the pile iff the homecell is empty, or if the rank of the card
-	 * at the top of the homecell differs by 1 from the top card in the pile.
+	 * at the top of the Homecell differs by 1 from the top card in the pile.
 	 * 
 	 * @param card The card to be added.
 	 */
@@ -38,7 +38,7 @@ public class Homecell implements Pile {
 	}
 	
 	/**
-	 * Adds a card to the pile if it's from the Stockpile without checking or complaint, as long as it's not false.
+	 * Adds a card to the pile if it's from the Stockpile without checking or complaint, as long as the first parameter is true.
 	 * 
 	 * @param fromStockpile boolean value denoting whether it's from stockpile
 	 * @param card The card to be added.
@@ -79,6 +79,10 @@ public class Homecell implements Pile {
 	 */
 	@Override
 	public Card getCard() {
+		if (getNumCards() == 0) {
+			return null;
+		}
+		
 		return this.cards.get(0);
 	}
 
