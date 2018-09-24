@@ -32,6 +32,7 @@ public class Homecell implements Pile {
 	 * follows the game rules.
 	 * 
 	 * @param card Card to be put on the top of the pile.
+	 * @return boolean Boolean value that shows whether the add was legal or illegal.
 	 */
 
 	@Override
@@ -68,13 +69,19 @@ public class Homecell implements Pile {
 	}
 
 
-	//fix javadoc
+	/**
+	 * Returns number of cards in pile.
+	 * 
+	 * @return int Number of cards.
+	 */
 	@Override
 	public int getNumCards() {
 		return cards.size();
 	}
 	/**
 	 * Returns the top card in the pile.
+	 * 
+	 * @return Card Top card in the pile.
 	 */
 	@Override
 	public Card getCard() {
@@ -85,6 +92,8 @@ public class Homecell implements Pile {
 	/**
 	 * Removes the top card and returns the top card for use by another method.
 	 * If its the last card, takeCard() returns null as this is an invalid move.
+	 * 
+	 * @return Card top card in the pile.
 	 */
 	@Override
 	public Card takeCard() {
@@ -98,7 +107,7 @@ public class Homecell implements Pile {
 	}
 	/**
 	 * Returns an ArrayList of all the cards in the pile.
-	 * @return ArrayList<Card> 
+	 * @return ArrayList<Card> All cards in the pile.
 	 */
 	public ArrayList<Card> getCards() {
 		return cards;

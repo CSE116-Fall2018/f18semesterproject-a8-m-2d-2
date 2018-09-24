@@ -18,7 +18,7 @@ public class Tableau implements Pile {
 	private Card topCard;
 	
 	/**
-	 * Instatiates the ArrayList of cards in the pile.
+	 * Instantiates the ArrayList of cards in the pile.
 	 */
 	public Tableau() {
 		cards = new ArrayList<>();
@@ -27,6 +27,8 @@ public class Tableau implements Pile {
 	/**
 	 * Adds card if and only if it complies with the rules of the game.
 	 * 
+	 * @param card Card to be added.
+	 * @return boolean Boolean value that shows whether add was legal or illegal.
 	 */
 	@Override
 	public boolean addCard(Card card) {
@@ -50,6 +52,8 @@ public class Tableau implements Pile {
 
 	/**
 	 * Returns the number of cards in the pile.
+	 * 
+	 * @return int Number of cards in the pile.
 	 */
 	@Override
 	public int getNumCards() {
@@ -58,6 +62,8 @@ public class Tableau implements Pile {
 	 
 	/**
 	 * Returns the top card in the pile.
+	 * 
+	 * @return Card Top card in the pile.
 	 */
 	@Override
 	public Card getCard() {
@@ -69,6 +75,8 @@ public class Tableau implements Pile {
 	/**
 	 * Returns the card being removed for use by other methods.
 	 * Removes that card from the pile.
+	 * 
+	 * @return Card Top card in the pile.
 	 */
 	@Override
 	public Card takeCard() {
@@ -95,7 +103,8 @@ public class Tableau implements Pile {
 	
 	/**
 	 * Returns the ArrayList of cards currently in the pile.
-	 * @return
+	 * 
+	 * @return ArrayList<Card> All cards in the pile.
 	 */
 	public ArrayList<Card> getCards() {
 		return cards;

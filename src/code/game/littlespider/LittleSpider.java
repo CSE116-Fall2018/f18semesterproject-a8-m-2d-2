@@ -62,19 +62,19 @@ public class LittleSpider {
 		}
 	}
 	/**
-	 * returns homecell array.
-	 * @return Homecell[] array of homecells
+	 * Returns homecell array.
+	 * 
+	 * @return Homecell[] array of homecell instances.
 	 */
 	public Homecell[] getHomecells() {
 		return homecells;
 	}
 	/**
 	 * Returns array of tableaus.
-	 * @return
+	 * 
+	 * @return Tableau[] array of tableau instances.
 	 */
 	public Tableau[] getTableaus() {
 		return tableaus;
 	}
-	
-
 }
