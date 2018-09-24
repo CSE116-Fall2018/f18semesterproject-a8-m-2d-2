@@ -11,8 +11,8 @@ public class Card {
 	public Card(int ID, boolean faceUp) {
 		this.ID = ID;
 		int suit = ID/13;
-		this.setValue(suit);
 		Integer rank = (int) ID%13;
+		this.setValue(rank);
 		switch(suit) {
 		case 0:
 			this.suit = "diamond";
