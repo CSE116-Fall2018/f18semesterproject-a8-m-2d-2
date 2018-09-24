@@ -6,10 +6,6 @@ import code.cards.Deck;
 public class Golf {
 	
 	/**
-	 * cards is a Deck object containing all of the cards in the deck.
-	 */
-	private Deck cards;
-	/**
 	 * Tableaus is an array containing all 7 Tableaus for the game.
 	 */
 	private Tableau[] tableaus;
@@ -27,8 +23,6 @@ public class Golf {
 	 * and then initializes the rest of the game.
 	 */
 	public Golf() {
-		this.cards = new Deck();
-		this.cards.shuffle();
 		this.tableaus = new Tableau[7];
 		this.homecell = new Homecell();
 		init();
@@ -38,22 +32,25 @@ public class Golf {
 	 * Initializes the Golf game, creating the tableaus with 5 cards each, as well as the Stockpile.
 	 */
 	private void init() {
+		Deck cards = new Deck();
+		cards.shuffle();
 		// For each Tableau, add 5 Cards from the deck
 		for (int i = 0; i < this.tableaus.length; i++) {
 			Tableau t = new Tableau();
 			
 			for (int j = 0; j < 5; j++) {
-				Card c = this.cards.takeCard();
+				Card c = cards.takeCard();
 				c.setFaceUp();
 				t.addCard(c);
 			}
+			
 			// Disallows adding anymore cards to the current tableau after it receives its initial 5
 			t.setCanAdd(false);
 			this.tableaus[i] = t;
 		}
 		
 		// TODO Improve this so it removes constituent items from the Deck object
-		this.stockpile = new Stockpile(this.cards.getDeck());
+		this.stockpile = new Stockpile(cards.getDeck());
 	}
 	
 	/**
