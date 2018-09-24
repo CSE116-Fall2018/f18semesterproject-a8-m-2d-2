@@ -75,25 +75,7 @@ public class HomecellTest {
 		assertTrue("addCard returned false on legal move", t4.addCard(sq));
 		assertFalse("addCard returned true on illegal move", t4.addCard(s9));
 	}
-	
-	@Test
-	public void removeCardTest() {
-		refresh();
-		//test no change. cannot take top card
-		Card c = h.getCard();
-		h.removeCard();
-		assertEquals("topCard changed after attempting to take last card", c, h.getCard());
-		assertEquals("list changed after attempting to take last card", c, h.getCard());
-		//test that card is properly removed
-		Card c2 = new Card(1, false);
-		Card c3 = new Card(2, false);
-		h.addCard(c2);
-		h.addCard(c3);
-		h.removeCard();
-		assertEquals("did not remove card from list", c2, h.getCards().get(0));
-		assertEquals("did not update top card after removal", c2, h.getCard());
-		
-	}
+
 	
 	@Test
 	public void getNumCardsTest() {
@@ -116,7 +98,8 @@ public class HomecellTest {
 		h.addCard(e);
 		h.addCard(e1);
 		assertEquals("did not return card that was taken", e1, h.takeCard());
-		assertEquals("did not remove card", e, h.getCard());
+		assertEquals("did not update top card", e, h.getCard());
+		assertEquals("did not update list correctly", e, h.getCard());
 	}
 	
 }
