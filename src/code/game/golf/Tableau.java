@@ -49,14 +49,6 @@ public class Tableau implements Pile {
 	}
 
 	/**
-	 * Removes the card at the top of the Tableau pile from the cards ArrayList.
-	 */
-	@Override
-	public void removeCard() {
-		this.cards.remove(0);
-	}
-
-	/**
 	 * Returns an int of the number of cards still in the Tableau pile.
 	 * 
 	 * @return int number of cards in the Tableau.
@@ -92,7 +84,7 @@ public class Tableau implements Pile {
 		}
 		
 		Card card = getCard();
-		this.removeCard();
+		this.cards.remove(0);
 		return card;
 	}
 

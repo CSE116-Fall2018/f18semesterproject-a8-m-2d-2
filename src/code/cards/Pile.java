@@ -10,11 +10,6 @@ public interface Pile {
 	public boolean addCard(Card card);
 	
 	/**
-	 * Removes the Card object first in the cards ArrayList.
-	 */
-	public void removeCard();
-	
-	/**
 	 * Returns an int with the amount of cards in the Pile.
 	 * 
 	 * @return int of amount of cards in the Pile.

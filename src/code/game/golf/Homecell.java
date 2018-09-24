@@ -57,16 +57,6 @@ public class Homecell implements Pile {
 		this.cards.add(0, card);
 		return true;
 	}
-	
-	
-	/**
-	 * In the future, will disallow cards to be removed from the pile.
-	 */
-	@Override
-	public void removeCard() {
-		// TODO Placeholder functionality until GUI
-		System.out.println("Cannot remove cards from the Homecell pile.");
-	}
 
 	/**
 	 * Returns an int of the number of cards in the Homecell pile.
@@ -99,8 +89,8 @@ public class Homecell implements Pile {
 	 */
 	@Override
 	public Card takeCard() {
-		// TODO Handle this properly later when GUI is involved.
-		removeCard();
+		// TODO Placeholder functionality until GUI
+		System.out.println("Cannot remove cards from the Homecell pile.");
 		return null;
 	}
 }

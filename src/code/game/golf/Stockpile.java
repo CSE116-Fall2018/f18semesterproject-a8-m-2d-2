@@ -32,15 +32,6 @@ public class Stockpile implements Pile {
 		System.out.println("Cannot add cards to this pile.");
 		return false;
 	}
- 
-	/**
-	 * Removes the card at index 0, which is the top card of the pile.
-	 */
-	@Override
-	public void removeCard() {
-		this.cards.remove(0);
-		this.cards.get(0).setFaceUp();
-	}
 
 	/**
 	 * Returns an int of the remaining cards in the stockpile.
@@ -78,7 +69,8 @@ public class Stockpile implements Pile {
 		}
 		
 		Card card = getCard();
-		this.removeCard();
+		this.cards.remove(0);
+		this.cards.get(0).setFaceUp();
 		return card;
 	}
 }
