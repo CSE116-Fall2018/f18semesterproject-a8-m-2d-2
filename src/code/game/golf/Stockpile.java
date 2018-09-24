@@ -39,6 +39,7 @@ public class Stockpile implements Pile {
 	@Override
 	public void removeCard() {
 		this.cards.remove(0);
+		this.cards.get(0).setFaceUp();
 	}
 
 	/**
