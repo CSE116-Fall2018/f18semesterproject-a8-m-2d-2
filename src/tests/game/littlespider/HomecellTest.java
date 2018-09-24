@@ -9,16 +9,13 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 import code.cards.Card;
-import code.cards.Deck;
 import code.game.littlespider.Homecell;
 
 public class HomecellTest {
 	
-	private Deck deck;
 	private Homecell h;
 	
 	public void refresh() {
-		deck = new Deck();
 		Card c = new Card(0, false);
 		h = new Homecell(c);
 	}
