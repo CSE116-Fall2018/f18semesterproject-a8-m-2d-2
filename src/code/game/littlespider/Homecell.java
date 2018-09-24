@@ -6,8 +6,14 @@ import code.cards.Card;
 import code.cards.Pile;
 
 public class Homecell implements Pile {
-
+	/**
+	 * Holds all the cards that are in the pile in an ArrayList.
+	 */
 	private ArrayList<Card> cards;
+	
+	/**
+	 * Holds the top card in the pile for use by the class.
+	 */
 	private Card topCard;
 	
 	/**
@@ -23,10 +29,11 @@ public class Homecell implements Pile {
 	}
 	/**
 	 * Takes a card and adds it to the top of the pile if and only if it 
-	 * is within one rank of the current top card.
+	 * follows the game rules.
 	 * 
 	 * @param card Card to be put on the top of the pile.
 	 */
+
 	@Override
 	public boolean addCard(Card card) {
 		//groups diamonds and hearts per rules of the game
@@ -62,11 +69,16 @@ public class Homecell implements Pile {
 	}
 
 
+	/**
+	 * Returns the number of cards in the pile.
+	 */
 	@Override
 	public int getNumCards() {
 		return cards.size();
 	}
-
+	/**
+	 * Returns the top card in the pile.
+	 */
 	@Override
 	public Card getCard() {
 		return topCard;
@@ -85,14 +97,10 @@ public class Homecell implements Pile {
 		
 		return top;
 	}
-
-	public String toString() {
-		String r = "";
-		for(Card c : cards) {
-			r = r + ", " + c;
-		}
-		return r;
-	}
+	/**
+	 * Returns an ArrayList of all the cards in the pile.
+	 * @return
+	 */
 	public ArrayList<Card> getCards() {
 		return cards;
 	}

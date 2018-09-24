@@ -6,11 +6,24 @@ import code.cards.Deck;
 
 public class LittleSpider {
 	
+	/**
+	 * Holds the deck to be used by the little spider game,
+	 */
 	private Deck deck;
+	
+	/**
+	 * Holds an array of Homecell instances that are used by the game.
+	 */
 	private Homecell[] homecells;
+	
+	/**
+	 * Holds an array of Tableau instances that are used by the game.
+	 */
 	private Tableau[] tableaus;
 
-	
+	/**
+	 * Starts a little spider game.
+	 */
 	public LittleSpider() {
 		deck = new Deck();
 		init();
@@ -52,13 +65,25 @@ public class LittleSpider {
 			tableaus[i]= tableau;
 		}
 	}
+	/**
+	 * returns homecell array.
+	 * @return array of homecells
+	 */
 	public Homecell[] getHomecells() {
 		return homecells;
 	}
+	/**
+	 * Returns array of tableaus.
+	 * @return
+	 */
 	public Tableau[] getTableaus() {
 		return tableaus;
 	}
 	
+	/**
+	 * returns the deck being used.
+	 * @return
+	 */
 	public Deck getDeck() {
 		return deck;
 	}
