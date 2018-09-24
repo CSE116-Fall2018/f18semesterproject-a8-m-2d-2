@@ -7,8 +7,16 @@ import code.cards.Pile;
 
 public class Stockpile implements Pile {
 
+	/**
+	 * Cards is the ArrayList containing all Card objects in the Stockpile pile.
+	 */
 	private ArrayList<Card> cards;
 	
+	/**
+	 * The Stockpile constructor takes all of the deck not disbursed to tableaus and sets it to the cards field.
+	 * 
+	 * @param remainingDeck
+	 */
 	public Stockpile(ArrayList<Card> remainingDeck) {
 		this.cards = remainingDeck;
 	}

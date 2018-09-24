@@ -7,10 +7,16 @@ import code.cards.Pile;
 
 public class Homecell implements Pile {
 
+	/**
+	 * Cards is the ArrayList containing all Card objects in the Homecell pile.
+	 */
 	private ArrayList<Card> cards;
 	
+	/**
+	 * Homecell initializes the ArrayList for the cards fields, which is empty.
+	 */
 	public Homecell() {
-		this.cards = new ArrayList<Card>();
+		this.cards = new ArrayList<>();
 	}
 	
 	/**

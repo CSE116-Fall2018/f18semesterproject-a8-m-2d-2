@@ -7,11 +7,20 @@ import code.cards.Pile;
 
 public class Tableau implements Pile {
 
+	/**
+	 * Cards is the ArrayList containing all Card objects in each Tableau pile.
+	 */
 	private ArrayList<Card> cards;
+	/**
+	 * canAdd is a boolean field denoting whether or not more cards can be added to the pile.
+	 */
 	private boolean canAdd = true;
 
+	/**
+	 * The Tableau constructor initializes the ArrayList for the cards field.
+	 */
 	public Tableau() {
-		this.cards = new ArrayList<Card>();
+		this.cards = new ArrayList<>();
 	}
 
 	/**

@@ -5,20 +5,37 @@ import code.cards.Deck;
 
 public class Golf {
 	
+	/**
+	 * cards is a Deck object containing all of the cards in the deck.
+	 */
 	private Deck cards;
+	/**
+	 * Tableaus is an array containing all 7 Tableaus for the game.
+	 */
 	private Tableau[] tableaus;
+	/**
+	 * Homecell is the Homecell object where cards will be placed throughout the game.
+	 */
 	private Homecell homecell;
+	/**
+	 * Stockpile is the game's Stockpile object.
+	 */
 	private Stockpile stockpile;
 
+	/**
+	 * Golf takes no parameters. It creates the deck object, shuffles it, creates 7 tableaus, the homecell pile,
+	 * and then initializes the rest of the game.
+	 */
 	public Golf() {
 		this.cards = new Deck();
+		this.cards.shuffle();
 		this.tableaus = new Tableau[7];
 		this.homecell = new Homecell();
 		init();
 	}
 	
 	/**
-	 * Initializes the Golf game, creating the tableaus, Homecell, and Stockpile.
+	 * Initializes the Golf game, creating the tableaus with 5 cards each, as well as the Stockpile.
 	 */
 	private void init() {
 		// For each Tableau, add 5 Cards from the deck
