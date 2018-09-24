@@ -64,5 +64,12 @@ public class Deck implements Pile{
 		deck.remove(result);
 		return result;
 	}
-
+	public String toString() {
+		String result = "";
+		for(Card c : deck) {
+			result = result + ", " + c;
+		}
+		return result;
+	}
+	
 }

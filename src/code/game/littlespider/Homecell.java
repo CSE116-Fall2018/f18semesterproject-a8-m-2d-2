@@ -11,15 +11,15 @@ public class Homecell implements Pile {
 	private Card topCard;
 	
 	/**
-	 * Constructor for Homecell. Adds @param as topCard and adds card to cards list.
+	 * Constructor for LittleSpider Homecell. Adds @param as topCard and adds card to cards list.
 	 * 
-	 * @param firstCard Card that homecell pile starts faceUp with
+	 * @param card Card that homecell pile starts faceUp with
 	 */
 	
-	public Homecell(Card firstCard) {
+	public Homecell(Card card) {
 		cards = new ArrayList<>();
-		cards.add(firstCard);
-		topCard = firstCard;
+		cards.add(card);
+		topCard = card;
 	}
 	/**
 	 * Takes a card and adds it to the top of the pile if and only if it 
@@ -29,11 +29,36 @@ public class Homecell implements Pile {
 	 */
 	@Override
 	public boolean addCard(Card card) {
-		int difference = Math.abs(card.getValue() - topCard.getValue());
-		if(difference == 1) {
-			cards.add(0, card);
-			topCard = card;
-		}
+		//groups diamonds and hearts per rules of the game
+				if(card.getSuit().equals("diamond") || card.getSuit().equals("heart")) {
+					//checks if suits match and input card is one above
+					if(card.getSuit().equals(topCard.getSuit()) && card.getValue() == topCard.getValue()+1) {
+						
+						cards.add(0,card);
+						topCard = card;
+						return true;
+					}else {
+						//cannot add card
+						return false;
+					}
+					
+					
+					
+					
+				}
+				//groups spades and clubs per rules of the game
+				if(card.getSuit().equals("spade") || card.getSuit().equals("club")) {
+					//checks if suits match and input card is one below
+					if(card.getSuit().equals(topCard.getSuit()) && card.getValue() == topCard.getValue()-1) {
+						cards.add(0,card);
+						topCard = card;
+						return true;
+					}else {
+						//cannot add card
+						return false;
+					}
+				}
+				return false;
 	}
 
 	/**
@@ -70,4 +95,16 @@ public class Homecell implements Pile {
 		else return topCard;
 	}
 
+	public String toString() {
+		String r = "";
+		for(Card c : cards) {
+			r = r + ", " + c;
+		}
+		return r;
+	}
+	public ArrayList<Card> getCards() {
+		return cards;
+	}
+	
+	
 }

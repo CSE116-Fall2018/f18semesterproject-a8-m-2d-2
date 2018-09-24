@@ -1,6 +1,7 @@
 package code.game.littlespider;
 
 
+import code.cards.Card;
 import code.cards.Deck;
 
 public class LittleSpider {
@@ -20,25 +21,46 @@ public class LittleSpider {
 	private void init() {
 		homecells = new Homecell[4];
 		
-		Homecell homecell1 = new Homecell(deck.getSpecificCard("ace", "diamond").setFaceUp());
+		Card c1 = deck.getSpecificCard("diamond", "ace");
+		c1.setFaceUp();
+		Homecell homecell1 = new Homecell(c1);
 		homecells[0] = homecell1;
 		
-		//need to discuss faceUp faceDown implementation
+		Card c2 = deck.getSpecificCard("heart", "ace");
+		c2.setFaceUp();
+		Homecell homecell2 = new Homecell(c2);
+		homecells[1] = homecell2;
 		
-		Homecell homecell2 = new Homecell(deck.getSpecificCard("ace", "heart").setFaceUp());
-		homecells[0] = homecell2;
+		Card c3 = deck.getSpecificCard("club", "king");
+		c3.setFaceUp();
+		Homecell homecell3 = new Homecell(c3);
+		homecells[2] = homecell3;
 		
-		Homecell homecell3 = new Homecell(deck.getSpecificCard("king", "club").setFaceUp());
-		homecells[0] = homecell3;
-		
-		Homecell homecell4 = new Homecell(deck.getSpecificCard("king", "spade").setFaceUp());
-		homecells[0] = homecell4;
+		Card c4 = deck.getSpecificCard("spade", "king");
+		c4.setFaceUp();
+		Homecell homecell4 = new Homecell(c4);
+		homecells[3] = homecell4;
 		
 		tableaus = new Tableau[8];
 		for(int i=0; i<tableaus.length; i++) {
+			Tableau tableau = new Tableau();
 			for(int j=1; j<=6; j++) {
-				tableaus[i].addCard(deck.takeCard().setFaceUp());
+				Card x = deck.takeCard();
+				x.setFaceUp();
+				tableau.addFirstCard(x);
 			}
+			tableaus[i]= tableau;
 		}
 	}
+	public Homecell[] getHomecells() {
+		return homecells;
+	}
+	public Tableau[] getTableaus() {
+		return tableaus;
+	}
+	
+	public Deck getDeck() {
+		return deck;
+	}
+
 }
