@@ -60,8 +60,20 @@ public class Tableau implements Pile {
 		return topCard;
 	}
 	
+	/**
+	 * Used to add the first 8 cards in tableau piles.  Has no regard for
+	 * rank or suit.
+	 * 
+	 * @param card Card to be added.
+	 */
 	public void addFirstCard(Card card) {
 		cards.add(0, card);
 	}
+
+	public ArrayList<Card> getCards() {
+		return cards;
+	}
+	
+	
 
 }
