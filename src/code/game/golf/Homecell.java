@@ -27,6 +27,10 @@ public class Homecell implements Pile {
 	 */
 	@Override
 	public boolean addCard(Card card) {
+		// Do not allow adding null cards
+		if (card == null) {
+			return false;
+		}
 		// No cards are currently in the Homecell
 		if (this.cards.size() == 0) {
 			this.cards.add(card);
