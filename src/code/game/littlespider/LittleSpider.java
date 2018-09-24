@@ -7,11 +7,6 @@ import code.cards.Deck;
 public class LittleSpider {
 	
 	/**
-	 * Holds the deck to be used by the little spider game,
-	 */
-	private Deck deck;
-	
-	/**
 	 * Holds an array of Homecell instances that are used by the game.
 	 */
 	private Homecell[] homecells;
@@ -25,13 +20,14 @@ public class LittleSpider {
 	 * Starts a little spider game.
 	 */
 	public LittleSpider() {
-		deck = new Deck();
 		init();
 	}
 	/**
 	 * Creates Homecell and Tableau piles for Little Spider.
 	 */
 	private void init() {
+		Deck deck = new Deck();
+		
 		homecells = new Homecell[4];
 		
 		Card c1 = deck.getSpecificCard("diamond", "ace");
@@ -80,12 +76,5 @@ public class LittleSpider {
 		return tableaus;
 	}
 	
-	/**
-	 * returns the deck being used.
-	 * @return
-	 */
-	public Deck getDeck() {
-		return deck;
-	}
 
 }
