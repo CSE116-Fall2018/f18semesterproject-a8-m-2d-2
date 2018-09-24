@@ -31,6 +31,7 @@ public class Golf {
 		this.cards.shuffle();
 		this.tableaus = new Tableau[7];
 		this.homecell = new Homecell();
+		// Start the game
 		init();
 	}
 	
