@@ -61,19 +61,6 @@ public class Homecell implements Pile {
 				return false;
 	}
 
-	/**
-	 * Removes top card if it is not the last card in the pile.
-	 */
-	@Override
-	public void removeCard() {
-		if(cards.size() == 1) {
-			//error - cannot take last card
-		}else {
-			cards.remove(0);
-			topCard = cards.get(0);
-		}
-		
-	}
 
 	@Override
 	public int getNumCards() {
@@ -92,7 +79,9 @@ public class Homecell implements Pile {
 	public Card takeCard() {
 		Card top = topCard;
 		if(cards.size() == 1) return null;
-		removeCard();
+		
+		cards.remove(0);
+		topCard = cards.get(0);
 		
 		return top;
 	}

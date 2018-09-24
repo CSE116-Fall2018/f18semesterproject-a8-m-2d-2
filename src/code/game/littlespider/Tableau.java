@@ -17,6 +17,7 @@ public class Tableau implements Pile {
 	@Override
 	public boolean addCard(Card card) {
 		
+		if(cards.size() == 0) return false;
 		
 		int difference = Math.abs(card.getValue() - topCard.getValue());
 		if(difference == 1) {
@@ -32,16 +33,6 @@ public class Tableau implements Pile {
 		return false;
 	}
 
-	@Override
-	public void removeCard() {
-		if(cards.size() == 0) {
-			//cannot remove card from empty pile
-		}else {
-			cards.remove(0);
-			topCard = cards.get(0);
-		}
-		
-	}
 
 	@Override
 	public int getNumCards() {
@@ -55,9 +46,13 @@ public class Tableau implements Pile {
 
 	@Override
 	public Card takeCard() {
-		removeCard();
-		if(cards.size() == 0) return null; //cannot remove card from empty pile
-		return topCard;
+		Card top = topCard;
+		if(cards.size() == 0) return null;
+		
+		cards.remove(0);
+		topCard = cards.get(0);
+			
+		return top;
 	}
 	
 	/**
@@ -68,6 +63,7 @@ public class Tableau implements Pile {
 	 */
 	public void addFirstCard(Card card) {
 		cards.add(0, card);
+		topCard = card;
 	}
 
 	public ArrayList<Card> getCards() {
