@@ -16,33 +16,20 @@ public class Tableau implements Pile {
 	
 	@Override
 	public boolean addCard(Card card) {
-		//groups diamonds and hearts per rules of the game
-		if(card.getSuit().equals("diamond") || card.getSuit().equals("heart")) {
-			//checks if suits match and input card is one above
-			if(card.getSuit().equals(topCard.getSuit()) && card.getValue() == topCard.getValue()+1) {
-				
-				cards.add(0,card);
-				topCard = card;
-				return true;
-			}else {
-				//cannot add card
-				return false;
-			}
+		
+		
+		int difference = Math.abs(card.getValue() - topCard.getValue());
+		if(difference == 1) {
+			cards.add(0, card);
+			topCard = card;
+			return true;
 		}
-		//groups spades and clubs per rules of the game
-		if(card.getSuit().equals("spade") || card.getSuit().equals("club")) {
-			//checks if suits match and input card is one below
-			if(card.getSuit().equals(topCard.getSuit()) && card.getValue() == topCard.getValue()-1) {
-				cards.add(0,card);
-				topCard = card;
-				return true;
-			}else {
-				//cannot add card
-				return false;
-			}
+		else if (difference == 12) {
+			cards.add(0, card);
+			topCard = card;
+			return true;
 		}
 		return false;
-		
 	}
 
 	@Override
@@ -71,6 +58,10 @@ public class Tableau implements Pile {
 		removeCard();
 		if(cards.size() == 0) return null; //cannot remove card from empty pile
 		return topCard;
+	}
+	
+	public void addFirstCard(Card card) {
+		cards.add(0, card);
 	}
 
 }
