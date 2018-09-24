@@ -49,9 +49,11 @@ public class LittleSpiderTest {
 		int homecellSize = homecells.length;
 		int tableauSize = tableaus.length;
 		
+		//test correct number of piles
 		assertEquals("Wrong number of Tableau piles", 8, tableauSize);
 		assertEquals("Wrong number of Homecell piles", 4, homecellSize);
 		
+		//test correct number of cards in tableau
 		for(int i=0; i<tableaus.length; i++) {
 			int j = i +1;
 			String message = "Wrong number of cards in Tableau pile " + j;
@@ -61,7 +63,22 @@ public class LittleSpiderTest {
 			assertEquals(message, 6, size);
 		}
 		
-		//make sure homecells contain the right card
+		//test homecell has correct card
+		Card h1 = homecells[0].getCard();
+		assertEquals("ace", h1.getRank());
+		assertEquals("diamond", h1.getSuit());
+		
+		Card h2 = homecells[1].getCard();
+		assertEquals("ace", h2.getRank());
+		assertEquals("heart", h2.getSuit());
+		
+		Card h3 = homecells[2].getCard();
+		assertEquals("king", h3.getRank());
+		assertEquals("club", h3.getSuit());
+		
+		Card h4 = homecells[3].getCard();
+		assertEquals("king", h4.getRank());
+		assertEquals("spade", h4.getSuit());
 		
 	}
 }
