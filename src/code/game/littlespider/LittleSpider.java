@@ -62,8 +62,5 @@ public class LittleSpider {
 	public Deck getDeck() {
 		return deck;
 	}
-	public static void main(String[] args) {
-		LittleSpider ne = new LittleSpider();
-		System.out.println(ne.getHomecells());
-	}
+
 }
