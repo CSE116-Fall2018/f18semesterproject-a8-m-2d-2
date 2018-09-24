@@ -70,7 +70,12 @@ public class Stockpile implements Pile {
 		
 		Card card = getCard();
 		this.cards.remove(0);
-		this.cards.get(0).setFaceUp();
+		// Set new top card face up
+		if (getNumCards() != 0) {
+			Card newTopCard = this.cards.get(0);
+			newTopCard.setFaceUp();
+		}
+		
 		return card;
 	}
 }

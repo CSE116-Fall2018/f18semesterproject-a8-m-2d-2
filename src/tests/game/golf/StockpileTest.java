@@ -78,7 +78,7 @@ public class StockpileTest {
 		Stockpile s = new Stockpile(d.getDeck());
 		Stockpile s2 = new Stockpile(new ArrayList<>());
 		assertNull("Stockpile should return null when trying to get a card from an empty Stockpile", s2.getCard());
-		Card c = d.getCard();
+		Card c = s.getCard();
 		Card c2 = s.takeCard();
 		assertEquals("takeCard() should return the card at position 0", c, c2);
 		assertEquals("takeCard() should decrease the amount of cards in the pile by one", 51, s.getNumCards());
