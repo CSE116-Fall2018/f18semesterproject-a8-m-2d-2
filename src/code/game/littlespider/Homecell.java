@@ -102,4 +102,9 @@ public class Homecell implements Pile {
 		}
 		return r;
 	}
+	public ArrayList<Card> getCards() {
+		return cards;
+	}
+	
+	
 }
