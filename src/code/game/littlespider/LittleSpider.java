@@ -29,17 +29,17 @@ public class LittleSpider {
 		Card c2 = deck.getSpecificCard("heart", "ace");
 		c2.setFaceUp();
 		Homecell homecell2 = new Homecell(c2);
-		homecells[0] = homecell2;
+		homecells[1] = homecell2;
 		
 		Card c3 = deck.getSpecificCard("club", "king");
 		c3.setFaceUp();
 		Homecell homecell3 = new Homecell(c3);
-		homecells[0] = homecell3;
+		homecells[2] = homecell3;
 		
 		Card c4 = deck.getSpecificCard("spade", "king");
 		c4.setFaceUp();
 		Homecell homecell4 = new Homecell(c4);
-		homecells[0] = homecell4;
+		homecells[3] = homecell4;
 		
 		tableaus = new Tableau[8];
 		for(int i=0; i<tableaus.length; i++) {
