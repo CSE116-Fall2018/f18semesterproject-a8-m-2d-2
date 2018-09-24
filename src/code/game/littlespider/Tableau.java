@@ -23,8 +23,10 @@ public class Tableau implements Pile {
 				
 				cards.add(0,card);
 				topCard = card;
+				return true;
 			}else {
 				//cannot add card
+				return false;
 			}
 		}
 		//groups spades and clubs per rules of the game
@@ -33,10 +35,13 @@ public class Tableau implements Pile {
 			if(card.getSuit().equals(topCard.getSuit()) && card.getValue() == topCard.getValue()-1) {
 				cards.add(0,card);
 				topCard = card;
+				return true;
 			}else {
 				//cannot add card
+				return false;
 			}
 		}
+		return false;
 		
 	}
 

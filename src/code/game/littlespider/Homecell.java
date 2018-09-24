@@ -11,15 +11,15 @@ public class Homecell implements Pile {
 	private Card topCard;
 	
 	/**
-	 * Constructor for Homecell. Adds @param as topCard and adds card to cards list.
+	 * Constructor for LittleSpider Homecell. Adds @param as topCard and adds card to cards list.
 	 * 
-	 * @param firstCard Card that homecell pile starts faceUp with
+	 * @param card Card that homecell pile starts faceUp with
 	 */
 	
-	public Homecell(Card firstCard) {
+	public Homecell(Card card) {
 		cards = new ArrayList<>();
-		cards.add(firstCard);
-		topCard = firstCard;
+		cards.add(card);
+		topCard = card;
 	}
 	/**
 	 * Takes a card and adds it to the top of the pile if and only if it 
@@ -33,7 +33,9 @@ public class Homecell implements Pile {
 		if(difference == 1) {
 			cards.add(0, card);
 			topCard = card;
+			return true;
 		}
+		return false;
 	}
 
 	/**
