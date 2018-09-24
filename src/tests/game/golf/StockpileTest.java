@@ -5,7 +5,6 @@ import org.junit.Test;
 import code.cards.Card;
 import code.cards.Deck;
 import code.game.golf.Stockpile;
-import code.game.golf.Tableau;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
