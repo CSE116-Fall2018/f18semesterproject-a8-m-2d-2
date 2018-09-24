@@ -90,9 +90,11 @@ public class Homecell implements Pile {
 	 */
 	@Override
 	public Card takeCard() {
-		removeCard();
+		Card top = topCard;
 		if(cards.size() == 1) return null;
-		else return topCard;
+		removeCard();
+		
+		return top;
 	}
 
 	public String toString() {
