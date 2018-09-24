@@ -3,9 +3,12 @@ package tests.game.littlespider;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
+import code.cards.Card;
 import code.cards.Deck;
 import code.game.littlespider.Homecell;
 import code.game.littlespider.LittleSpider;
@@ -49,6 +52,16 @@ public class LittleSpiderTest {
 		assertEquals("Wrong number of Tableau piles", 8, tableauSize);
 		assertEquals("Wrong number of Homecell piles", 4, homecellSize);
 		
+		for(int i=0; i<tableaus.length; i++) {
+			int j = i +1;
+			String message = "Wrong number of cards in Tableau pile " + j;
+			Tableau x = tableaus[i];
+			ArrayList<Card> m = x.getCards();
+			int size = m.size();
+			assertEquals(message, 6, size);
+		}
+		
+		//make sure homecells contain the right card
 		
 	}
 }
