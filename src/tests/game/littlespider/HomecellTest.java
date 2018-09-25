@@ -74,6 +74,10 @@ public class HomecellTest {
 		Homecell t4 = new Homecell(sk);
 		assertTrue("addCard returned false on legal move", t4.addCard(sq));
 		assertFalse("addCard returned true on illegal move", t4.addCard(s9));
+		
+		//test null add
+		Card x = null;
+		assertFalse("addCard not working properly on null add", h.addCard(x));
 	}
 
 	
@@ -86,6 +90,13 @@ public class HomecellTest {
 		assertEquals("incorrect number of cards displayed", 2, h.getNumCards());
 	}
 	
+	@Test
+	public void getCardTest() {
+		refresh();
+		Card c1 = new Card(1, false);
+		h.addCard(c1);
+		assertEquals("does not return topCard", c1, h.getCard());
+	}
 	
 	@Test
 	public void takeCardTest() {

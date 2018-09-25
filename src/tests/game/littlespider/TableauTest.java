@@ -57,6 +57,10 @@ public class TableauTest {
 		refresh();
 		t.addFirstCard(c3);
 		assertTrue("wrap around function not working properly", t.addCard(c));
+		
+		//test null add
+		Card x = null;
+		assertFalse("addCard not working properly on null add", t.addCard(x));
 	}
 	
 	
@@ -68,6 +72,15 @@ public class TableauTest {
 		t.addFirstCard(c);
 		t.addCard(c1);
 		assertEquals(2, t.getCards().size());
+	}
+	
+	@Test
+	public void getCardTest() {
+		refresh();
+		assertNull("does not return null on empty pile", t.getCard());
+		Card c = new Card(0, false);
+		t.addFirstCard(c);
+		assertEquals("does not return topCard", c, t.getCard());
 	}
 	
 	@Test

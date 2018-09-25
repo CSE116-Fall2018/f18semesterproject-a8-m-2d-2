@@ -85,8 +85,6 @@ public class Homecell implements Pile {
 	 */
 	@Override
 	public Card getCard() {
-		
-		if(cards.size() == 0) return null;
 		return topCard;
 	}
 	/**
