@@ -4,6 +4,12 @@ package code.game.littlespider;
 import code.cards.Card;
 import code.cards.Deck;
 
+
+/**
+ * This class holds the code for the Little Spider game. Its constructor initializes four homecell piles and eight tableau piles.
+ * 
+ * @author Drew Fiutko
+ */
 public class LittleSpider {
 	
 	/**
@@ -64,7 +70,7 @@ public class LittleSpider {
 	/**
 	 * Returns homecell array.
 	 * 
-	 * @return Homecell[] array of homecell instances.
+	 * @return Array of homecell instances.
 	 */
 	public Homecell[] getHomecells() {
 		return homecells;
@@ -72,7 +78,7 @@ public class LittleSpider {
 	/**
 	 * Returns array of tableaus.
 	 * 
-	 * @return Tableau[] array of tableau instances.
+	 * @return Array of tableau instances.
 	 */
 	public Tableau[] getTableaus() {
 		return tableaus;

@@ -5,6 +5,14 @@ import java.util.ArrayList;
 import code.cards.Card;
 import code.cards.Pile;
 
+/**
+ * Instances of this class are used to hold data about the homecell piles in the Little Spider game.
+ * It implements the pile interface to reflect the game rules given in the project
+ * specifications.
+ * 
+ * @author Drew Fiutko
+ * 
+ */
 public class Homecell implements Pile {
 	/**
 	 * Holds all the cards that are in the pile in an ArrayList.
@@ -28,11 +36,10 @@ public class Homecell implements Pile {
 		topCard = card;
 	}
 	/**
-	 * Takes a card and adds it to the top of the pile if and only if it 
-	 * follows the game rules.
+	 * Takes a card and adds it to the top of the pile if and only if it follows the game rules.
 	 * 
 	 * @param card Card to be put on the top of the pile.
-	 * @return boolean Boolean value that shows whether the add was legal or illegal.
+	 * @return {@code true} if {@code card} was successfully added to the pile. {@code false} if {@code card} was an illegal add and was not added to the pile.
 	 */
 
 	@Override
@@ -72,7 +79,7 @@ public class Homecell implements Pile {
 	/**
 	 * Returns number of cards in pile.
 	 * 
-	 * @return int Number of cards.
+	 * @return Number of cards.
 	 */
 	@Override
 	public int getNumCards() {
@@ -81,7 +88,7 @@ public class Homecell implements Pile {
 	/**
 	 * Returns the top card in the pile.
 	 * 
-	 * @return Card Top card in the pile.
+	 * @return Top {@code Card} in the pile.
 	 */
 	@Override
 	public Card getCard() {
@@ -89,9 +96,9 @@ public class Homecell implements Pile {
 	}
 	/**
 	 * Removes the top card and returns the top card for use by another method.
-	 * If its the last card, takeCard() returns null as this is an invalid move.
+	 * If its the last card, {@code takeCard()} returns null as this is an invalid move.
 	 * 
-	 * @return Card top card in the pile.
+	 * @return Top {@code Card} in the pile.
 	 */
 	@Override
 	public Card takeCard() {
@@ -105,7 +112,8 @@ public class Homecell implements Pile {
 	}
 	/**
 	 * Returns an ArrayList of all the cards in the pile.
-	 * @return ArrayList<Card> All cards in the pile.
+	 * 
+	 * @return All cards in the pile in an ArrayList.
 	 */
 	public ArrayList<Card> getCards() {
 		return cards;

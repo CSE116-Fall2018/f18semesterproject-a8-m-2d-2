@@ -5,6 +5,14 @@ import java.util.ArrayList;
 import code.cards.Card;
 import code.cards.Pile;
 
+/**
+ * Instances of this class are used to hold data about the tableau piles in the Little Spider game.
+ * It implements the pile interface to reflect the game rules given in the project
+ * specifications.
+ * 
+ * @author Drew Fiutko
+ * 
+ */
 public class Tableau implements Pile {
 
 	/**
@@ -17,8 +25,9 @@ public class Tableau implements Pile {
 	 */
 	private Card topCard;
 	
+	
 	/**
-	 * Instantiates the ArrayList of cards in the pile.
+	 * Instantiates the ArrayList of cards in the pile and sets {@code canUseAddFirstCard} to true so that the first 6 cards can be added to the pile.
 	 */
 	public Tableau() {
 		cards = new ArrayList<>();
@@ -28,7 +37,7 @@ public class Tableau implements Pile {
 	 * Adds card if and only if it complies with the rules of the game.
 	 * 
 	 * @param card Card to be added.
-	 * @return boolean Boolean value that shows whether add was legal or illegal.
+	 * @return {@code true} if {@code card} was successfully added to the pile. {@code false} if {@code card} was an illegal add and was not added to the pile.
 	 */
 	@Override
 	public boolean addCard(Card card) {
@@ -53,7 +62,7 @@ public class Tableau implements Pile {
 	/**
 	 * Returns the number of cards in the pile.
 	 * 
-	 * @return int Number of cards in the pile.
+	 * @return Number of cards in the pile.
 	 */
 	@Override
 	public int getNumCards() {
@@ -63,7 +72,7 @@ public class Tableau implements Pile {
 	/**
 	 * Returns the top card in the pile.
 	 * 
-	 * @return Card Top card in the pile.
+	 * @return Top {@code Card} in the pile.
 	 */
 	@Override
 	public Card getCard() {
@@ -76,7 +85,7 @@ public class Tableau implements Pile {
 	 * Returns the card being removed for use by other methods.
 	 * Removes that card from the pile.
 	 * 
-	 * @return Card Top card in the pile.
+	 * @return Top {@code Card} in the pile.
 	 */
 	@Override
 	public Card takeCard() {
@@ -96,8 +105,9 @@ public class Tableau implements Pile {
 	 * @param card Card to be added.
 	 */
 	public void addFirstCard(Card card) {
-		cards.add(0, card);
-		topCard = card;
+
+			cards.add(0, card);
+			topCard = card;
 	}
 
 	
@@ -109,7 +119,5 @@ public class Tableau implements Pile {
 	public ArrayList<Card> getCards() {
 		return cards;
 	}
-	
-	
 
 }
