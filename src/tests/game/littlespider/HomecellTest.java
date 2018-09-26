@@ -55,6 +55,7 @@ public class HomecellTest {
 		assertFalse("card returned true on an illegal move", h.addCard(s9));
 		assertEquals("topCard updated after illegal move", d2, h.getCard());
 		assertEquals("list updated after illegal move", d2, h.getCards().get(0));
+		assertEquals("did not update number of cards", 2, h.getNumCards());
 		
 		//test hearts
 		Homecell t2 = new Homecell(ha);
@@ -69,6 +70,7 @@ public class HomecellTest {
 		assertFalse("card returned true on an illegal move", t3.addCard(sk));
 		assertEquals("topCard updated after illegal move", cq, t3.getCard());
 		assertEquals("list updated after illegal move", cq, t3.getCards().get(0));
+		assertEquals("did not update number of cards", 2, t3.getNumCards());
 		
 		//test spades
 		Homecell t4 = new Homecell(sk);
@@ -111,6 +113,7 @@ public class HomecellTest {
 		assertEquals("did not return card that was taken", e1, h.takeCard());
 		assertEquals("did not update top card", e, h.getCard());
 		assertEquals("did not update list correctly", e, h.getCard());
+		assertEquals("did not update number of cards", 2, h.getNumCards());
 	}
 	
 }

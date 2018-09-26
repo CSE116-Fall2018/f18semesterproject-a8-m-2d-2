@@ -48,6 +48,7 @@ public class TableauTest {
 		assertFalse("returned true on an illegal add", t.addCard(c2));
 		assertEquals("changed topCard after an illegal add", c1, t.getCard());
 		assertEquals("changed list after illegal add", c1, t.getCards().get(0));
+		assertEquals("did not update number of cards", 2, t.getNumCards());
 		
 		//test wrap around function
 		refresh();
@@ -94,6 +95,7 @@ public class TableauTest {
 		assertEquals("does not take correct card", c1, t.takeCard());
 		assertEquals("does not remove card from list", c, t.getCards().get(0));
 		assertEquals("does not update top card", c, t.getCard());
+		assertEquals("did not update number of cards", 1, t.getNumCards());
 	}
 	
 	@Test
