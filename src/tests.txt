@@ -2,25 +2,25 @@ Defines Deck class which creates 52 Card instances. Each Card instance has uniqu
 
 
 Defines class representing a Golf game. Each game instance has 7 tableau piles, 1 homecell pile, and 1 stock pile [4 points]
-
+	package: tests.game.golf class: Golf
 
 Defines class representing a Little Spider game. Each game instance has 8 tableau piles, 4 homecell piles, and 0 stock piles [4 points]
 
 
 Tableau piles in Golf initially hold 5 cards [4 points]
-
+	package: tests.game.golf class: GolfTest method: testTableaus()
 
 Tableau piles in Little Spider initially hold 6 cards [4 points]
 	package: tests.game.littlesider class: LittleSpiderTest method: initTest()
 
 Golf tableau pile correctly determines if adding a specific card is legal or illegal (e.g., the method should always return false) [4 points]
-
+	package: tests.game.golf class: TableauTest method: testAddCard()
 
 Little Spider tableau pile correctly determines if adding a specific card is legal or illegal [4 points]
 	package: tests.game.littlespider class: TableauTest method: addCardTest()
 
 Golf tableau pile correctly returns if removing top card is legal or illegal (e.g., if the tableau pile is NOT empty) [4 points]
-
+	package: tests.game.golf class: TableauTest method: testTakeCard()
 
 Little Spider tableau pile correctly returns if removing top card is legal or illegal (e.g., if the tableau pile is NOT empty) [4 points]
 	package: tests.game.littlespider class: TableauTest method: takeCardTest()
@@ -29,31 +29,31 @@ Adding card to Little Spider's tableau pile increases its number of cards and re
 	package: tests.game.littlespider class: TableauTest method: addCardTest()
 
 Removing card from Golf tableau pile decreases its number of cards and results in following card being the new top card [4 points]
-
+	package: tests.game.golf class: TableauTest method: testGetNumCards()
 
 Removing card from Little Spider's tableau pile decreases its number of cards and results in following card being the new top card [4 points]
 	package: tests.game.littlespider class: TableauTest method: takeCardTest()
 
 Homecell pile in Golf initially holds 0 cards [4 points]
-
+	package: tests.game.golf class: GolfTest method: testHomecell()
 
 Homecell piles in Little Spider initially hold 1 card [4 points]
 	package: tests.game.littlesider class: LittleSpiderTest method: initTest()
 
 Golf homecell pile correctly determines if adding a card is legal or illegal To receive points, your test(s) cannot call one method for when the card comes from the stock pile and a different method for when the card comes from a tableau pile. [6 points]
-
+	package: tests.game.golf class: HomecellTest method: testAddCard()
 
 Little Spider homecell piles correctly determines if adding a specific card is legal or illegal [4 points]
 	package: tests.game.littlespider class: HomecellTest method: addCardTest()
 
 Golf homecell pile correctly returns if removing top card is legal or illegal (e.g., always false) [4 points]
-
+	package: tests.game.golf class: HomecellTest method: testTakeCard()
 
 Little Spider homecell pile correctly returns if removing top card is legal or illegal (e.g., if the homecell pile has 2 or more cards) [4 points]
 	package: tests.game.littlespider class: HomecellTest method: takeCardTest()
 
 Adding card to Golf homecell pile increases its number of cards and results in that card being the homecell pile's new top card [4 points]
-
+	package: tests.game.golf class: HomecellTest method: testAddCard()
 
 Adding card to Little Spider's homecell pile increases its number of cards and results in that card being the homecell pile's new top card [4 points]
 	package: tests.game.littlespider class: HomecellTest method: addCardTest()
@@ -61,15 +61,14 @@ Adding card to Little Spider's homecell pile increases its number of cards and r
 Removing card from one of Little Spider's homecell pile decreases its number of cards and results in following card being the new top card [4 points]
 	package: tests.game.littlespider class: HomecellTest method: takeCardTest()
 
-
 Golf stock initially holds 17 cards [2 points]
-
+	package: tests.game.golf class: GolfTest method: testStockpile()
 
 Golf stock pile correctly returns if adding a specific card is legal or illegal (e.g., the method should always return false) [2 points]
-
+	package: tests.game.golf class: StockpileTest method: testAddCard()
 
 Golf stock pile correctly returns if removing top card is legal or illegal (e.g., if the stock pile is NOT empty) [2 points]
-
+	package: tests.game.golf class: StockpileTest method: testTakeCard()
 
 Removing card from Golf's stock pile decreases its number of cards and results in following card being the new top card [2 points]
-
+	package: tests.game.golf class: StockpileTest method: testTakeCard() / testGetNumCards()

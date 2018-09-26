@@ -29,11 +29,16 @@ public class HomecellTest {
 		Card c3 = d.takeCard();
 		Card c4 = d.takeCard();
 		Card c5 = d.takeCard();
+		Card c6 = null;
+		assertFalse("Homecell should never allow adding a null card", h.addCard(c6));
 		assertTrue("Homecell should always allow the first card to be added to it", h.addCard(c));
+		assertEquals("Most recently added card should be on top of the Homecell pile", c, h.getCard());
 		assertFalse("Homecell should not allow cards to be added if rank differs by > 1", h.addCard(c3));
 		assertTrue("Homecell should allow cards to be added if rank differs by 1", h.addCard(c2));
+		assertEquals("Most recently added card should be on top of the Homecell pile", c2, h.getCard());
 		assertTrue("Homecell should allow cards to be added if they come from the Stockpile", h.addCard(true, c5));
 		assertTrue("Homecell should allow cards to be added if rank differs by 1", h.addCard(c4));
+		assertEquals("Most recently added card should be on top of the Homecell pile", c4, h.getCard());
 		assertTrue("Homecell should allow cards to be added if rank differs by 1", h.addCard(c3));
 	}
 	
