@@ -38,7 +38,7 @@ public class TableauTest {
 		Card c2 = new Card(6, false);
 		
 		//check that cards can't be added to a empty pile
-		assertFalse("addCard returned true when adding first card", t.addCard(c1));
+		assertFalse("addCard returned true when adding to empty pile", t.addCard(c1));
 		t.addFirstCard(c);
 		
 		//checks normal adds
