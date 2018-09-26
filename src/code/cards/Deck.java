@@ -6,26 +6,46 @@ import java.util.Collections;
 
 public class Deck implements Pile{
 
+	/**
+	 * @Field deck - the Collection of all cards in the deck.
+	 */
 	ArrayList<Card> deck = new ArrayList<>();
 
+	/**
+	 * Constructor for Deck that takes no parameters and calls initialize().
+	 */
 	public Deck () {
 		initialize();
 	}
 
+	/**
+	 * method that initializes 52 cards, all face down.
+	 */
 	public void initialize() {
 		for(int c = 0; c < 52; c++) {
 			this.deck.add(new Card(c,false));
 		}
 	}
 
+	/**
+	 * method that sorts the Cards in this.deck in a random sequence.
+	 */
 	public void shuffle() {
 		Collections.shuffle(this.deck);
 	}
 
+	/**
+	 * @return The ArrayList of Cards in this.deck.
+	 */
 	public ArrayList<Card> getDeck(){
 		return this.deck;
 	}
 
+	/**
+	 * @param suit - the String of the suit value of the desired card
+	 * @param rank - the String of the rank value of the desired card
+	 * @return 
+	 */
 	public Card getSpecificCard(String suit, String rank) {
 		for(Card c : deck) {
 			if(c.getSuit().equals(suit) && c.getRank().equals(rank)) {
@@ -38,14 +58,9 @@ public class Deck implements Pile{
 	
 	@Override
 	public boolean addCard(Card card) {
-		// TODO Auto-generated method stub
-		return true;
+		return false;
 	}
 
-	@Override
-	public void removeCard() {
-		this.deck.remove(0);
-	}
 
 	@Override
 	public int getNumCards() {
@@ -54,8 +69,7 @@ public class Deck implements Pile{
 
 	@Override
 	public Card getCard() {
-		Card result = deck.get(0);
-		return result;
+		return deck.get(0);
 	}
 
 	@Override

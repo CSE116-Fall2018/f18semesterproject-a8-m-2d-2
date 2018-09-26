@@ -16,9 +16,9 @@ public class Card {
 	private String rank;
 	/** The value that the card represents*/
 	private int value;
-	/** */
-	int ID;
-	/** */
+	/** The parameter ID stored*/
+	public int ID;
+	/** Whether the card is faced down or up, true is facing up, false if facing down*/
 	public boolean faceUp;
 	
 	
