@@ -5,7 +5,7 @@ Defines class representing a Golf game. Each game instance has 7 tableau piles, 
 	package: tests.game.golf class: Golf
 
 Defines class representing a Little Spider game. Each game instance has 8 tableau piles, 4 homecell piles, and 0 stock piles [4 points]
-	package: code.game.littlespider class: LittleSpider
+	package: tests.game.littlespider class: LittleSpider
 
 Tableau piles in Golf initially hold 5 cards [4 points]
 	package: tests.game.golf class: GolfTest method: testTableaus()

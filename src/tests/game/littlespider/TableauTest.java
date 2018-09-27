@@ -90,7 +90,7 @@ public class TableauTest {
 	@Test
 	public void takeCardTest() {
 		refresh();
-		assertNull(t.takeCard());
+		assertNull("returns an object on empty pile", t.takeCard());
 		Card c = new Card(0, false);
 		Card c1 = new Card(1, false);
 		t.addCard(c, true);
@@ -99,15 +99,5 @@ public class TableauTest {
 		assertEquals("does not remove card from list", c, t.getCards().get(0));
 		assertEquals("does not update top card", c, t.getCard());
 		assertEquals("did not update number of cards", 1, t.getNumCards());
-	}
-	
-	@Test
-	public void addFirstCardTest() {
-		refresh();
-		Card c = new Card(0, false);
-		t.addCard(c, true);
-		assertEquals("does not update top card correctly", c, t.getCard());
-		assertEquals("does not update list correctly", c, t.getCards().get(0));
-		
 	}
 }

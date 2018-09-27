@@ -43,6 +43,8 @@ public class Tableau implements Pile {
 	@Override
 	public boolean addCard(Card card, boolean override) {
 		
+		if(card == null) return false;
+		
 		if(override == true) {
 			cards.add(0, card);
 			topCard = card;
@@ -50,7 +52,6 @@ public class Tableau implements Pile {
 		}
 		
 		if(cards.size() == 0) return false;
-		if(card == null) return false;
 		
 		int difference = Math.abs(card.getValue() - topCard.getValue());
 		if(difference == 1) {

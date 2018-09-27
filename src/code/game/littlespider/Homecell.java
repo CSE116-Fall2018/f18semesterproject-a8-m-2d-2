@@ -46,13 +46,14 @@ public class Homecell implements Pile {
 	@Override
 	public boolean addCard(Card card, boolean override) {
 		
+		if(card == null) return false;
+		
 		if(override == true) {
 			cards.add(0,card);
 			topCard = card;
 			return true;
 		}
 		
-		if(card == null) return false;
 		//groups diamonds and hearts per rules of the game
 		if(card.getSuit().equals("diamond") || card.getSuit().equals("heart")) {
 			//checks if suits match and input card is one above

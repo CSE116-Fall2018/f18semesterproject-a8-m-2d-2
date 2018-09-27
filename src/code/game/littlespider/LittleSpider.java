@@ -33,6 +33,7 @@ public class LittleSpider {
 	 */
 	private void init() {
 		Deck deck = new Deck();
+		deck.shuffle();
 		
 		homecells = new Homecell[4];
 		
