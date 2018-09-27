@@ -39,11 +39,18 @@ public class Homecell implements Pile {
 	 * Takes a card and adds it to the top of the pile if and only if it follows the game rules.
 	 * 
 	 * @param card Card to be put on the top of the pile.
+	 * @param override Boolean value used to bypass the add card rules.
 	 * @return {@code true} if {@code card} was successfully added to the pile. {@code false} if {@code card} was an illegal add and was not added to the pile.
 	 */
 
 	@Override
 	public boolean addCard(Card card, boolean override) {
+		
+		if(override == true) {
+			cards.add(0,card);
+			topCard = card;
+			return true;
+		}
 		
 		if(card == null) return false;
 		//groups diamonds and hearts per rules of the game

@@ -37,10 +37,17 @@ public class Tableau implements Pile {
 	 * Adds card if and only if it complies with the rules of the game.
 	 * 
 	 * @param card Card to be added.
+	 * @param override Boolean value used to bypass the add card rules to add the first 6 cards.
 	 * @return {@code true} if {@code card} was successfully added to the pile. {@code false} if {@code card} was an illegal add and was not added to the pile.
 	 */
 	@Override
 	public boolean addCard(Card card, boolean override) {
+		
+		if(override == true) {
+			cards.add(0, card);
+			topCard = card;
+			return true;
+		}
 		
 		if(cards.size() == 0) return false;
 		if(card == null) return false;
@@ -96,18 +103,6 @@ public class Tableau implements Pile {
 		topCard = cards.get(0);
 			
 		return top;
-	}
-	
-	/**
-	 * Used to add the first 6 cards in tableau piles.  Has no regard for
-	 * rank or suit.
-	 * 
-	 * @param card Card to be added.
-	 */
-	public void addFirstCard(Card card) {
-
-			cards.add(0, card);
-			topCard = card;
 	}
 
 	

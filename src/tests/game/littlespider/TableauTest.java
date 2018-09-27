@@ -38,30 +38,33 @@ public class TableauTest {
 		Card c2 = new Card(6, false);
 		
 		//check that cards can't be added to a empty pile
-		assertFalse("addCard returned true when adding to empty pile", t.addCard(c1));
-		t.addFirstCard(c);
+		assertFalse("addCard returned true when adding to empty pile", t.addCard(c1, false));
+		t.addCard(c, true);
 		
 		//checks normal adds
-		assertTrue("addCard returned false when doing a legal add", t.addCard(c1));
+		assertTrue("addCard returned false when doing a legal add", t.addCard(c1, false));
 		assertEquals("did not update list after adding card", c1, t.getCards().get(0));
 		assertEquals("did not update top card after adding card", c1, t.getCard());
-		assertFalse("returned true on an illegal add", t.addCard(c2));
+		assertFalse("returned true on an illegal add", t.addCard(c2, false));
 		assertEquals("changed topCard after an illegal add", c1, t.getCard());
 		assertEquals("changed list after illegal add", c1, t.getCards().get(0));
 		assertEquals("did not update number of cards", 2, t.getNumCards());
 		
 		//test wrap around function
 		refresh();
-		t.addFirstCard(c);
+		t.addCard(c, true);
 		Card c3 = new Card(12, false);
-		assertTrue("wrap around function not working properly", t.addCard(c3));
+		assertTrue("wrap around function not working properly", t.addCard(c3, false));
 		refresh();
-		t.addFirstCard(c3);
-		assertTrue("wrap around function not working properly", t.addCard(c));
+		t.addCard(c3, true);
+		assertTrue("wrap around function not working properly", t.addCard(c, false));
 		
 		//test null add
 		Card x = null;
-		assertFalse("addCard not working properly on null add", t.addCard(x));
+		assertFalse("addCard not working properly on null add", t.addCard(x, false));
+		
+		//test override
+		refresh();
 	}
 	
 	
@@ -70,8 +73,8 @@ public class TableauTest {
 		refresh();
 		Card c = new Card(0, false);
 		Card c1 = new Card(1, false);
-		t.addFirstCard(c);
-		t.addCard(c1);
+		t.addCard(c, true);
+		t.addCard(c1, false);
 		assertEquals(2, t.getCards().size());
 	}
 	
@@ -80,7 +83,7 @@ public class TableauTest {
 		refresh();
 		assertNull("does not return null on empty pile", t.getCard());
 		Card c = new Card(0, false);
-		t.addFirstCard(c);
+		t.addCard(c, true);
 		assertEquals("does not return topCard", c, t.getCard());
 	}
 	
@@ -90,8 +93,8 @@ public class TableauTest {
 		assertNull(t.takeCard());
 		Card c = new Card(0, false);
 		Card c1 = new Card(1, false);
-		t.addFirstCard(c);
-		t.addCard(c1);
+		t.addCard(c, true);
+		t.addCard(c1, false);
 		assertEquals("does not take correct card", c1, t.takeCard());
 		assertEquals("does not remove card from list", c, t.getCards().get(0));
 		assertEquals("does not update top card", c, t.getCard());
@@ -102,7 +105,7 @@ public class TableauTest {
 	public void addFirstCardTest() {
 		refresh();
 		Card c = new Card(0, false);
-		t.addFirstCard(c);
+		t.addCard(c, true);
 		assertEquals("does not update top card correctly", c, t.getCard());
 		assertEquals("does not update list correctly", c, t.getCards().get(0));
 		
