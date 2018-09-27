@@ -41,11 +41,9 @@ public class Golf {
 			for (int j = 0; j < 5; j++) {
 				Card c = cards.takeCard();
 				c.setFaceUp();
-				t.addCard(c);
+				t.addCard(c, true);
 			}
 			
-			// Disallows adding anymore cards to the current tableau after it receives its initial 5
-			t.setCanAdd(false);
 			this.tableaus[i] = t;
 		}
 		

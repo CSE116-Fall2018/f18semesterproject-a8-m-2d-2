@@ -11,25 +11,12 @@ public class Tableau implements Pile {
 	 * Cards is the ArrayList containing all Card objects in each Tableau pile.
 	 */
 	private ArrayList<Card> cards;
-	/**
-	 * canAdd is a boolean field denoting whether or not more cards can be added to the pile.
-	 */
-	private boolean canAdd = true;
 
 	/**
 	 * The Tableau constructor initializes the ArrayList for the cards field.
 	 */
 	public Tableau() {
 		this.cards = new ArrayList<>();
-	}
-
-	/**
-	 * Sets whether or not cards can be added to this pile.
-	 * 
-	 * @param canAdd True if cards can be added, false if not.
-	 */
-	public void setCanAdd(boolean canAdd) {
-		this.canAdd = canAdd;
 	}
 	
 	/**
@@ -39,7 +26,7 @@ public class Tableau implements Pile {
 	 */
 	@Override
 	public boolean addCard(Card card, boolean override) {
-		if (this.canAdd) {
+		if (override) {
 			this.cards.add(0, card);
 			return true;
 		}

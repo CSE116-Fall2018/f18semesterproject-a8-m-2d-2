@@ -57,7 +57,7 @@ public class Deck implements Pile{
 	}
 	
 	@Override
-	public boolean addCard(Card card) {
+	public boolean addCard(Card card, boolean override) {
 		return false;
 	}
 
