@@ -149,7 +149,7 @@ public class DeckTest {
 	@Test
 	public void deckAddCard() {
 		Deck test = new Deck();
-		boolean check = test.addCard(new Card(33,false));
+		boolean check = test.addCard(new Card(33,false), false);
 		assertFalse("addCard did not return false", check);
 		assertEquals("Deck's add card increased the size of the deck", 52, test.getDeck().size());
 	}
