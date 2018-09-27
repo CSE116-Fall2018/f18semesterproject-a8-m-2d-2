@@ -1,0 +1,23 @@
+Meeting Minutes for 9/27/2018:
+
+Attendance:
+	Drew Fiutko [M]
+	Matt Ferrera
+	Dylan Schillaci
+	Mitch Thurston
+	
+Tasks completed:
+	* all code written
+	* most tests completed
+	* Javadoc format completed
+
+Tasks not completed:
+	* N/A
+
+Goals for the next week:
+	* cardTest class
+	* fix addCard method to reflect two parameters: boolean override, Card card
+
+Schedule:
+	* submit to autolab by Sunday
+	* group meeting TBD
