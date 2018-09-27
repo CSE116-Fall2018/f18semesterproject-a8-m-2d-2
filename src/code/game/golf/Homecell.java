@@ -26,14 +26,15 @@ public class Homecell implements Pile {
 	 * @param card The card to be added.
 	 */
 	@Override
-	public boolean addCard(Card card) {
+	public boolean addCard(Card card, boolean override) {
 		// Do not allow adding null cards
 		if (card == null) {
 			return false;
 		}
+		
 		// No cards are currently in the Homecell
-		if (this.cards.size() == 0) {
-			this.cards.add(card);
+		if (this.cards.size() == 0 || override) {
+			this.cards.add(0, card);
 			return true;
 		}
 		
@@ -45,21 +46,6 @@ public class Homecell implements Pile {
 		}
 		
 		return false;
-	}
-	
-	/**
-	 * Adds a card to the pile if it's from the Stockpile without checking or complaint, as long as the first parameter is true.
-	 * 
-	 * @param fromStockpile boolean value denoting whether it's from stockpile
-	 * @param card The card to be added.
-	 */
-	public boolean addCard(boolean fromStockpile, Card card) {
-		if (fromStockpile == false) {
-			return false;
-		}
-		
-		this.cards.add(0, card);
-		return true;
 	}
 
 	/**

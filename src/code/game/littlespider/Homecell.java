@@ -43,7 +43,7 @@ public class Homecell implements Pile {
 	 */
 
 	@Override
-	public boolean addCard(Card card) {
+	public boolean addCard(Card card, boolean override) {
 		
 		if(card == null) return false;
 		//groups diamonds and hearts per rules of the game

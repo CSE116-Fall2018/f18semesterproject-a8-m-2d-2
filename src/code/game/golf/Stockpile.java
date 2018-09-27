@@ -28,7 +28,7 @@ public class Stockpile implements Pile {
 	 * @return false Cards cannot be added to this pile in Golf.
 	 */
 	@Override
-	public boolean addCard(Card card) {
+	public boolean addCard(Card card, boolean override) {
 		System.out.println("Cannot add cards to this pile.");
 		return false;
 	}

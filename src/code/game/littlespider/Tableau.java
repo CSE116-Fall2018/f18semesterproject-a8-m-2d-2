@@ -40,7 +40,7 @@ public class Tableau implements Pile {
 	 * @return {@code true} if {@code card} was successfully added to the pile. {@code false} if {@code card} was an illegal add and was not added to the pile.
 	 */
 	@Override
-	public boolean addCard(Card card) {
+	public boolean addCard(Card card, boolean override) {
 		
 		if(cards.size() == 0) return false;
 		if(card == null) return false;

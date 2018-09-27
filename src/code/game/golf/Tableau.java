@@ -38,7 +38,7 @@ public class Tableau implements Pile {
 	 * @param card The Card to be added.
 	 */
 	@Override
-	public boolean addCard(Card card) {
+	public boolean addCard(Card card, boolean override) {
 		if (this.canAdd) {
 			this.cards.add(0, card);
 			return true;
