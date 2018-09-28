@@ -29,8 +29,8 @@ public class StockpileTest {
 		Stockpile s = new Stockpile(d.getDeck());
 		Card c = d.takeCard();
 		Card c2 = d.takeCard();
-		assertFalse("Stockpile should not allow any cards to be added and always return false", s.addCard(c));
-		assertFalse("Stockpile should not allow any cards to be added and always return false", s.addCard(c2));
+		assertFalse("Stockpile should not allow any cards to be added and always return false", s.addCard(c, false));
+		assertFalse("Stockpile should not allow any cards to be added and always return false", s.addCard(c2, false));
 	}
 	
 	@Test

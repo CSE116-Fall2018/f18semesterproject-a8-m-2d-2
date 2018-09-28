@@ -18,11 +18,8 @@ public class TableauTest {
 		Deck d = new Deck();
 		d.shuffle();
 		Tableau t = new Tableau();
-		assertTrue("Tableau should return true when adding a card", t.addCard(d.takeCard()));
-		assertTrue("Tableau should return true when adding a card", t.addCard(d.takeCard()));
-		t.setCanAdd(false);
-		assertFalse("Tableau should return false when adding a card", t.addCard(d.takeCard()));
-		assertFalse("Tableau should return false when adding a card", t.addCard(d.takeCard()));
+		assertTrue("Tableau should return true when adding an overridden", t.addCard(d.takeCard(), true));
+		assertFalse("Tableau should return false when adding a card", t.addCard(d.takeCard(), false));
 	}
 	
 	@Test
@@ -32,13 +29,13 @@ public class TableauTest {
 		Tableau t = new Tableau();
 		assertNull("Tableaus should return null when trying to remove a card from an empty Tableau", t.takeCard());
 		Card c = d.takeCard();
-		t.addCard(c);
+		t.addCard(c, true);
 		assertEquals("takeCard() should return the most recently added card to it", c, t.takeCard());
 		assertNull("Tableaus should return null when trying to remove a card from an empty Tableau", t.takeCard());
 		Card c2 = d.takeCard();
 		Card c3 = d.takeCard();
-		t.addCard(c2);
-		t.addCard(c3);
+		t.addCard(c2, true);
+		t.addCard(c3, true);
 		assertEquals("takeCard() should return the most recently added card to it", c3, t.takeCard());
 		assertEquals("takeCard() should return the most recently added card to it", c2, t.takeCard());
 		assertNull("Tableaus should return null when trying to remove a card from an empty Tableau", t.takeCard());
@@ -50,9 +47,9 @@ public class TableauTest {
 		d.shuffle();
 		Tableau t = new Tableau();
 		assertEquals("Tableaus should instantiate with zero cards", 0, t.getNumCards());
-		t.addCard(d.takeCard());
-		t.addCard(d.takeCard());
-		t.addCard(d.takeCard());
+		t.addCard(d.takeCard(), true);
+		t.addCard(d.takeCard(), true);
+		t.addCard(d.takeCard(), true);
 		assertEquals("testGetNumCards should return 3 cards when 3 are added", 3, t.getNumCards());
 		Card c = t.takeCard();
 		c = t.takeCard();
@@ -70,12 +67,12 @@ public class TableauTest {
 		Card c2 = d.takeCard();
 		Card c3 = d.takeCard();
 		assertNull("Tableaus should return null when trying to get a card from an empty Tableau", t.getCard());
-		t.addCard(c);
+		t.addCard(c, true);
 		assertEquals("getCard() should return the card at position 0", c, t.getCard());
 		c = t.takeCard();
 		assertNull("Tableaus should return null when trying to get a card from an empty Tableau", t.getCard());
-		t.addCard(c2);
-		t.addCard(c3);
+		t.addCard(c2, true);
+		t.addCard(c3, true);
 		assertEquals("getCard() should return the card at position 0", c3, t.getCard());
 		c3 = t.takeCard();
 		assertEquals("getCard() should return the card at position 0", c2, t.getCard());
