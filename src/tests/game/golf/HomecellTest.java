@@ -70,7 +70,7 @@ public class HomecellTest {
 		// Try a random card
 		d.shuffle();
 		Card c3 = d.takeCard();
-		h.addCard(c3, false);
+		h.addCard(c3, true);
 		assertEquals("getCard() should return the card at position 0", c3, h.getCard());
 	}
 	
