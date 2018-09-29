@@ -16,7 +16,7 @@ public class Homecell implements Pile {
 	 * Homecell initializes the ArrayList for the cards fields, which is empty.
 	 */
 	public Homecell() {
-		this.cards = new ArrayList<>();
+		cards = new ArrayList<>();
 	}
 	
 	/**
@@ -33,15 +33,15 @@ public class Homecell implements Pile {
 		}
 		
 		// No cards are currently in the Homecell
-		if (this.cards.size() == 0 || override) {
-			this.cards.add(0, card);
+		if (cards.size() == 0 || override) {
+			cards.add(0, card);
 			return true;
 		}
 		
-		int difference = Math.abs(card.getValue() - this.getCard().getValue());
+		int difference = Math.abs(card.getValue() - getCard().getValue());
 		
 		if (difference == 1) {
-			this.cards.add(0, card);
+			cards.add(0, card);
 			return true;
 		}
 		
@@ -55,7 +55,7 @@ public class Homecell implements Pile {
 	 */
 	@Override
 	public int getNumCards() {
-		return this.cards.size();
+		return cards.size();
 	}
 
 	/**
@@ -69,7 +69,7 @@ public class Homecell implements Pile {
 			return null;
 		}
 		
-		return this.cards.get(0);
+		return cards.get(0);
 	}
 
 	/**

@@ -18,7 +18,7 @@ public class Stockpile implements Pile {
 	 * @param remainingDeck
 	 */
 	public Stockpile(ArrayList<Card> remainingDeck) {
-		this.cards = remainingDeck;
+		cards = remainingDeck;
 	}
 	
 	/**
@@ -40,7 +40,7 @@ public class Stockpile implements Pile {
 	 */
 	@Override
 	public int getNumCards() {
-		return this.cards.size();
+		return cards.size();
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class Stockpile implements Pile {
 			return null;
 		}
 		
-		return this.cards.get(0);
+		return cards.get(0);
 	}
 
 	/**
@@ -69,10 +69,10 @@ public class Stockpile implements Pile {
 		}
 		
 		Card card = getCard();
-		this.cards.remove(0);
+		cards.remove(0);
 		// Set new top card face up
 		if (getNumCards() != 0) {
-			Card newTopCard = this.cards.get(0);
+			Card newTopCard = cards.get(0);
 			newTopCard.setFaceUp();
 		}
 		

@@ -23,8 +23,8 @@ public class Golf {
 	 * and then initializes the rest of the game.
 	 */
 	public Golf() {
-		this.tableaus = new Tableau[7];
-		this.homecell = new Homecell();
+		tableaus = new Tableau[7];
+		homecell = new Homecell();
 		init();
 	}
 	
@@ -35,7 +35,7 @@ public class Golf {
 		Deck cards = new Deck();
 		cards.shuffle();
 		// For each Tableau, add 5 Cards from the deck
-		for (int i = 0; i < this.tableaus.length; i++) {
+		for (int i = 0; i < tableaus.length; i++) {
 			Tableau t = new Tableau();
 			
 			for (int j = 0; j < 5; j++) {
@@ -44,11 +44,11 @@ public class Golf {
 				t.addCard(c, true);
 			}
 			
-			this.tableaus[i] = t;
+			tableaus[i] = t;
 		}
 		
 		// TODO Improve this so it removes constituent items from the Deck object
-		this.stockpile = new Stockpile(cards.getDeck());
+		stockpile = new Stockpile(cards.getDeck());
 	}
 	
 	/**
@@ -57,7 +57,7 @@ public class Golf {
 	 * @return Tableau[] The array of tableaus in the game.
 	 */
 	public Tableau[] getTableaus() {
-		return this.tableaus;
+		return tableaus;
 	}
 	
 	/**
@@ -66,7 +66,7 @@ public class Golf {
 	 * @return Homecell The homecell pile.
 	 */
 	public Homecell getHomecell() {
-		return this.homecell;
+		return homecell;
 	}
 	
 	/**
@@ -75,6 +75,6 @@ public class Golf {
 	 * @return Stockpile The stockpile pile.
 	 */
 	public Stockpile getStockpile() {
-		return this.stockpile;
+		return stockpile;
 	}
 }

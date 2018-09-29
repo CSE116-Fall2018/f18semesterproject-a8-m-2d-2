@@ -21,7 +21,7 @@ public class GolfTest {
 	
 	@Before
 	public void createGame() {
-		this.g = new Golf();
+		g = new Golf();
 	}
 	
 	@Test

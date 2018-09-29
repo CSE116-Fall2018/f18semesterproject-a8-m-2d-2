@@ -16,7 +16,7 @@ public class Tableau implements Pile {
 	 * The Tableau constructor initializes the ArrayList for the cards field.
 	 */
 	public Tableau() {
-		this.cards = new ArrayList<>();
+		cards = new ArrayList<>();
 	}
 	
 	/**
@@ -27,7 +27,7 @@ public class Tableau implements Pile {
 	@Override
 	public boolean addCard(Card card, boolean override) {
 		if (override) {
-			this.cards.add(0, card);
+			cards.add(0, card);
 			return true;
 		}
 		
@@ -42,7 +42,7 @@ public class Tableau implements Pile {
 	 */
 	@Override
 	public int getNumCards() {
-		return this.cards.size();
+		return cards.size();
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class Tableau implements Pile {
 			return null;
 		}
 		
-		return this.cards.get(0);
+		return cards.get(0);
 	}
 
 	/**
@@ -71,7 +71,7 @@ public class Tableau implements Pile {
 		}
 		
 		Card card = getCard();
-		this.cards.remove(0);
+		cards.remove(0);
 		return card;
 	}
 
