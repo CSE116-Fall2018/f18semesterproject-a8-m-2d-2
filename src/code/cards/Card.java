@@ -2,11 +2,11 @@ package code.cards;
 
 
 /**
- * @author thurs
- */
-/**
- * @author thurs
- *
+ * Instantiates a card dependent upon the id passed to it.
+ * The id is used to determine the suit and rank of the card.
+ * 
+ * @author Mitch Thurston
+ * 
  */
 public class Card {
 	
@@ -17,20 +17,25 @@ public class Card {
 	/** The value that the card represents*/
 	private int value;
 	/** The parameter ID stored*/
-	public int ID;
+	public int id;
 	/** Whether the card is faced down or up, true is facing up, false if facing down*/
 	public boolean faceUp;
 	
 	
 	/**
-	 * @param ID - int that will determine the rank and suit of the card.
+	 * The constructor of Card takes two parameters, int id and boolean faceUp.
+	 * The id must be between 0 - 51, as this determines the rank and suit of the card.
+	 * Values below and above this should not be passed to the Card class.
+	 * 
+	 * @param id - int that will determine the rank and suit of the card.
 	 * @param faceUp - boolean that determines if the card is faced up or faced down.
 	 */
-	public Card(int ID, boolean faceUp) {
-		this.ID = ID;
-		int suit = ID/13;
-		Integer rank = (int) ID%13;
+	public Card(int id, boolean faceUp) {
+		this.id = id;
+		int suit = id/13;
+		int rank = id%13;
 		this.value = rank;
+		
 		switch(suit) {
 		case 0:
 			this.suit = "diamond";
@@ -72,29 +77,29 @@ public class Card {
 	}
 
 	/**
-	 * @return the instance String referencing the rank of the card.
+	 * Returns the rank of the card in the rank field.
+	 * 
+	 * @return String the instance String referencing the rank of the card.
 	 */
 	public String getRank() {
 		return this.rank;
 	}
 	
 	/**
-	 * @return the instance String referencing the suit of the card.
+	 * Returns the suit of the card in the suit field.
+	 * 
+	 * @return String the instance String referencing the suit of the card.
 	 */
 	public String getSuit() {
 		return this.suit;
 	}
 
 	/**
-	 * @return the instance int referencing the value of the card.
+	 * Returns the int value of the rank of the card from the value field.
+	 * 
+	 * @return int the instance int referencing the value of the card.
 	 */
 	public int getValue() {
 		return value;
 	}
-	
-	@Override
-	public String toString() {
-		return rank +" of " +suit;
-	}
-	
 }

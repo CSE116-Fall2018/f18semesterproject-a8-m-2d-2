@@ -5,6 +5,14 @@ import java.util.ArrayList;
 import code.cards.Card;
 import code.cards.Pile;
 
+/**
+ * Instantiates the Stockpile pile, which receives the remainder
+ * of the deck after the cards are disbursed to the Tableau piles. 
+ * Cards cannot be added to this pile, but can be removed in accordance
+ * with the rules of the game.
+ * 
+ * @author Matt Ferrera
+ */
 public class Stockpile implements Pile {
 
 	/**

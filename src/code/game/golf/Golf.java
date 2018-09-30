@@ -3,6 +3,13 @@ package code.game.golf;
 import code.cards.Card;
 import code.cards.Deck;
 
+/**
+ * Instantiates the Golf game, create 7 Tableau piles, one Homecell
+ * pile, and one Stockpile pile. The class has getter functions for each
+ * of these piles, to be used the GUI to place them in the GUI.
+ * 
+ * @author Matt Ferrera
+ */
 public class Golf {
 	
 	/**
@@ -47,7 +54,7 @@ public class Golf {
 			tableaus[i] = t;
 		}
 		
-		// TODO Improve this so it removes constituent items from the Deck object
+		// TODO Improve this so it removes constituent items from the Deck object?
 		stockpile = new Stockpile(cards.getDeck());
 	}
 	

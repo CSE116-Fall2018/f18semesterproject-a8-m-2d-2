@@ -136,7 +136,7 @@ public class DeckTest {
 		for(int c = 0; c < test.getDeck().size(); c++)
 			assertEquals("takeCard fails the first call",test.getDeck().get(c).getRank(),compare1.get(c).getRank());
 		
-		assertEquals("Did not remove the top card of the deck",0,removed[0].ID);
+		assertEquals("Did not remove the top card of the deck",0,removed[0].id);
 		
 		for(int c = 0; c < removed.length-1; c++) removed[c+1] = test.takeCard();
 		for(int c = removed.length; c < 52; c++) compare2.add(new Card(c,false));

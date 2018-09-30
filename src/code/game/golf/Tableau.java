@@ -5,6 +5,14 @@ import java.util.ArrayList;
 import code.cards.Card;
 import code.cards.Pile;
 
+/**
+ * The tableau piles receive 5 cards each at the beginning of the game.
+ * After the game is set up, they cannot receive any more cards. Cards
+ * are removed and added to the Homecell pile in accordance with the 
+ * rules of the game.
+ * 
+ * @author Matt Ferrera
+ */
 public class Tableau implements Pile {
 
 	/**

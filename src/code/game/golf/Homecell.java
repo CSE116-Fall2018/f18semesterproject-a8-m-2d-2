@@ -5,6 +5,13 @@ import java.util.ArrayList;
 import code.cards.Card;
 import code.cards.Pile;
 
+/**
+ * Instantiates the Homecell pile, which initiates with an
+ * empty ArrayList of cards. Cards are added to this class
+ * throughout the game in accordance with the rules of the game.
+ * 
+ * @author Matt Ferrera
+ */
 public class Homecell implements Pile {
 
 	/**
