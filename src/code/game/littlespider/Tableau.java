@@ -45,7 +45,7 @@ public class Tableau implements Pile {
 		
 		if(card == null) return false;
 		
-		if(override == true) {
+		if(override) {
 			cards.add(0, card);
 			topCard = card;
 			return true;
