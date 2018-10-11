@@ -1,4 +1,4 @@
-package code.game.GUI;
+package code.game.gui;
 
 public class Golf {
 

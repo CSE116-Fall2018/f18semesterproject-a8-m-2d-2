@@ -1,14 +1,14 @@
-package code.game.GUI.control;
+package code.game.gui.control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ExitListener implements ActionListener{
+public class GolfListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.exit(0);
+		// start golf game from code.game.GUI Golf
+
 	}
-	
 
 }
