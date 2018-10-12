@@ -18,7 +18,7 @@ public class GolfGUI {
 	
 	public GolfGUI() {
 		this.golf = new JPanel();
-		this.golf.setLayout(new GridLayout(7, 2));
+		this.golf.setLayout(new GridLayout(2, 7, 20, 20));
 		this.game = new Golf();
 		this.tabs = new JLabel[7];
 		this.refresh();
