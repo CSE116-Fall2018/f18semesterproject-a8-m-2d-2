@@ -36,7 +36,7 @@ public class GUI {
 		menu.add(littleSpider);
 		
 		JMenuItem golf = new JMenuItem("Golf");
-		golf.addActionListener(new GolfListener());
+		golf.addActionListener(new GolfListener(this));
 		menu.add(golf);
 
 		JMenuItem exit = new JMenuItem("Exit");
