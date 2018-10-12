@@ -1,5 +1,7 @@
 package code.cards;
 
+import java.awt.Dimension;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -78,10 +80,16 @@ public class Card {
 			imgFile = "k" + this.suit.charAt(0);
 		}
 		
-		ImageIcon icon = new ImageIcon(imgFile + ".gif");
+		ImageIcon icn = new ImageIcon(imgFile + ".gif");
 		JLabel label = new JLabel();
-		label.setIcon(icon);
+		label.setIcon(icn);
 		this.icon = label;
+		
+		Dimension d = new Dimension(icn.getIconWidth() + 10, icn.getIconHeight() + 10);
+	    label.setSize(d);
+	    label.setPreferredSize(d);
+	    label.setMaximumSize(d);
+	    label.setMinimumSize(d);
 		
 		this.faceUp = false;
 	}

@@ -1,5 +1,6 @@
 package code.game.gui;
 
+import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
 
 import javax.swing.JLabel;
@@ -45,9 +46,12 @@ public class GolfGUI {
 			this.golf.add(tabs[i]);
 		}
 		
+		GridBagConstraints c = new GridBagConstraints();
+		
 		this.golf.add(new JLabel());
 		this.golf.add(new JLabel());
 		this.golf.add(this.stockpile);
+		
 		this.golf.add(new JLabel());
 		this.golf.add(this.homecell);
 		this.golf.add(new JLabel());
