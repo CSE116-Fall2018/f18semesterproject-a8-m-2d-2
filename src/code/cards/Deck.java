@@ -29,7 +29,7 @@ public class Deck implements Pile {
 	 */
 	public void initialize() {
 		for(int c = 0; c < 52; c++) {
-			this.deck.add(new Card(c,false));
+			this.deck.add(new Card(c));
 		}
 	}
 

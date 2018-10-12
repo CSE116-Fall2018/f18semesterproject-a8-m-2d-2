@@ -1,5 +1,7 @@
 package code.cards;
 
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  * Instantiates a card dependent upon the id passed to it.
@@ -20,6 +22,8 @@ public class Card {
 	public int id;
 	/** Whether the card is faced down or up, true is facing up, false if facing down*/
 	public boolean faceUp;
+	/** The JLabel card image */
+	private JLabel icon;
 	
 	
 	/**
@@ -30,10 +34,10 @@ public class Card {
 	 * @param id - int that will determine the rank and suit of the card.
 	 * @param faceUp - boolean that determines if the card is faced up or faced down.
 	 */
-	public Card(int id, boolean faceUp) {
+	public Card(int id) {
 		this.id = id;
-		int suit = id/13;
-		int rank = id%13;
+		int suit = id / 13;
+		int rank = id % 13;
 		this.value = rank;
 		
 		switch(suit) {
@@ -50,23 +54,36 @@ public class Card {
 			this.suit = "club";
 			break;
 		default:
-			System.out.println("no matching suit");
-			
+			System.out.println("no matching suit");	
 		}
 		
-		if (rank == 0)
+		// The image identifier/filename, e.g. 1d, ad, etc.
+		String imgFile;
+		
+		if (rank == 0) {
 			this.rank = "ace";
-		else if(rank>0 && rank<10) {
-			Integer Rank = rank + 1;
-			this.rank = (Rank).toString();
+			imgFile = "a" + this.suit.charAt(0);
+		} else if(rank > 0 && rank < 10) {
+			this.rank = String.valueOf(rank+1);
+			imgFile = this.rank + this.suit.charAt(0);
 		}
-		else if(rank == 10)
+		else if(rank == 10) {
 			this.rank = "jack";
-		else if(rank == 11)
+			imgFile = "j" + this.suit.charAt(0);
+		} else if(rank == 11) {
 			this.rank = "queen";
-		else
+			imgFile = "q" + this.suit.charAt(0);
+		} else {
 			this.rank = "king";
-		this.faceUp = faceUp;
+			imgFile = "k" + this.suit.charAt(0);
+		}
+		
+		ImageIcon icon = new ImageIcon(imgFile + ".gif");
+		JLabel label = new JLabel();
+		label.setIcon(icon);
+		this.icon = label;
+		
+		this.faceUp = false;
 	}
 
 	/**
@@ -100,6 +117,15 @@ public class Card {
 	 * @return int the instance int referencing the value of the card.
 	 */
 	public int getValue() {
-		return value;
+		return this.value;
+	}
+	
+	/**
+	 * Returns the JLabel with the card face ImageIcon for display in the GUI.
+	 * 
+	 * @return JLabel the JLabel image icon of the card.
+	 */
+	public JLabel getIcon() {
+		return this.icon;
 	}
 }

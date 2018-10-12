@@ -19,19 +19,19 @@ public class CardTest {
 	@Test
 	public void suitTest() {
 		for(int i = 0;i<13;i++) {
-			Card test = new Card(i,true);
+			Card test = new Card(i);
 			assertEquals("diamond", test.getSuit());
 		}
 		for(int i=13;i<26;i++) {
-			Card test = new Card(i,true);
+			Card test = new Card(i);
 			assertEquals("heart", test.getSuit());
 		}
 		for(int i=26;i<39;i++) {
-			Card test = new Card(i,true);
+			Card test = new Card(i);
 			assertEquals("spade", test.getSuit());
 		}
 		for(int i=39;i<52;i++) {
-			Card test = new Card(i,true);
+			Card test = new Card(i);
 			assertEquals("club", test.getSuit());
 		}
 	}
@@ -41,7 +41,7 @@ public class CardTest {
 	@Test
 	public void rankTest() {
 		for(int i = 0;i<52;i++) {
-			Card test = new Card(i,true);
+			Card test = new Card(i);
 			if(test.getValue()%13==0) {
 				assertEquals("ace", test.getRank());
 			}
@@ -62,7 +62,7 @@ public class CardTest {
 	@Test
 	public void valueTest() {
 		for(int i = 0;i<52;i++) {
-			Card test = new Card(i,true);
+			Card test = new Card(i);
 			assertEquals(i%13,test.getValue());
 		}
 	}

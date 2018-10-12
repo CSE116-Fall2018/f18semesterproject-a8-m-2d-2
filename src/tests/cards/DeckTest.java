@@ -129,7 +129,7 @@ public class DeckTest {
 		Deck test = new Deck();
 		ArrayList<Card> compare1 = new ArrayList<>();
 		ArrayList<Card> compare2 = new ArrayList<>();
-		for(int c = 1; c < 52; c++) compare1.add(new Card(c,false));
+		for(int c = 1; c < 52; c++) compare1.add(new Card(c));
 		Card[] removed = new Card[46];
 		removed [0] = test.takeCard();
 		
@@ -139,7 +139,7 @@ public class DeckTest {
 		assertEquals("Did not remove the top card of the deck",0,removed[0].id);
 		
 		for(int c = 0; c < removed.length-1; c++) removed[c+1] = test.takeCard();
-		for(int c = removed.length; c < 52; c++) compare2.add(new Card(c,false));
+		for(int c = removed.length; c < 52; c++) compare2.add(new Card(c));
 		
 		for(int c = 0; c < test.getDeck().size(); c++) 
 			assertEquals("takeCard fails after multiple iterations", test.getDeck().get(c).getRank(), compare2.get(c).getRank());
@@ -149,7 +149,7 @@ public class DeckTest {
 	@Test
 	public void deckAddCard() {
 		Deck test = new Deck();
-		boolean check = test.addCard(new Card(33,false), false);
+		boolean check = test.addCard(new Card(33), false);
 		assertFalse("addCard did not return false", check);
 		assertEquals("Deck's add card increased the size of the deck", 52, test.getDeck().size());
 	}
