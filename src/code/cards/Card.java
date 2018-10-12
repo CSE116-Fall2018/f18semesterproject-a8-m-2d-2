@@ -1,10 +1,10 @@
 package code.cards;
 
 import java.awt.Dimension;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
-
 /**
  * Instantiates a card dependent upon the id passed to it.
  * The id is used to determine the suit and rank of the card.
@@ -38,49 +38,55 @@ public class Card {
 	 */
 	public Card(int id) {
 		this.id = id;
+		// int value of the suit
 		int suit = id / 13;
+		// int value of the rank
 		int rank = id % 13;
 		this.value = rank;
 		
 		switch(suit) {
 		case 0:
-			this.suit = "diamond";
-			break;
-		case 1:
 			this.suit = "heart";
 			break;
+		case 1:
+			this.suit = "diamond";
+			break;
 		case 2:
-			this.suit = "spade";
+			this.suit = "club";
 			break;
 		case 3:
-			this.suit = "club";
+			this.suit = "spade";
 			break;
 		default:
 			System.out.println("no matching suit");	
 		}
 		
-		// The image identifier/filename, e.g. 1d, ad, etc.
+		// The image filename, e.g. 1d, ad, etc.
 		String imgFile;
 		
-		if (rank == 0) {
+		switch(rank) {
+		case 0:
 			this.rank = "ace";
 			imgFile = "a" + this.suit.charAt(0);
-		} else if(rank > 0 && rank < 10) {
+			break;
+		case 10:
+			this.rank = "jack";
+			imgFile = "j" + this.suit.charAt(0);
+			break;
+		case 11:
+			this.rank = "queen";
+			imgFile = "q" + this.suit.charAt(0);
+			break;
+		case 12:
+			this.rank = "king";
+			imgFile = "k" + this.suit.charAt(0);
+			break;
+		default:
 			this.rank = String.valueOf(rank+1);
 			imgFile = this.rank + this.suit.charAt(0);
 		}
-		else if(rank == 10) {
-			this.rank = "jack";
-			imgFile = "j" + this.suit.charAt(0);
-		} else if(rank == 11) {
-			this.rank = "queen";
-			imgFile = "q" + this.suit.charAt(0);
-		} else {
-			this.rank = "king";
-			imgFile = "k" + this.suit.charAt(0);
-		}
 		
-		java.net.URL imgURL = getClass().getResource("/"+ imgFile + ".gif");
+		URL imgURL = getClass().getResource("/"+ imgFile + ".gif");
 		ImageIcon icn = new ImageIcon(imgURL);
 		JLabel label = new JLabel();
 		label.setIcon(icn);

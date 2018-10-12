@@ -1,5 +1,6 @@
 package code.game.gui;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JFrame;
@@ -17,9 +18,11 @@ public class GUI {
 	
 	private JPanel panel;
 	private JFrame frame;
+	static final Color BG_COLOR = new Color(0,100,0);
 	
 	public GUI() {
 		this.panel = new JPanel();
+		this.panel.setBackground(BG_COLOR);
 	}
 
 	public JMenuBar getMenuBar() {

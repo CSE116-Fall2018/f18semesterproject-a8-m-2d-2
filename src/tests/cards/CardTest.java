@@ -20,19 +20,19 @@ public class CardTest {
 	public void suitTest() {
 		for(int i = 0;i<13;i++) {
 			Card test = new Card(i);
-			assertEquals("diamond", test.getSuit());
+			assertEquals("heart", test.getSuit());
 		}
 		for(int i=13;i<26;i++) {
 			Card test = new Card(i);
-			assertEquals("heart", test.getSuit());
+			assertEquals("diamond", test.getSuit());
 		}
 		for(int i=26;i<39;i++) {
 			Card test = new Card(i);
-			assertEquals("spade", test.getSuit());
+			assertEquals("club", test.getSuit());
 		}
 		for(int i=39;i<52;i++) {
 			Card test = new Card(i);
-			assertEquals("club", test.getSuit());
+			assertEquals("spade", test.getSuit());
 		}
 	}
 	//0,13,26,39 are ace

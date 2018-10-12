@@ -19,7 +19,6 @@ public class GolfListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// Start little spider from code.game.GUI little spider
 		GolfGUI game = new GolfGUI();
 		JPanel panel = gui.getPanel();
 		panel.removeAll();
