@@ -1,6 +1,7 @@
 package code.cards;
 
 import java.awt.Dimension;
+import java.awt.Image;
 import java.net.URL;
 
 import javax.swing.ImageIcon;
@@ -86,16 +87,13 @@ public class Card {
 			imgFile = this.rank + this.suit.charAt(0);
 		}
 		
-		URL imgURL = getClass().getResource("/"+ imgFile + ".gif");
-		ImageIcon icn = new ImageIcon(imgURL);
+		// Local URL of the image
+		URL imgURL = getClass().getResource("/" + imgFile + ".png");
+		Image img = new ImageIcon(imgURL).getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);
+		ImageIcon resizedImg = new ImageIcon(img);
 		JLabel label = new JLabel();
-		label.setIcon(icn);
-		
-		Dimension d = new Dimension(icn.getIconWidth() + 10, icn.getIconHeight() + 10);
-	    label.setSize(d);
-	    label.setPreferredSize(d);
-	    label.setMaximumSize(d);
-	    label.setMinimumSize(d);
+		label.setIcon(resizedImg);
+		label.setHorizontalAlignment(JLabel.CENTER);
 	    
 		this.icon = label;
 		

@@ -2,8 +2,10 @@ package code.game.gui;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.net.URL;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,7 +24,9 @@ public class GolfGUI {
 	public GolfGUI() {
 		this.golf = new JPanel();
 		golf.setBackground(GUI.BG_COLOR);
-		this.golf.setLayout(new GridLayout(2, 7, 20, 20));
+		golf.setBorder(BorderFactory.createEmptyBorder(20,20,20,20));
+		// 2 rows 7 columns, 20 vertical + horizontal margin spacing
+		this.golf.setLayout(new GridLayout(2, 7, 30, 30));
 		this.game = new Golf();
 		this.tabs = new JLabel[7];
 		this.refresh();
@@ -34,15 +38,11 @@ public class GolfGUI {
 		// Set the homecell icon
 		if (this.homecell == null) {
 			this.homecell = new JLabel();
-			URL imgURL = getClass().getResource("/gold.gif");
-			ImageIcon icn = new ImageIcon(imgURL);
-			homecell.setIcon(icn);
-			
-			Dimension d = new Dimension(icn.getIconWidth() + 10, icn.getIconHeight() + 10);
-		    homecell.setSize(d);
-		    homecell.setPreferredSize(d);
-		    homecell.setMaximumSize(d);
-		    homecell.setMinimumSize(d);
+			URL imgURL = getClass().getResource("/e.png");
+			Image img = new ImageIcon(imgURL).getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);
+			ImageIcon resizedImg = new ImageIcon(img);
+			homecell.setIcon(resizedImg);
+			homecell.setHorizontalAlignment(JLabel.CENTER);
 		} else {
 			this.homecell = this.game.getHomecell().getCard().getIcon();
 		}

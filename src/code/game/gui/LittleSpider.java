@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.sun.prism.Image;
+//import com.sun.prism.Image;
 
 import code.game.littlespider.Homecell;
 
@@ -34,30 +34,30 @@ public class LittleSpider {
 		c.fill = GridBagConstraints.HORIZONTAL;
 		panel.add(title, c);
 		
-		JLabel h1 = getImageLabel("/ad.gif");
+		JLabel h1 = getImageLabel("/ad.png");
 		c.gridx = 0;
 		c.gridy = 1;
 		c.gridwidth = 1;
 		c.fill = GridBagConstraints.NONE;
 		panel.add(h1, c);
 		
-		JLabel h2 = getImageLabel("/ah.gif");
+		JLabel h2 = getImageLabel("/ah.png");
 		c.gridx = 1;
 		c.gridy = 1;
 		panel.add(h2, c);
 		
-		JLabel h3 = getImageLabel("/kc.gif");
+		JLabel h3 = getImageLabel("/kc.png");
 		c.gridx = 2;
 		c.gridy = 1;
 		panel.add(h3, c);
 		
-		JLabel h4 = getImageLabel("/ks.gif");
+		JLabel h4 = getImageLabel("/ks.png");
 		c.gridx = 3;
 		c.gridy = 1;
 		panel.add(h4, c);
 		
 		
-		JLabel retVal = getImageLabel("/10h.gif");
+		JLabel retVal = getImageLabel("/10h.png");
 		c.gridx = 0;
 		c.gridy = 2;
 		panel.add(retVal, c);
