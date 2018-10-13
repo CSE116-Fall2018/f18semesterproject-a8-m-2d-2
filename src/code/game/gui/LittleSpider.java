@@ -1,10 +1,12 @@
 package code.game.gui;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -20,6 +22,7 @@ public class LittleSpider {
 	private code.game.littlespider.LittleSpider game;
 	private Homecell[] homecells;
 	private Tableau[] tableaus;
+	private JLabel output;
 	
 	public LittleSpider() {
 		homecellLabels = new JLabel[4];
@@ -27,6 +30,7 @@ public class LittleSpider {
 		game = new code.game.littlespider.LittleSpider();
 		homecells = game.getHomecells();
 		tableaus = game.getTableaus();
+		output = new JLabel();
 	}
 
 	public JPanel getGame() {
@@ -44,7 +48,7 @@ public class LittleSpider {
 		c.insets = new Insets(20,20,20,20);
 		panel.add(title, c);
 		
-		JLabel home = new JLabel("   Homecells:");
+		JLabel home = new JLabel();
 		home.setFont(new Font("Arial", Font.PLAIN, 60));
 		c.gridx = 0;
 		c.gridy = 1;
@@ -52,7 +56,7 @@ public class LittleSpider {
 		c.fill = GridBagConstraints.HORIZONTAL;
 		panel.add(home, c);
 		
-		JLabel tab = new JLabel("   Tableaus:");
+		JLabel tab = new JLabel();
 		tab.setFont(new Font("Arial", Font.PLAIN, 60));
 		c.gridx = 0;
 		c.gridy = 3;
@@ -69,7 +73,7 @@ public class LittleSpider {
 			c.gridy = 2;
 			c.gridwidth = 1;
 			c.fill = GridBagConstraints.NONE;
-			lab.addMouseListener(new ClickListener());
+			lab.addMouseListener(new ClickListener(this, lab));
 			panel.add(lab, c);
 			homecellLabels[i] = lab;;
 			x=x+1;
@@ -85,7 +89,7 @@ public class LittleSpider {
 			c.gridy = y;
 			c.gridwidth = 1;
 			c.fill = GridBagConstraints.NONE;
-			lab.addMouseListener(new ClickListener());
+			lab.addMouseListener(new ClickListener(this, lab));
 			panel.add(lab, c);
 			x=x+1;
 			tableauLabels[i] = lab;
@@ -95,7 +99,6 @@ public class LittleSpider {
 			}
 		}
 	
-		JLabel output = new JLabel("");
 		panel.add(output);
 		output.setFont(new Font("Arial", Font.PLAIN, 35));
 		panel.setBackground(GUI.BG_COLOR);
@@ -103,7 +106,9 @@ public class LittleSpider {
 	}
 	
 	
-	public void addSelect() {
-		
+	public void Selected(JLabel label) {
+		label.setBorder(BorderFactory.createMatteBorder(5, 5, 5, 5,
+                Color.BLACK));
+	      label.repaint();
 	}
 }
