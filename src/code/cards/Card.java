@@ -1,8 +1,19 @@
 package code.cards;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.net.URL;
 
-import code.game.gui.CardIcon;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
+import code.game.gui.HomecellGUI;
 /**
  * Instantiates a card dependent upon the id passed to it.
  * The id is used to determine the suit and rank of the card.
@@ -10,7 +21,8 @@ import code.game.gui.CardIcon;
  * @author Mitch Thurston
  * 
  */
-public class Card {
+@SuppressWarnings("serial")
+public class Card extends JLabel implements ActionListener, MouseListener {
 	
 	/** The suit the card is in (e.g. heart)*/
 	private String suit;
@@ -21,9 +33,9 @@ public class Card {
 	/** The parameter ID stored*/
 	public int id;
 	/** Whether the card is faced down or up, true is facing up, false if facing down*/
-	public boolean faceUp;
+	private boolean faceUp;
 	/** The JLabel card image */
-	private CardIcon icon;
+	private boolean top;
 	
 	
 	/**
@@ -86,8 +98,16 @@ public class Card {
 		
 		// Local URL of the image
 		URL path = getClass().getResource("/" + imgFile + ".png");
-	    
-		this.icon = new CardIcon(path);
+		this.top = false;
+		this.addMouseListener(this);
+		Image img = new ImageIcon(path).getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);
+		ImageIcon resizedImg = new ImageIcon(img);
+		this.setIcon(resizedImg);
+		this.setPreferredSize(new Dimension(100, 140));
+		this.setOpaque(true);
+		this.setHorizontalAlignment(JLabel.CENTER);
+		this.setVerticalAlignment(JLabel.TOP);
+		
 		this.faceUp = false;
 	}
 
@@ -96,6 +116,15 @@ public class Card {
 	 */
 	public void setFaceUp() {
 		this.faceUp = true;
+	}
+	
+	/**
+	 * Returns whether or not the card is face up.
+	 * 
+	 * @return boolean whether or not the card is face up
+	 */
+	public boolean isFaceUp() {
+		return this.faceUp;
 	}
 
 	/**
@@ -126,11 +155,49 @@ public class Card {
 	}
 	
 	/**
-	 * Returns the JLabel with the card face ImageIcon for display in the GUI.
-	 * 
-	 * @return JLabel the JLabel image icon of the card.
+	 * Sets the card as the card on top of the pile.
 	 */
-	public CardIcon getIcon() {
-		return this.icon;
+	public void setTop() {
+		this.top = true;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if (!top) {
+			return;
+		}
+		
+		// TODO Handle functionality properly
+		this.setBorder(BorderFactory.createLineBorder(Color.BLUE, 5));
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

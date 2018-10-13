@@ -68,7 +68,7 @@ public class LittleSpider {
 		for(int i=0; i<homecells.length; i++) {
 			Homecell h = homecells[i];
 			code.cards.Card cc = h.getCard();
-			JLabel lab = cc.getIcon();
+			JLabel lab = cc;
 			c.gridx = x;
 			c.gridy = 2;
 			c.gridwidth = 1;
@@ -84,7 +84,7 @@ public class LittleSpider {
 		for(int i=0; i<tableaus.length; i++) {
 			Tableau h = tableaus[i];
 			code.cards.Card cc = h.getCard();
-			JLabel lab = cc.getIcon();
+			JLabel lab = cc;
 			c.gridx = x;
 			c.gridy = y;
 			c.gridwidth = 1;

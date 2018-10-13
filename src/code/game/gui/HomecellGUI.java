@@ -14,10 +14,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 @SuppressWarnings("serial")
-public class CardIcon extends JLabel implements ActionListener, MouseListener {
-	private boolean top;
+public class HomecellGUI extends JLabel implements ActionListener, MouseListener {
+	protected boolean top;
 	
-	public CardIcon(URL filePath) {
+	public HomecellGUI(URL filePath) {
 		this.top = false;
 		this.addMouseListener(this);
 		Image img = new ImageIcon(filePath).getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);

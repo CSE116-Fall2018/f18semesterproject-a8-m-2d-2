@@ -42,7 +42,7 @@ public class GolfTest {
 			cards[3] = b.takeCard();
 			cards[4] = b.takeCard();
 			for (Card c : cards) {
-				assertTrue("All cards should be instantiated as face up in Tableaus", c.faceUp);
+				assertTrue("All cards should be instantiated as face up in Tableaus", c.isFaceUp());
 			}
 		}
 	}

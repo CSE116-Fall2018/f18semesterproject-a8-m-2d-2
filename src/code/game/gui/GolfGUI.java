@@ -16,8 +16,8 @@ import code.game.golf.Tableau;
 @SuppressWarnings("serial")
 public class GolfGUI extends JLayeredPane {
 	private Golf game;
-	private CardIcon homecell;
-	private CardIcon stockpile;
+	private JLabel homecell;
+	private Card stockpile;
 	private static final int Y_OFFSET = 25;
 	private static final int X_OFFSET = 110;
 	
@@ -38,12 +38,12 @@ public class GolfGUI extends JLayeredPane {
 		if (this.homecell == null) {
 			// The default homecell image when no cards have been placed
 			URL path = getClass().getResource("/e.png"); // empty.png
-			this.homecell = new CardIcon(path);
+			this.homecell = new HomecellGUI(path);
 		} else {
-			this.homecell = this.game.getHomecell().getCard().getIcon();
+			this.homecell = this.game.getHomecell().getCard();
 		}
 		
-		this.stockpile = this.game.getStockpile().getCard().getIcon();
+		this.stockpile = this.game.getStockpile().getCard();
 		
 		// Iterate through all 7 tableaus
 		for(int i = 0; i < tableaus.length; i++) {
@@ -52,7 +52,7 @@ public class GolfGUI extends JLayeredPane {
 			for(int j = 0; j < cards.size(); j++) {
 				// Must be Integer object to denote layer in pane
 				Integer depth = j;
-				CardIcon icon = cards.get(j).getIcon();
+				Card icon = cards.get(j);
 				// Set bounds of this JLabel at (x,y) to width & height of icon
 				icon.setBounds(pos.x, pos.y, 
 						icon.getIcon().getIconWidth(), 
