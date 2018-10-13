@@ -1,11 +1,8 @@
 package code.cards;
 
-import java.awt.Dimension;
-import java.awt.Image;
 import java.net.URL;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
+import code.game.gui.CardIcon;
 /**
  * Instantiates a card dependent upon the id passed to it.
  * The id is used to determine the suit and rank of the card.
@@ -26,7 +23,7 @@ public class Card {
 	/** Whether the card is faced down or up, true is facing up, false if facing down*/
 	public boolean faceUp;
 	/** The JLabel card image */
-	private JLabel icon;
+	private CardIcon icon;
 	
 	
 	/**
@@ -88,17 +85,9 @@ public class Card {
 		}
 		
 		// Local URL of the image
-		URL imgURL = getClass().getResource("/" + imgFile + ".png");
-		Image img = new ImageIcon(imgURL).getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);
-		ImageIcon resizedImg = new ImageIcon(img);
-		JLabel label = new JLabel();
-		label.setIcon(resizedImg);
-		label.setPreferredSize(new Dimension(100, 140));
-		label.setOpaque(true);
-		label.setHorizontalAlignment(JLabel.CENTER);
-		label.setVerticalAlignment(JLabel.TOP);
+		URL path = getClass().getResource("/" + imgFile + ".png");
 	    
-		this.icon = label;
+		this.icon = new CardIcon(path);
 		this.faceUp = false;
 	}
 
@@ -141,7 +130,7 @@ public class Card {
 	 * 
 	 * @return JLabel the JLabel image icon of the card.
 	 */
-	public JLabel getIcon() {
+	public CardIcon getIcon() {
 		return this.icon;
 	}
 }

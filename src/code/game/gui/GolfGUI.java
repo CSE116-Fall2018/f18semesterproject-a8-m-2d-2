@@ -1,17 +1,11 @@
 package code.game.gui;
 
 import java.awt.Dimension;
-import java.awt.Image;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.net.URL;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
@@ -20,10 +14,10 @@ import code.game.golf.Golf;
 import code.game.golf.Tableau;
 
 @SuppressWarnings("serial")
-public class GolfGUI extends JLayeredPane implements ActionListener, MouseListener {
+public class GolfGUI extends JLayeredPane {
 	private Golf game;
-	private JLabel homecell;
-	private JLabel stockpile;
+	private CardIcon homecell;
+	private CardIcon stockpile;
 	private static final int Y_OFFSET = 25;
 	private static final int X_OFFSET = 110;
 	
@@ -43,13 +37,8 @@ public class GolfGUI extends JLayeredPane implements ActionListener, MouseListen
 		// Set the homecell icon
 		if (this.homecell == null) {
 			// The default homecell image when no cards have been placed
-			this.homecell = new JLabel();
-			URL imgURL = getClass().getResource("/e.png"); // empty.png
-			// Halves the size of the image
-			Image img = new ImageIcon(imgURL).getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);
-			ImageIcon resizedImg = new ImageIcon(img);
-			homecell.setIcon(resizedImg);
-			homecell.setHorizontalAlignment(JLabel.CENTER);
+			URL path = getClass().getResource("/e.png"); // empty.png
+			this.homecell = new CardIcon(path);
 		} else {
 			this.homecell = this.game.getHomecell().getCard().getIcon();
 		}
@@ -61,22 +50,18 @@ public class GolfGUI extends JLayeredPane implements ActionListener, MouseListen
 			ArrayList<Card> cards = tableaus[i].getAllCards();
 			// Iterate through every card in the current tableau
 			for(int j = 0; j < cards.size(); j++) {
+				// Must be Integer object to denote layer in pane
 				Integer depth = j;
-				JLabel icon = cards.get(j).getIcon();
+				CardIcon icon = cards.get(j).getIcon();
 				// Set bounds of this JLabel at (x,y) to width & height of icon
 				icon.setBounds(pos.x, pos.y, 
 						icon.getIcon().getIconWidth(), 
 						icon.getIcon().getIconHeight());
-
-				/* The first iteration "creates" depth layers 0-6
-				 * Following iterations are added to those depths layer
-				 * with the third parameter 0
-				 */
-				if (j == 0) {
-					this.add(icon, depth);
-				} else {
-					this.add(icon, depth, 0);
+				
+				if (j == cards.size() - 1) {
+					icon.setTop();
 				}
+				this.add(icon, depth, 0);
 				// Move down Y_OFFSET to stagger the cards in this tableau
 				pos.y += Y_OFFSET;
 			}
@@ -95,41 +80,4 @@ public class GolfGUI extends JLayeredPane implements ActionListener, MouseListen
 				this.homecell.getIcon().getIconHeight());
 		this.add(this.homecell, Integer.valueOf(0), 0);
 	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	
 }
