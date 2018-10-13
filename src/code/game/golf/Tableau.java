@@ -66,6 +66,19 @@ public class Tableau implements Pile {
 		
 		return cards.get(0);
 	}
+	
+	/**
+	 * Returns the ArrayList of Cards in the pile.
+	 * 
+	 * @return ArrayList<Card> all cards in the ArrayList of the pile.
+	 */
+	public ArrayList<Card> getAllCards() {
+		if (getNumCards() == 0) {
+			return null;
+		}
+		
+		return cards;
+	}
 
 	/**
 	 * Returns the card at the top of the pile and removes that card from the Tableau.

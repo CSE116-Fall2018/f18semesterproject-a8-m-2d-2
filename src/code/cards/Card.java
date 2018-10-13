@@ -93,10 +93,12 @@ public class Card {
 		ImageIcon resizedImg = new ImageIcon(img);
 		JLabel label = new JLabel();
 		label.setIcon(resizedImg);
+		label.setPreferredSize(new Dimension(100, 140));
+		label.setOpaque(true);
 		label.setHorizontalAlignment(JLabel.CENTER);
+		label.setVerticalAlignment(JLabel.TOP);
 	    
 		this.icon = label;
-		
 		this.faceUp = false;
 	}
 

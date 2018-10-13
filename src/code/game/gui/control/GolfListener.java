@@ -3,9 +3,6 @@ package code.game.gui.control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import code.game.gui.GUI;
 import code.game.gui.GolfGUI;
 
@@ -20,11 +17,8 @@ public class GolfListener implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		GolfGUI game = new GolfGUI();
-		JPanel panel = gui.getPanel();
-		panel.removeAll();
-		panel.add(game.getGame());
-		JFrame frame = gui.getFrame();
-		frame.pack();
+		gui.getPanel().removeAll();
+		gui.getPanel().add(game);
+		gui.getFrame().pack();
 	}
-
 }

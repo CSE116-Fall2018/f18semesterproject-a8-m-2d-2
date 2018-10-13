@@ -1,8 +1,10 @@
 package code.game.gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -22,6 +24,7 @@ public class GUI {
 	
 	public GUI() {
 		this.panel = new JPanel();
+		this.panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		this.panel.setBackground(BG_COLOR);
 	}
 
@@ -52,11 +55,12 @@ public class GUI {
 	public void runGUI() {
 		JFrame frameNew = new JFrame("Solitare");
 		this.frame = frameNew;
+		frame.setLayout(new BorderLayout());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setVisible(true);
 		frame.setSize(1150,1200);
 		frame.setJMenuBar(this.getMenuBar());
-		frame.getContentPane().add(this.getPanel()); // add game panel
+		frame.add(this.panel, BorderLayout.CENTER); // add game panel
+		frame.setVisible(true);
 	}
 
 	public JPanel getPanel() {
