@@ -7,14 +7,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.net.URL;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import code.game.gui.GUI;
-import code.game.gui.HomecellGUI;
 /**
  * Instantiates a card dependent upon the id passed to it.
  * The id is used to determine the suit and rank of the card.
@@ -37,6 +36,7 @@ public class Card extends JLabel implements ActionListener, MouseListener {
 	private boolean faceUp;
 	/** The JLabel card image */
 	private boolean top;
+	private URL iconPath;
 	
 	
 	/**
@@ -46,6 +46,7 @@ public class Card extends JLabel implements ActionListener, MouseListener {
 	 * 
 	 * @param id - int that will determine the rank and suit of the card.
 	 * @param faceUp - boolean that determines if the card is faced up or faced down.
+	 * @throws IOException throws IOException if file not found
 	 */
 	public Card(int id) {
 		this.id = id;
@@ -97,13 +98,19 @@ public class Card extends JLabel implements ActionListener, MouseListener {
 			imgFile = this.rank + this.suit.charAt(0);
 		}
 		
-		// Local URL of the image
-		URL path = getClass().getResource("/" + imgFile + ".png");
+		this.iconPath = getClass().getResource("/" + imgFile + ".png");
+		
+		if (this.iconPath == null) {
+			throw new IllegalArgumentException("Could not find card image file " + imgFile);
+		}
+
 		// Is not set as top card of pile
 		this.top = false;
 		// Add self as mouseListener
 		this.addMouseListener(this);
-		// Resize the card image & set the image stuff appropriately
+		// Resize the card image & set the image stuff appropriately.
+		// Set original image as back of card
+		URL path = getClass().getResource("/b.png");
 		Image img = new ImageIcon(path).getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);
 		ImageIcon resizedImg = new ImageIcon(img);
 		this.setIcon(resizedImg);
@@ -120,6 +127,15 @@ public class Card extends JLabel implements ActionListener, MouseListener {
 	 * Sets the field faceUp as true.
 	 */
 	public void setFaceUp() {
+		// Resize the card image & set the image stuff appropriately
+		Image img = new ImageIcon(this.iconPath).getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);
+		ImageIcon resizedImg = new ImageIcon(img);
+		this.setIcon(resizedImg);
+		this.setPreferredSize(new Dimension(100, 140));
+		this.setOpaque(true);
+		this.setHorizontalAlignment(JLabel.CENTER);
+		this.setVerticalAlignment(JLabel.TOP);
+		
 		this.faceUp = true;
 	}
 	

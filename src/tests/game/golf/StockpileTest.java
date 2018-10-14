@@ -18,7 +18,7 @@ public class StockpileTest {
 	@Test
 	public void testStockpileInit() {
 		Deck d = new Deck();
-		Stockpile s = new Stockpile(d.getDeck());
+		Stockpile s = new Stockpile(null, d.getDeck());
 		assertNotNull("Stockpile should properly initiate when given an ArrayList of cards", s);
 	}
 	
@@ -26,7 +26,7 @@ public class StockpileTest {
 	public void testAddCard() {
 		Deck d = new Deck();
 		d.shuffle();
-		Stockpile s = new Stockpile(d.getDeck());
+		Stockpile s = new Stockpile(null, d.getDeck());
 		Card c = d.takeCard();
 		Card c2 = d.takeCard();
 		assertFalse("Stockpile should not allow any cards to be added and always return false", s.addCard(c, false));
@@ -37,14 +37,15 @@ public class StockpileTest {
 	public void testGetNumCards() {
 		Deck d = new Deck();
 		d.shuffle();
-		Stockpile s = new Stockpile(d.getDeck());
+		Stockpile s = new Stockpile(null, d.getDeck());
 		Card c = d.takeCard();
 		Card c2 = d.takeCard();
 		ArrayList<Card> arr = new ArrayList<>();
 		arr.add(c);
 		arr.add(c2);
-		Stockpile s2 = new Stockpile(arr);
-		Stockpile s3 = new Stockpile(new ArrayList<>());
+		Stockpile s2 = new Stockpile(null, arr);
+		ArrayList<Card> arr2 = new ArrayList<>();
+		Stockpile s3 = new Stockpile(null, arr2);
 		assertEquals("Stockpile should return 2 as number of cards", 2, s2.getNumCards());
 		assertEquals("Stockpile should return 50 as number of cards", 50, s.getNumCards());
 		assertEquals("Stockpile should return 0 as number of cards", 0, s3.getNumCards());
@@ -54,8 +55,9 @@ public class StockpileTest {
 	public void testGetCard() {
 		Deck d = new Deck();
 		d.shuffle();
-		Stockpile s = new Stockpile(d.getDeck());
-		Stockpile s2 = new Stockpile(new ArrayList<>());
+		Stockpile s = new Stockpile(null, d.getDeck());
+		ArrayList<Card> arr = new ArrayList<>();
+		Stockpile s2 = new Stockpile(null, arr);
 		Card c = d.getCard();
 		assertNull("Stockpile should return null when trying to get a card from an empty Stockpile", s2.getCard());
 		assertEquals("getCard() should return the card at position 0", c, s.getCard());
@@ -75,8 +77,8 @@ public class StockpileTest {
 	public void testTakeCard() {
 		Deck d = new Deck();
 		d.shuffle();
-		Stockpile s = new Stockpile(d.getDeck());
-		Stockpile s2 = new Stockpile(new ArrayList<>());
+		Stockpile s = new Stockpile(null, d.getDeck());
+		Stockpile s2 = new Stockpile(null, new ArrayList<>());
 		assertNull("Stockpile should return null when trying to get a card from an empty Stockpile", s2.getCard());
 		Card c = s.getCard();
 		Card c2 = s.takeCard();

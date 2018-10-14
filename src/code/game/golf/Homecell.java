@@ -1,6 +1,16 @@
 package code.game.golf;
 
+import java.awt.Dimension;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.net.URL;
 import java.util.ArrayList;
+
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 import code.cards.Card;
 import code.cards.Pile;
@@ -12,7 +22,8 @@ import code.cards.Pile;
  * 
  * @author Matt Ferrera
  */
-public class Homecell implements Pile {
+@SuppressWarnings("serial")
+public class Homecell extends JLabel implements ActionListener, MouseListener, Pile {
 
 	/**
 	 * Cards is the ArrayList containing all Card objects in the Homecell pile.
@@ -24,6 +35,15 @@ public class Homecell implements Pile {
 	 */
 	public Homecell() {
 		cards = new ArrayList<>();
+		this.addMouseListener(this);
+		URL filePath = getClass().getResource("/e.png"); // empty.png
+		Image img = new ImageIcon(filePath).getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);
+		ImageIcon resizedImg = new ImageIcon(img);
+		this.setIcon(resizedImg);
+		this.setPreferredSize(new Dimension(100, 140));
+		this.setOpaque(true);
+		this.setHorizontalAlignment(JLabel.CENTER);
+		this.setVerticalAlignment(JLabel.TOP);
 	}
 	
 	/**
@@ -42,6 +62,7 @@ public class Homecell implements Pile {
 		// No cards are currently in the Homecell
 		if (cards.size() == 0 || override) {
 			cards.add(0, card);
+			this.setIcon(card.getIcon());
 			return true;
 		}
 		
@@ -49,6 +70,7 @@ public class Homecell implements Pile {
 		
 		if (difference == 1) {
 			cards.add(0, card);
+			this.setIcon(card.getIcon());
 			return true;
 		}
 		
@@ -89,5 +111,41 @@ public class Homecell implements Pile {
 		// TODO Placeholder functionality until GUI
 		System.out.println("Cannot remove cards from the Homecell pile.");
 		return null;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

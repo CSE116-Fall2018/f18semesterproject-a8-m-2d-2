@@ -2,17 +2,16 @@ package code.game.golf;
 
 import java.awt.Dimension;
 import java.awt.Point;
-import java.net.URL;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
-import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
 import code.cards.Card;
 import code.cards.Deck;
 import code.game.gui.GUI;
-import code.game.gui.HomecellGUI;
 
 /**
  * Instantiates the Golf game, create 7 Tableau piles, one Homecell
@@ -22,8 +21,9 @@ import code.game.gui.HomecellGUI;
  * @author Matt Ferrera
  */
 @SuppressWarnings("serial")
-public class Golf extends JLayeredPane {
+public class Golf extends JLayeredPane implements ActionListener {
 	
+	private GUI gui;
 	/**
 	 * Tableaus is an array containing all 7 Tableaus for the game.
 	 */
@@ -36,14 +36,6 @@ public class Golf extends JLayeredPane {
 	 * Stockpile is the game's Stockpile object.
 	 */
 	private Stockpile stockpile;
-	/**
-	 * The GUI homecell pile.
-	 */
-	private JLabel homecellIcon;
-	/**
-	 * The GUI stockpile.
-	 */
-	private Card stockpileIcon;
 	/**
 	 * The amount of vertical offset per card per tableau.
 	 */
@@ -58,9 +50,10 @@ public class Golf extends JLayeredPane {
 	 * Golf takes no parameters. It creates the deck object, shuffles it, creates 7 tableaus, the homecell pile,
 	 * and then initializes the rest of the game.
 	 */
-	public Golf() {
-		tableaus = new Tableau[7];
-		homecell = new Homecell();
+	public Golf(GUI gui) {
+		this.gui = gui;
+		this.tableaus = new Tableau[7];
+		this.homecell = new Homecell();
 		setPreferredSize(new Dimension(780, 500));
 		setBackground(GUI.BG_COLOR);
 		setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40));
@@ -87,7 +80,7 @@ public class Golf extends JLayeredPane {
 			this.tableaus[i] = t;
 		}
 		
-		this.stockpile = new Stockpile(cards.getDeck());
+		this.stockpile = new Stockpile(this, cards.getDeck());
 		refresh();
 	}
 	
@@ -99,17 +92,6 @@ public class Golf extends JLayeredPane {
 	public void refresh() {
 		// Origin starting point to place cards
 		Point pos = new Point(10, 20);
-		
-		// Set the homecell icon
-		if (this.homecellIcon == null) {
-			// The default homecell image when no cards have been placed
-			URL path = getClass().getResource("/e.png"); // empty.png
-			this.homecellIcon = new HomecellGUI(path);
-		} else {
-			this.homecellIcon = this.getHomecell().getCard();
-		}
-		
-		this.stockpileIcon = this.getStockpile().getCard();
 		
 		// Iterate through all 7 tableaus
 		for(int i = 0; i < this.tableaus.length; i++) {
@@ -137,14 +119,14 @@ public class Golf extends JLayeredPane {
 		}
 		
 		// Add the stockpile and homecell pile
-		this.stockpileIcon.setBounds(280, 300, 
-				this.stockpileIcon.getIcon().getIconWidth(), 
-				this.stockpileIcon.getIcon().getIconHeight());
-		this.add(this.stockpileIcon, Integer.valueOf(0), 0);	
-		this.homecellIcon.setBounds(400, 300, 
-				this.homecellIcon.getIcon().getIconWidth(), 
-				this.homecellIcon.getIcon().getIconHeight());
-		this.add(this.homecellIcon, Integer.valueOf(0), 0);
+		this.stockpile.setBounds(280, 300, 
+				this.stockpile.getIcon().getIconWidth(), 
+				this.stockpile.getIcon().getIconHeight());
+		this.add(this.stockpile, Integer.valueOf(0), 0);	
+		this.homecell.setBounds(400, 300, 
+				this.homecell.getIcon().getIconWidth(), 
+				this.homecell.getIcon().getIconHeight());
+		this.add(this.homecell, Integer.valueOf(0), 0);
 	}
 
 	public boolean isCardSelected() {
@@ -180,5 +162,12 @@ public class Golf extends JLayeredPane {
 	 */
 	public Stockpile getStockpile() {
 		return stockpile;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		this.gui.getPanel().removeAll();
+		this.gui.getPanel().add(this);
+		this.gui.getFrame().pack();	
 	}
 }

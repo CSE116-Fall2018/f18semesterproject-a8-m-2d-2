@@ -2,18 +2,23 @@ package code.game.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
+import java.net.URL;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
+import code.game.golf.Golf;
 import code.game.gui.control.ExitListener;
-import code.game.gui.control.GolfListener;
 import code.game.gui.control.LittleSpiderListener;
 
 public class GUI {
@@ -42,7 +47,7 @@ public class GUI {
 		menu.add(littleSpider);
 		
 		JMenuItem golf = new JMenuItem("Golf");
-		golf.addActionListener(new GolfListener(this));
+		golf.addActionListener(new Golf(this));
 		menu.add(golf);
 
 		JMenuItem exit = new JMenuItem("Exit");
@@ -61,6 +66,18 @@ public class GUI {
 		frame.setJMenuBar(this.getMenuBar());
 		frame.add(this.panel, BorderLayout.CENTER); // add game panel
 		frame.setVisible(true);
+	}
+	
+	/**
+	 * Returns a JLabel with the empty pile icon on it to be displayed on the GUI
+	 * This empty pile icon can be called with obj.getIcon()
+	 * 
+	 * @return JLabel returns a JLabel with empty pile icon
+	 */
+	public static ImageIcon getEmptyIcon() {
+		URL filePath = GUI.class.getResource("/e.png"); // empty.png
+		Image img = new ImageIcon(filePath).getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);
+		return new ImageIcon(img);
 	}
 
 	public JPanel getPanel() {

@@ -1,9 +1,16 @@
 package code.game.golf;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
+
+import javax.swing.JLabel;
 
 import code.cards.Card;
 import code.cards.Pile;
+import code.game.gui.GUI;
 
 /**
  * Instantiates the Stockpile pile, which receives the remainder
@@ -13,20 +20,28 @@ import code.cards.Pile;
  * 
  * @author Matt Ferrera
  */
-public class Stockpile implements Pile {
+@SuppressWarnings("serial")
+public class Stockpile extends JLabel implements ActionListener, MouseListener, Pile {
 
 	/**
 	 * Cards is the ArrayList containing all Card objects in the Stockpile pile.
 	 */
 	private ArrayList<Card> cards;
+	Golf game;
 	
 	/**
 	 * The Stockpile constructor takes all of the deck not disbursed to tableaus and sets it to the cards field.
 	 * 
 	 * @param remainingDeck
 	 */
-	public Stockpile(ArrayList<Card> remainingDeck) {
-		cards = remainingDeck;
+	public Stockpile(Golf game, ArrayList<Card> remainingDeck) {
+		this.addMouseListener(this);
+		this.game = game;
+		this.cards = remainingDeck;
+		
+		if (cards.size() > 0) {
+			this.setIcon(getCard().getIcon());
+		}
 	}
 	
 	/**
@@ -77,13 +92,59 @@ public class Stockpile implements Pile {
 		}
 		
 		Card card = getCard();
-		cards.remove(0);
+		this.cards.remove(0);
 		// Set new top card face up
 		if (getNumCards() != 0) {
-			Card newTopCard = cards.get(0);
-			newTopCard.setFaceUp();
+			getCard().setFaceUp();
+			this.setIcon(getCard().getIcon());
 		}
 		
 		return card;
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		if (getNumCards() == 0) {
+			this.setIcon(GUI.getEmptyIcon());
+			return;
+		}
+		
+		if (!getCard().isFaceUp()) {
+			getCard().setFaceUp();
+			this.setIcon(getCard().getIcon());
+			return;
+		}
+		
+		this.game.getHomecell().addCard(takeCard(), true);
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
