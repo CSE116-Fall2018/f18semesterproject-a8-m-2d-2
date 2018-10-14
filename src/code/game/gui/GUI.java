@@ -76,8 +76,7 @@ public class GUI {
 	 */
 	public static ImageIcon getEmptyIcon() {
 		URL filePath = GUI.class.getResource("/e.png"); // empty.png
-		Image img = new ImageIcon(filePath).getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);
-		return new ImageIcon(img);
+		return new ImageIcon(filePath);
 	}
 
 	public JPanel getPanel() {

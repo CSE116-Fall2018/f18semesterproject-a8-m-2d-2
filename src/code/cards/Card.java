@@ -111,9 +111,7 @@ public class Card extends JLabel implements ActionListener, MouseListener {
 		// Resize the card image & set the image stuff appropriately.
 		// Set original image as back of card
 		URL path = getClass().getResource("/b.png");
-		Image img = new ImageIcon(path).getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);
-		ImageIcon resizedImg = new ImageIcon(img);
-		this.setIcon(resizedImg);
+		this.setIcon(new ImageIcon(path));
 		this.setPreferredSize(new Dimension(100, 140));
 		this.setOpaque(true);
 		this.setHorizontalAlignment(JLabel.CENTER);
@@ -128,9 +126,7 @@ public class Card extends JLabel implements ActionListener, MouseListener {
 	 */
 	public void setFaceUp() {
 		// Resize the card image & set the image stuff appropriately
-		Image img = new ImageIcon(this.iconPath).getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);
-		ImageIcon resizedImg = new ImageIcon(img);
-		this.setIcon(resizedImg);
+		this.setIcon(new ImageIcon(this.iconPath));
 		this.setPreferredSize(new Dimension(100, 140));
 		this.setOpaque(true);
 		this.setHorizontalAlignment(JLabel.CENTER);

@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 
 import code.cards.Card;
 import code.cards.Pile;
+import code.game.gui.GUI;
 
 /**
  * Instantiates the Homecell pile, which initiates with an
@@ -36,14 +37,7 @@ public class Homecell extends JLabel implements ActionListener, MouseListener, P
 	public Homecell() {
 		cards = new ArrayList<>();
 		this.addMouseListener(this);
-		URL filePath = getClass().getResource("/e.png"); // empty.png
-		Image img = new ImageIcon(filePath).getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);
-		ImageIcon resizedImg = new ImageIcon(img);
-		this.setIcon(resizedImg);
-		this.setPreferredSize(new Dimension(100, 140));
-		this.setOpaque(true);
-		this.setHorizontalAlignment(JLabel.CENTER);
-		this.setVerticalAlignment(JLabel.TOP);
+		this.setIcon(GUI.getEmptyIcon());
 	}
 	
 	/**
