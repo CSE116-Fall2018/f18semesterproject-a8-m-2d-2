@@ -13,6 +13,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import code.game.gui.GUI;
 import code.game.gui.HomecellGUI;
 /**
  * Instantiates a card dependent upon the id passed to it.
@@ -98,8 +99,11 @@ public class Card extends JLabel implements ActionListener, MouseListener {
 		
 		// Local URL of the image
 		URL path = getClass().getResource("/" + imgFile + ".png");
+		// Is not set as top card of pile
 		this.top = false;
+		// Add self as mouseListener
 		this.addMouseListener(this);
+		// Resize the card image & set the image stuff appropriately
 		Image img = new ImageIcon(path).getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);
 		ImageIcon resizedImg = new ImageIcon(img);
 		this.setIcon(resizedImg);
@@ -108,6 +112,7 @@ public class Card extends JLabel implements ActionListener, MouseListener {
 		this.setHorizontalAlignment(JLabel.CENTER);
 		this.setVerticalAlignment(JLabel.TOP);
 		
+		// Card defaults to face down
 		this.faceUp = false;
 	}
 
@@ -161,13 +166,15 @@ public class Card extends JLabel implements ActionListener, MouseListener {
 		this.top = true;
 	}
 
+	/**
+	 * Determines what it done when the card is clicked.
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (!top) {
 			return;
 		}
 		
-		// TODO Handle functionality properly
 		this.setBorder(BorderFactory.createLineBorder(Color.BLUE, 5));
 	}
 

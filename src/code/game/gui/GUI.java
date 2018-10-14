@@ -20,7 +20,7 @@ public class GUI {
 	
 	private JPanel panel;
 	private JFrame frame;
-	static final Color BG_COLOR = new Color(0,100,0);
+	public static final Color BG_COLOR = new Color(0,100,0);
 	
 	public GUI() {
 		this.panel = new JPanel();

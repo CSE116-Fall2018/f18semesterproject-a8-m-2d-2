@@ -1,6 +1,5 @@
 package code.game.gui;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -9,16 +8,15 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.net.URL;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import code.cards.Card;
+
 @SuppressWarnings("serial")
 public class HomecellGUI extends JLabel implements ActionListener, MouseListener {
-	protected boolean top;
 	
 	public HomecellGUI(URL filePath) {
-		this.top = false;
 		this.addMouseListener(this);
 		Image img = new ImageIcon(filePath).getImage().getScaledInstance(100, 140, Image.SCALE_SMOOTH);
 		ImageIcon resizedImg = new ImageIcon(img);
@@ -28,48 +26,51 @@ public class HomecellGUI extends JLabel implements ActionListener, MouseListener
 		this.setHorizontalAlignment(JLabel.CENTER);
 		this.setVerticalAlignment(JLabel.TOP);
 	}
+	
+	/**
+	 * Sets the icon of the homecell to the most recently added card.
+	 * 
+	 * @param Card card the most recently added card.
+	 */
+	public void setTopCard(Card card) {
+		this.setIcon(card.getIcon());
+	}
 
+	/**
+	 * Accepts or rejects cards?
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (!top) {
-			return;
-		}
-		// TODO Handle functionality properly
-		this.setBorder(BorderFactory.createLineBorder(Color.BLUE, 5));
+		// TODO this method
 	}
 
+	/**
+	 * This method does nothing.
+	 */
 	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mousePressed(MouseEvent e) {}
 
+	/**
+	 * This method does nothing.
+	 */
 	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseReleased(MouseEvent e) {}
 
+	/**
+	 * This method does nothing.
+	 */
 	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseEntered(MouseEvent e) {}
 
+	/**
+	 * This method does nothing.
+	 */
 	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseExited(MouseEvent e) {}
 
+	/**
+	 * This method does nothing.
+	 */
 	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public void setTop() {
-		this.top = true;
-	}
-
+	public void actionPerformed(ActionEvent e) {}
 }
