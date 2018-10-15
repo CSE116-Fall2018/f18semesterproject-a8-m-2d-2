@@ -19,9 +19,12 @@ import code.game.gui.GUI;
  * 
  * @author Matt Ferrera
  */
-@SuppressWarnings("serial")
 public class Homecell extends JLabel implements ActionListener, MouseListener, Pile {
 
+	/**
+	 * Required when extending JComponents or something.
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Cards is the ArrayList containing all Card objects in the Homecell pile.
 	 */

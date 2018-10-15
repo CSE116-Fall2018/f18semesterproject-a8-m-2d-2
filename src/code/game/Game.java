@@ -18,6 +18,13 @@ public class Game extends JLayeredPane {
 	 */
 	protected GUI gui;
 
+	/**
+	 * A superclass of the solitaire games that takes a GUI
+	 * parameter. This class is used to pass to cards so that
+	 * they can access the game.
+	 * 
+	 * @param GUI gui the game's GUI.
+	 */
 	public Game(GUI gui) {
 		this.gui = gui;
 		setPreferredSize(new Dimension(780, 500));

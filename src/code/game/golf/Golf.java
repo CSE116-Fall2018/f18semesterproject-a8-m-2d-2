@@ -1,12 +1,9 @@
 package code.game.golf;
 
-import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
-import javax.swing.BorderFactory;
 
 import code.cards.Card;
 import code.cards.Deck;
@@ -57,9 +54,6 @@ public class Golf extends Game implements ActionListener {
 	 */
 	public Golf(GUI gui) {
 		super(gui);
-		setPreferredSize(new Dimension(780, 500));
-		setBackground(GUI.BG_COLOR);
-		setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40));
 		setCardSelected(false);
 	}
 	

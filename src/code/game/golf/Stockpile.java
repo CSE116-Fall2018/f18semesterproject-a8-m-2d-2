@@ -18,9 +18,12 @@ import code.game.gui.GUI;
  * 
  * @author Matt Ferrera
  */
-@SuppressWarnings("serial")
 public class Stockpile extends JLabel implements MouseListener, Pile {
 
+	/**
+	 * Required when extending JComponents or something.
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Cards is the ArrayList containing all Card objects in the Stockpile pile.
 	 */
