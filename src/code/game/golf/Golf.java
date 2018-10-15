@@ -7,10 +7,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
-import javax.swing.JLayeredPane;
 
 import code.cards.Card;
 import code.cards.Deck;
+import code.game.Game;
 import code.game.gui.GUI;
 
 /**
@@ -20,10 +20,12 @@ import code.game.gui.GUI;
  * 
  * @author Matt Ferrera
  */
-@SuppressWarnings("serial")
-public class Golf extends JLayeredPane implements ActionListener {
+public class Golf extends Game implements ActionListener {
 	
-	private GUI gui;
+	/**
+	 * Required when extending JComponents or something.
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * Tableaus is an array containing all 7 Tableaus for the game.
 	 */
@@ -54,7 +56,7 @@ public class Golf extends JLayeredPane implements ActionListener {
 	 * and then initializes the rest of the game.
 	 */
 	public Golf(GUI gui) {
-		this.gui = gui;
+		super(gui);
 		setPreferredSize(new Dimension(780, 500));
 		setBackground(GUI.BG_COLOR);
 		setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40));

@@ -20,9 +20,12 @@ import javax.swing.JLabel;
  * @author Mitch Thurston
  * 
  */
-@SuppressWarnings("serial")
 public class Card extends JLabel implements ActionListener, MouseListener {
 	
+	/** 
+	 * Required when extending JComponents or something. 
+	 */
+	private static final long serialVersionUID = 1L;
 	/** The suit the card is in (e.g. heart)*/
 	private String suit;
 	/** The rank of the card (e.g. ace, 6, queen)*/
