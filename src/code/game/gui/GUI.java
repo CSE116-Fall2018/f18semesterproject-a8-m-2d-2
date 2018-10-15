@@ -55,8 +55,7 @@ public class GUI {
 	}
 	
 	public void runGUI() {
-		JFrame frameNew = new JFrame("Solitare");
-		this.frame = frameNew;
+		this.frame = new JFrame("Solitare");
 		frame.setLayout(new BorderLayout());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(1150,1200);
@@ -73,6 +72,11 @@ public class GUI {
 	 */
 	public static ImageIcon getEmptyIcon() {
 		URL filePath = GUI.class.getResource("/e.png"); // empty.png
+		
+		if (filePath == null) {
+			throw new IllegalArgumentException("Could not find card image file " + filePath);
+		}
+		
 		return new ImageIcon(filePath);
 	}
 

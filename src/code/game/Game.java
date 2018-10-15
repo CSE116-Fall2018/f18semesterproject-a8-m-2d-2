@@ -46,6 +46,11 @@ public class Game extends JLayeredPane {
 		return cardSelected;
 	}
 
+	/**
+	 * Sets whether or not a card is currently selected in the game.
+	 * 
+	 * @param cardSelected set with true or false
+	 */
 	public void setCardSelected(boolean cardSelected) {
 		this.cardSelected = cardSelected;
 	}

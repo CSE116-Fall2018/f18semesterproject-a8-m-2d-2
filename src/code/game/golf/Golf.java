@@ -65,6 +65,7 @@ public class Golf extends Game implements ActionListener {
 		for (int i = 0; i < this.tableaus.length; i++) {
 			Tableau t = new Tableau();
 			
+			// Set every card in the tableau face up before adding
 			for (int j = 0; j < 5; j++) {
 				Card c = cards.takeCard();
 				c.setFaceUp();
@@ -74,6 +75,7 @@ public class Golf extends Game implements ActionListener {
 			this.tableaus[i] = t;
 		}
 		
+		// Give the stockpile the rest of the deck
 		this.stockpile = new Stockpile(this, cards.getDeck());
 		this.homecell = new Homecell();
 		refresh();
@@ -101,9 +103,11 @@ public class Golf extends Game implements ActionListener {
 						icon.getIcon().getIconWidth(), 
 						icon.getIcon().getIconHeight());
 				
+				// Set the last card as the top card
 				if (j == cards.size() - 1) {
 					icon.setTop();
 				}
+				
 				this.add(icon, depth, 0);
 				// Move down Y_OFFSET to stagger the cards in this tableau
 				pos.y += Y_OFFSET;

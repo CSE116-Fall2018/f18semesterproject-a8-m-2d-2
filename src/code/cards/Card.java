@@ -20,7 +20,7 @@ import javax.swing.JLabel;
  * @author Mitch Thurston
  * 
  */
-public class Card extends JLabel implements ActionListener, MouseListener {
+public class Card extends JLabel implements MouseListener {
 	
 	/** 
 	 * Required when extending JComponents or something. 
@@ -110,9 +110,12 @@ public class Card extends JLabel implements ActionListener, MouseListener {
 		this.top = false;
 		// Add self as mouseListener
 		this.addMouseListener(this);
-		// Resize the card image & set the image stuff appropriately.
-		// Set original image as back of card
+
+		// Set default image as back of card
 		URL path = getClass().getResource("/b.png");
+		if (path == null) {
+			throw new IllegalArgumentException("Could not find card image file " + path);
+		}
 		this.setIcon(new ImageIcon(path));
 		this.setPreferredSize(new Dimension(100, 140));
 		this.setOpaque(true);
@@ -129,10 +132,6 @@ public class Card extends JLabel implements ActionListener, MouseListener {
 	public void setFaceUp() {
 		// Resize the card image & set the image stuff appropriately
 		this.setIcon(new ImageIcon(this.iconPath));
-		this.setPreferredSize(new Dimension(100, 140));
-		this.setOpaque(true);
-		this.setHorizontalAlignment(JLabel.CENTER);
-		this.setVerticalAlignment(JLabel.TOP);
 		
 		this.faceUp = true;
 	}
@@ -192,33 +191,16 @@ public class Card extends JLabel implements ActionListener, MouseListener {
 		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	}
 
+	/** This method does nothing. */
 	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	public void mousePressed(MouseEvent e) {}
+	/** This method does nothing. */
 	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	public void mouseReleased(MouseEvent e) {}
+	/** This method does nothing. */
 	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	public void mouseEntered(MouseEvent e) {}
+	/** This method does nothing. */
 	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseExited(MouseEvent e) {}
 }
