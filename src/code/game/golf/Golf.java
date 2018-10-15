@@ -44,6 +44,9 @@ public class Golf extends JLayeredPane implements ActionListener {
 	 * The horizontal offset to the right of each tableau.
 	 */
 	private static final int X_OFFSET = 110;
+	/**
+	 * A state boolean value for whether or not a card is currently selected.
+	 */
 	private boolean cardSelected;
 
 	/**
@@ -52,13 +55,10 @@ public class Golf extends JLayeredPane implements ActionListener {
 	 */
 	public Golf(GUI gui) {
 		this.gui = gui;
-		this.tableaus = new Tableau[7];
-		this.homecell = new Homecell();
 		setPreferredSize(new Dimension(780, 500));
 		setBackground(GUI.BG_COLOR);
 		setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40));
 		setCardSelected(false);
-		init();
 	}
 	
 	/**
@@ -67,6 +67,9 @@ public class Golf extends JLayeredPane implements ActionListener {
 	private void init() {
 		Deck cards = new Deck();
 		cards.shuffle();
+		
+		this.tableaus = new Tableau[7];
+		
 		// For each Tableau, add 5 Cards from the deck
 		for (int i = 0; i < this.tableaus.length; i++) {
 			Tableau t = new Tableau();
@@ -81,6 +84,7 @@ public class Golf extends JLayeredPane implements ActionListener {
 		}
 		
 		this.stockpile = new Stockpile(this, cards.getDeck());
+		this.homecell = new Homecell();
 		refresh();
 	}
 	
@@ -95,7 +99,7 @@ public class Golf extends JLayeredPane implements ActionListener {
 		
 		// Iterate through all 7 tableaus
 		for(int i = 0; i < this.tableaus.length; i++) {
-			ArrayList<Card> cards = tableaus[i].getAllCards();
+			ArrayList<Card> cards = this.tableaus[i].getAllCards();
 			// Iterate through every card in the current tableau
 			for(int j = 0; j < cards.size(); j++) {
 				// Must be Integer object to denote layer in pane
@@ -164,8 +168,13 @@ public class Golf extends JLayeredPane implements ActionListener {
 		return stockpile;
 	}
 
+	/**
+	 * Initializes the game and then places itself
+	 * on to the GUI frame after clearing it.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		init();
 		this.gui.getPanel().removeAll();
 		this.gui.getPanel().add(this);
 		this.gui.getFrame().pack();	

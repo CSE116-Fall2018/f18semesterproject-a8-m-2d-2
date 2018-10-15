@@ -2,7 +2,6 @@ package code.cards;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -34,10 +33,10 @@ public class Card extends JLabel implements ActionListener, MouseListener {
 	public int id;
 	/** Whether the card is faced down or up, true is facing up, false if facing down*/
 	private boolean faceUp;
-	/** The JLabel card image */
+	/** If the card is at the top of its pile or not */
 	private boolean top;
-	private URL iconPath;
-	
+	/** The file path of the image icon */
+	private URL iconPath;	
 	
 	/**
 	 * The constructor of Card takes two parameters, int id and boolean faceUp.
@@ -187,7 +186,7 @@ public class Card extends JLabel implements ActionListener, MouseListener {
 			return;
 		}
 		
-		this.setBorder(BorderFactory.createLineBorder(Color.BLUE, 5));
+		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	}
 
 	@Override
