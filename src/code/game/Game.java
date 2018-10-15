@@ -17,6 +17,10 @@ public class Game extends JLayeredPane {
 	 * The GUI element reference passed from code.game.gui
 	 */
 	protected GUI gui;
+	/**
+	 * A state boolean value for whether or not a card is currently selected.
+	 */
+	private boolean cardSelected;
 
 	/**
 	 * A superclass of the solitaire games that takes a GUI
@@ -27,8 +31,22 @@ public class Game extends JLayeredPane {
 	 */
 	public Game(GUI gui) {
 		this.gui = gui;
+		this.cardSelected = false;
 		setPreferredSize(new Dimension(780, 500));
 		setBackground(GUI.BG_COLOR);
 		setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40));
+	}
+	
+	/**
+	 * Returns whether or not a card is currently selected by the player.
+	 * 
+	 * @return boolean whether or not a card is selected
+	 */
+	public boolean isCardSelected() {
+		return cardSelected;
+	}
+
+	public void setCardSelected(boolean cardSelected) {
+		this.cardSelected = cardSelected;
 	}
 }

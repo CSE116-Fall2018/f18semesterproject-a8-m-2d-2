@@ -43,10 +43,6 @@ public class Golf extends Game implements ActionListener {
 	 * The horizontal offset to the right of each tableau.
 	 */
 	private static final int X_OFFSET = 110;
-	/**
-	 * A state boolean value for whether or not a card is currently selected.
-	 */
-	private boolean cardSelected;
 
 	/**
 	 * Golf takes no parameters. It creates the deck object, shuffles it, creates 7 tableaus, the homecell pile,
@@ -54,7 +50,6 @@ public class Golf extends Game implements ActionListener {
 	 */
 	public Golf(GUI gui) {
 		super(gui);
-		setCardSelected(false);
 	}
 	
 	/**
@@ -127,14 +122,6 @@ public class Golf extends Game implements ActionListener {
 				this.homecell.getIcon().getIconWidth(), 
 				this.homecell.getIcon().getIconHeight());
 		this.add(this.homecell, Integer.valueOf(0), 0);
-	}
-
-	public boolean isCardSelected() {
-		return cardSelected;
-	}
-
-	public void setCardSelected(boolean cardSelected) {
-		this.cardSelected = cardSelected;
 	}
 	
 	/**
