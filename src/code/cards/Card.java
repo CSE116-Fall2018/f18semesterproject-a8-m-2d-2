@@ -1,12 +1,8 @@
 package code.cards;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.IOException;
 import java.net.URL;
 
 import javax.swing.BorderFactory;
@@ -48,7 +44,6 @@ public class Card extends JLabel implements MouseListener {
 	 * 
 	 * @param id - int that will determine the rank and suit of the card.
 	 * @param faceUp - boolean that determines if the card is faced up or faced down.
-	 * @throws IOException throws IOException if file not found
 	 */
 	public Card(int id) {
 		this.id = id;
@@ -101,7 +96,6 @@ public class Card extends JLabel implements MouseListener {
 		}
 		
 		this.iconPath = getClass().getResource("/" + imgFile + ".png");
-		
 		if (this.iconPath == null) {
 			throw new IllegalArgumentException("Could not find card image file " + imgFile);
 		}
@@ -109,18 +103,17 @@ public class Card extends JLabel implements MouseListener {
 		// Is not set as top card of pile
 		this.top = false;
 		// Add self as mouseListener
-		this.addMouseListener(this);
+		addMouseListener(this);
 
 		// Set default image as back of card
 		URL path = getClass().getResource("/b.png");
 		if (path == null) {
 			throw new IllegalArgumentException("Could not find card image file " + path);
 		}
-		this.setIcon(new ImageIcon(path));
-		this.setPreferredSize(new Dimension(100, 140));
-		this.setOpaque(true);
-		this.setHorizontalAlignment(JLabel.CENTER);
-		this.setVerticalAlignment(JLabel.TOP);
+		
+		setIcon(new ImageIcon(path));
+		setHorizontalAlignment(JLabel.CENTER);
+		setVerticalAlignment(JLabel.TOP);
 		
 		// Card defaults to face down
 		this.faceUp = false;
@@ -131,7 +124,7 @@ public class Card extends JLabel implements MouseListener {
 	 */
 	public void setFaceUp() {
 		// Resize the card image & set the image stuff appropriately
-		this.setIcon(new ImageIcon(this.iconPath));
+		setIcon(new ImageIcon(this.iconPath));
 		
 		this.faceUp = true;
 	}
@@ -188,7 +181,7 @@ public class Card extends JLabel implements MouseListener {
 			return;
 		}
 		
-		this.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+		setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 	}
 
 	/** This method does nothing. */

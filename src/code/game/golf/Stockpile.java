@@ -114,7 +114,7 @@ public class Stockpile extends JLabel implements MouseListener, Pile {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (getNumCards() == 0) {
-			this.setIcon(GUI.getEmptyIcon());
+			this.setIcon(null);
 			return;
 		}
 		

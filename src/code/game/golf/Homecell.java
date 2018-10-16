@@ -1,7 +1,5 @@
 package code.game.golf;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -19,7 +17,7 @@ import code.game.gui.GUI;
  * 
  * @author Matt Ferrera
  */
-public class Homecell extends JLabel implements ActionListener, MouseListener, Pile {
+public class Homecell extends JLabel implements MouseListener, Pile {
 
 	/**
 	 * Required when extending JComponents or something.
@@ -35,8 +33,11 @@ public class Homecell extends JLabel implements ActionListener, MouseListener, P
 	 */
 	public Homecell() {
 		cards = new ArrayList<>();
-		this.addMouseListener(this);
-		this.setIcon(GUI.getEmptyIcon());
+		
+		addMouseListener(this);
+		setHorizontalAlignment(JLabel.CENTER);
+		setVerticalAlignment(JLabel.TOP);
+		setIcon(GUI.getEmptyIcon());
 	}
 	
 	/**
@@ -55,7 +56,7 @@ public class Homecell extends JLabel implements ActionListener, MouseListener, P
 		// No cards are currently in the Homecell
 		if (cards.size() == 0 || override) {
 			cards.add(0, card);
-			this.setIcon(card.getIcon());
+			setIcon(card.getIcon());
 			return true;
 		}
 		
@@ -63,7 +64,7 @@ public class Homecell extends JLabel implements ActionListener, MouseListener, P
 		
 		if (difference == 1) {
 			cards.add(0, card);
-			this.setIcon(card.getIcon());
+			setIcon(card.getIcon());
 			return true;
 		}
 		
@@ -111,34 +112,17 @@ public class Homecell extends JLabel implements ActionListener, MouseListener, P
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	/** This method is not used. */
 	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	public void mousePressed(MouseEvent e) {}
+	/** This method is not used. */
 	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	public void mouseReleased(MouseEvent e) {}
+	/** This method is not used. */
 	@Override
-	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
+	public void mouseEntered(MouseEvent e) {}
+	/** This method is not used. */
 	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
+	public void mouseExited(MouseEvent e) {}
 }

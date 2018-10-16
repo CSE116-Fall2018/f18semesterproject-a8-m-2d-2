@@ -161,6 +161,7 @@ public class Golf extends Game implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		removeAll();
 		init();
 		this.gui.getPanel().removeAll();
 		this.gui.getPanel().add(this);
