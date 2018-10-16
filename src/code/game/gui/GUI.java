@@ -15,8 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.UIManager;
 
 import code.game.golf.Golf;
+import code.game.littlespider.LittleSpider;
 import code.game.gui.control.ExitListener;
-import code.game.gui.control.LittleSpiderListener;
 
 public class GUI {
 	
@@ -40,7 +40,7 @@ public class GUI {
 		menuBar.add(menu);
 		
 		JMenuItem littleSpider = new JMenuItem("Little Spider");
-		littleSpider.addActionListener(new LittleSpiderListener(this));
+		littleSpider.addActionListener(new LittleSpider(this));
 		menu.add(littleSpider);
 		
 		JMenuItem golf = new JMenuItem("Golf");
