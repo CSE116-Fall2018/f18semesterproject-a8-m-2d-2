@@ -85,6 +85,7 @@ public class Golf extends Game implements ActionListener {
 	 * successful move.
 	 */
 	public void refresh() {
+		removeAll();
 		// Origin starting point to place cards
 		Point pos = new Point(10, 20);
 		
