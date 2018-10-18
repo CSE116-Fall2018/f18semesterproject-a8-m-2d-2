@@ -9,6 +9,8 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+import code.game.Game;
+
 /**
  * Instantiates a card dependent upon the id passed to it.
  * The id is used to determine the suit and rank of the card.
@@ -37,6 +39,8 @@ public class Card extends JLabel implements MouseListener {
 	/** The file path of the image icon */
 	private URL iconPath;	
 	
+	private Game game;
+	
 	/**
 	 * The constructor of Card takes two parameters, int id and boolean faceUp.
 	 * The id must be between 0 - 51, as this determines the rank and suit of the card.
@@ -45,7 +49,8 @@ public class Card extends JLabel implements MouseListener {
 	 * @param id - int that will determine the rank and suit of the card.
 	 * @param faceUp - boolean that determines if the card is faced up or faced down.
 	 */
-	public Card(int id) {
+	public Card(int id, Game game) {
+		
 		this.id = id;
 		// int value of the suit
 		int suit = id / 13;
@@ -172,6 +177,10 @@ public class Card extends JLabel implements MouseListener {
 		this.top = true;
 	}
 
+	
+	public Game getGame() {
+		return this.game;
+	}
 	/**
 	 * Determines what it done when the card is clicked.
 	 */

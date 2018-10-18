@@ -3,6 +3,8 @@ package code.cards;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import code.game.Game;
+
 /**
  * Instantiates a deck of cards, containing an ArrayList of all 52 cards in the deck.
  * Implements the Pile interface.
@@ -20,17 +22,12 @@ public class Deck implements Pile {
 	/**
 	 * Constructor for Deck that takes no parameters and calls initialize().
 	 */
-	public Deck () {
-		initialize();
-	}
-
-	/**
-	 * Initializes 52 cards, all face down.
-	 */
-	public void initialize() {
+	public Deck (Game game) {
 		for(int c = 0; c < 52; c++) {
-			this.deck.add(new Card(c));
+			this.deck.add(new Card(c, game));
+			
 		}
+		
 	}
 
 	/**
