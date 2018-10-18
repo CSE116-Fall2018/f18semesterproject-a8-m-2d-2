@@ -39,9 +39,9 @@ public class Card extends JLabel implements MouseListener {
 	private boolean top;
 	/** The file path of the image icon */
 	private URL iconPath;	
-	
+	/** The current Game instance */
 	private Game game;
-	
+	/** The current Tableau index selected (if any) */
 	private int tableauNum;
 	
 	/**
@@ -192,15 +192,18 @@ public class Card extends JLabel implements MouseListener {
 			return;
 		}
 		
-		if (this.game.isTableauSelected() == this.game.get) {
+		Pile[] tableaus = this.game.getTableaus();
+		
+		if (this.game.tableauSelected() != null &&
+				this.game.tableauSelected().equals(tableaus[this.tableauNum])) {
 			this.game.setTableauSelected(null);
-			setBorder(null);
+			setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 		}
 		
-		if (game instanceof Golf && this.game.isCardSelected()) {
+		if (game instanceof Golf && this.game.isTableauSelected()) {
 			return;
-		} else if (game instanceof Golf && !this.game.isCardSelected()) {
-			this.game.setCardSelected(this);
+		} else if (game instanceof Golf && !this.game.isTableauSelected()) {
+			this.game.setTableauSelected(tableaus[this.tableauNum]);
 			setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		}
 	}

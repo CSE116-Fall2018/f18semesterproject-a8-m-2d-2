@@ -56,12 +56,15 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 			return false;
 		}
 		
-		// No cards are currently in the Homecell
-		if (cards.size() == 0 || override) {
+		if (override) {
 			cards.add(0, card);
 			setIcon(card.getIcon());
-			return true;
 		}
+		
+		// No cards are currently in the Homecell
+		if (cards.size() == 0 && !override) {
+			return false;
+		}	
 		
 		int difference = Math.abs(card.getValue() - getCard().getValue());
 		
@@ -115,6 +118,16 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 		if (!this.game.isTableauSelected()) {
 			return;
 		}
+		
+		Card toAdd = this.game.tableauSelected().takeCard();
+		boolean added = this.addCard(toAdd, false);
+		
+		if (!added) {
+			this.game.tableauSelected().addCard(toAdd, true);
+		}
+		System.out.println(this.game.tableauSelected().getNumCards());
+		this.game.setTableauSelected(null);
+		this.game.refresh();
 	}
 	
 	/** This method is not used. */

@@ -91,28 +91,31 @@ public class Golf extends Game implements ActionListener {
 		// Iterate through all 7 tableaus
 		for(int i = 0; i < this.tableaus.length; i++) {
 			ArrayList<Card> cards = this.tableaus[i].getAllCards();
+			Integer depth = 0;
 			// Iterate through every card in the current tableau
-			for(int j = 0; j < cards.size(); j++) {
+			for(int j = cards.size(); j > 0; j--) {
 				// Must be Integer object to denote layer in pane
-				Integer depth = j;
-				Card icon = cards.get(j);
+				Card icon = cards.get(j - 1);
 				// Set bounds of this JLabel at (x,y) to width & height of icon
 				icon.setBounds(pos.x, pos.y, 
 						icon.getIcon().getIconWidth(), 
 						icon.getIcon().getIconHeight());
 				
 				// Set the last card as the top card
-				if (j == cards.size() - 1) {
+				if (j == 1) {
 					icon.setTop();
 				}
 				
-				this.add(icon, depth, 0);
+				this.add(icon, depth++, 0);
 				// Move down Y_OFFSET to stagger the cards in this tableau
 				pos.y += Y_OFFSET;
 			}
+			depth = 0;
 			// Reset y-coord for next Tableau, and move x-coord right
 			pos.y = 20;
 			pos.x += X_OFFSET;
+			validate();
+			repaint();
 		}
 		
 		// Add the stockpile and homecell pile

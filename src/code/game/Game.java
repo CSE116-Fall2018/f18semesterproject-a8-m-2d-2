@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.JLayeredPane;
 
-import code.cards.Card;
 import code.cards.Pile;
 import code.game.gui.GUI;
 
@@ -37,7 +36,7 @@ public abstract class Game extends JLayeredPane {
 		this.gui = gui;
 		this.tableauSelected = null;
 		setPreferredSize(new Dimension(780, 500));
-		setBackground(GUI.BG_COLOR);
+		setBackground(gui.getColor());
 		setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40));
 	}
 	
@@ -50,7 +49,7 @@ public abstract class Game extends JLayeredPane {
 		return tableauSelected != null;
 	}
 	
-	public Pile tableuaSelected() {
+	public Pile tableauSelected() {
 		return this.tableauSelected;
 	}
 	
@@ -66,5 +65,6 @@ public abstract class Game extends JLayeredPane {
 	public void setTableauSelected(Pile tableau) {
 		this.tableauSelected = tableau;
 	} 
+	
 	public abstract void refresh();
 }
