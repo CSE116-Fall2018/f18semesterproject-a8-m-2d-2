@@ -109,9 +109,7 @@ public class Deck implements Pile {
 		return result;
 	}
 
+	/** This method is not used. Returns null. */
 	@Override
-	public ArrayList<Card> getAllCards() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	public ArrayList<Card> getAllCards() { return null; }
 }

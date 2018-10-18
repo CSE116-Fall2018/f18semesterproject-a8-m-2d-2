@@ -19,10 +19,12 @@ public abstract class Game extends JLayeredPane {
 	 */
 	protected GUI gui;
 	/**
-	 * The card that is currently selected
+	 * The card/tableau that is currently selected
 	 */
 	private Pile tableauSelected;
-	
+	/**
+	 * The tableaus in the game. Set by the Game subclass.
+	 */
 	protected Pile[] tableaus;
 
 	/**
@@ -43,16 +45,26 @@ public abstract class Game extends JLayeredPane {
 	/**
 	 * Returns whether or not a card is currently selected by the player.
 	 * 
-	 * @return boolean whether or not a card is selected
+	 * @return boolean whether or not a tableau card is selected
 	 */
 	public boolean isTableauSelected() {
 		return tableauSelected != null;
 	}
 	
+	/**
+	 * Returns the Tableau pile that is currently selected.
+	 * 
+	 * @return Pile the currently selected tableau pile.
+	 */
 	public Pile tableauSelected() {
 		return this.tableauSelected;
 	}
 	
+	/**
+	 * Returns all of the tableaus in the game.
+	 * 
+	 * @return Pile[] the tableaus in the game.
+	 */
 	public Pile[] getTableaus() {
 		return this.tableaus;
 	}
@@ -66,5 +78,6 @@ public abstract class Game extends JLayeredPane {
 		this.tableauSelected = tableau;
 	} 
 	
+	/** Refreshes all components placed on the GUI. */
 	public abstract void refresh();
 }

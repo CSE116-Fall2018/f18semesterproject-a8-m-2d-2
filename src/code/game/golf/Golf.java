@@ -65,6 +65,7 @@ public class Golf extends Game implements ActionListener {
 			for (int j = 0; j < 5; j++) {
 				Card c = cards.takeCard();
 				c.setFaceUp();
+				// Set the tableau # the card is a child of
 				c.setTableauNum(i);
 				t.addCard(c, true);
 				
@@ -93,6 +94,13 @@ public class Golf extends Game implements ActionListener {
 		for(int i = 0; i < this.tableaus.length; i++) {
 			ArrayList<Card> cards = this.tableaus[i].getAllCards();
 			Integer depth = 0;
+			
+			// If tableau is empty, add null & skip the next tableau
+			if (cards == null) {
+				this.add(null, 0, 0);
+				continue;
+			}
+			
 			// Iterate through every card in the current tableau
 			for(int j = cards.size(); j > 0; j--) {
 				// Must be Integer object to denote layer in pane
@@ -115,8 +123,6 @@ public class Golf extends Game implements ActionListener {
 			// Reset y-coord for next Tableau, and move x-coord right
 			pos.y = 20;
 			pos.x += X_OFFSET;
-			validate();
-			repaint();
 		}
 		
 		// Add the stockpile and homecell pile

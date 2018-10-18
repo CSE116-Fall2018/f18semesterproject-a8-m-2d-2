@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 
 import code.game.Game;
 import code.game.golf.Golf;
+import code.game.littlespider.LittleSpider;
 
 /**
  * Instantiates a card dependent upon the id passed to it.
@@ -41,7 +42,7 @@ public class Card extends JLabel implements MouseListener {
 	private URL iconPath;	
 	/** The current Game instance */
 	private Game game;
-	/** The current Tableau index selected (if any) */
+	/** The index of the Tableau this card belongs to */
 	private int tableauNum;
 	
 	/**
@@ -120,6 +121,7 @@ public class Card extends JLabel implements MouseListener {
 		}
 		
 		setIcon(new ImageIcon(path));
+		setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 		setHorizontalAlignment(JLabel.CENTER);
 		setVerticalAlignment(JLabel.TOP);
 		
@@ -131,9 +133,7 @@ public class Card extends JLabel implements MouseListener {
 	 * Sets the field faceUp as true.
 	 */
 	public void setFaceUp() {
-		// Resize the card image & set the image stuff appropriately
 		setIcon(new ImageIcon(this.iconPath));
-		
 		this.faceUp = true;
 	}
 	
@@ -179,41 +179,77 @@ public class Card extends JLabel implements MouseListener {
 	public void setTop() {
 		this.top = true;
 	}
-
-	public Game getGame() {
-		return this.game;
+	
+	/** Deselects the current card in the game. */
+	public void deselect() {
+		this.game.setTableauSelected(null);
+		setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 	}
+	
+	/**
+	 * Set the tableau index that this card is part of
+	 * @param int the tableau index
+	 */
+	public void setTableauNum(int a) {
+		this.tableauNum = a;
+	}
+	
+	/**
+	 * Returns the tableau tableau number that this card of part of.
+	 * 
+	 * @return int The tableau index #
+	 */
+	public int getTableauNum() {
+		return this.tableauNum;
+	}
+	
 	/**
 	 * Determines what it done when the card is clicked.
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		// Return if this card isn't the top of the tableau
 		if (!this.top) {
 			return;
 		}
 		
+		// Get all of the Tableaus
 		Pile[] tableaus = this.game.getTableaus();
 		
-		if (this.game.tableauSelected() != null &&
-				this.game.tableauSelected().equals(tableaus[this.tableauNum])) {
-			this.game.setTableauSelected(null);
-			setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
-		}
-		
-		if (game instanceof Golf && this.game.isTableauSelected()) {
+		// If a tableau is selected (not null) and the same
+		// tableau is clicked again, deselect the tableau
+		if (game.tableauSelected() != null && game.tableauSelected().equals(tableaus[tableauNum])) {
+			deselect();
 			return;
-		} else if (game instanceof Golf && !this.game.isTableauSelected()) {
+		}
+		System.out.println("test0");
+		// If no tableau card is selected yet, select this one
+		if (!this.game.isTableauSelected()) {
 			this.game.setTableauSelected(tableaus[this.tableauNum]);
 			setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+			return;
 		}
-	}
-	
-	public void setTableauNum(int a) {
-		this.tableauNum = a;
-	}
-	
-	public int getTableauNum() {
-		return this.tableauNum;
+		System.out.println("test");
+		// If this is a Golf game, and a tableau is already selected, do nothing
+		if (game instanceof Golf) {
+			// GUI.sendError("Illegal move");
+			return;
+		} 
+		System.out.println("test1");
+		// If this is a Little Spider game, and a tableau is already selected, try to add to 
+		// This card's parent tableau
+		if (game instanceof LittleSpider) {
+			System.out.println("test");
+			// Attempt to add the card to tableau
+			Card card = this.game.tableauSelected().takeCard();
+			boolean added = tableaus[this.tableauNum].addCard(card, false);
+			System.out.println("test");
+			if (!added) {
+				this.game.tableauSelected().addCard(card, true);
+			}
+			this.game.refresh();
+			return;
+		}
 	}
 
 	/** This method does nothing. */

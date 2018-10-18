@@ -28,11 +28,6 @@ public class LittleSpider extends Game implements ActionListener{
 	 * Holds an array of Homecell instances that are used by the game.
 	 */
 	private Homecell[] homecells;
-	
-	/**
-	 * Holds an array of Tableau instances that are used by the game.
-	 */
-	private Tableau[] tableaus;
 	/**
 	 * The amount of vertical offset per card in same pile.
 	 */
@@ -56,7 +51,7 @@ public class LittleSpider extends Game implements ActionListener{
 	 */
 	private void init() {
 
-		Deck deck = new Deck(null);
+		Deck deck = new Deck(this);
 		deck.shuffle();
 		
 		homecells = new Homecell[4];
@@ -100,39 +95,41 @@ public class LittleSpider extends Game implements ActionListener{
 	 */
 	public void refresh() {
 		// Origin starting point to place homecell cards
-				Point pos = new Point(175, 20);
-				
-				// Add homecell piles to top of frame without displaying pile
-				for(int i = 0; i < this.homecells.length; i++) {
-					Card icon = this.homecells[i].getCard();
-					icon.setBounds(pos.x, pos.y, icon.getIcon().getIconWidth(), icon.getIcon().getIconHeight());
+		Point pos = new Point(175, 20);
+
+		// Add homecell piles to top of frame without displaying pile
+		for(int i = 0; i < this.homecells.length; i++) {
+			Card icon = this.homecells[i].getCard();
+			icon.setBounds(pos.x, pos.y, icon.getIcon().getIconWidth(), icon.getIcon().getIconHeight());
+			icon.setTop();
+			this.add(icon, 0, 0); // depth always 0
+			pos.x += X_OFFSET_HOMECELL;
+		}
+
+		// Add tableaus and reset starting point with displaying pile
+		pos.x = 10;
+		pos.y = 200;
+		for(int i = 0; i < this.tableaus.length; i++) {
+			ArrayList<Card> cards = this.tableaus[i].getAllCards();
+			Integer depth = 0;
+
+			for(int j = cards.size(); j > 0; j--) {
+				Card icon = cards.get(j - 1);
+				icon.setBounds(pos.x, pos.y, icon.getIcon().getIconWidth(), icon.getIcon().getIconHeight());
+
+				if(j == 1) {
 					icon.setTop();
-					this.add(icon, 0, 0); // depth always 0
-					pos.x += X_OFFSET_HOMECELL;
 				}
-				
-				// Add tableaus and reset starting point with displaying pile
-				pos.x = 10;
-				pos.y = 200;
-				for(int i = 0; i < this.tableaus.length; i++) {
-					ArrayList<Card> cards = this.tableaus[i].getCards();
-					for(int j = 0; j < cards.size(); j++) {
-						Integer depth = j;
-						Card icon = cards.get(j);
-						icon.setBounds(pos.x, pos.y, icon.getIcon().getIconWidth(), icon.getIcon().getIconHeight());
-						
-						if(j == cards.size() - 1) {
-							icon.setTop();
-						}
-						
-						this.add(icon, depth, 0);
-						
-						pos.y += Y_OFFSET;
-					}
-					
-					pos.y = 200;
-					pos.x += X_OFFSET_TABLEAU;
-				}
+
+				this.add(icon, depth, 0);
+
+				depth++;
+				pos.y += Y_OFFSET;
+			}
+			depth = 0;
+			pos.y = 200;
+			pos.x += X_OFFSET_TABLEAU;
+		}
 	}
 	/**
 	 * Returns homecell array.
@@ -142,14 +139,7 @@ public class LittleSpider extends Game implements ActionListener{
 	public Homecell[] getHomecells() {
 		return homecells;
 	}
-	/**
-	 * Returns array of tableaus.
-	 * 
-	 * @return Array of tableau instances.
-	 */
-	public Tableau[] getTableaus() {
-		return tableaus;
-	}
+
 	/**
 	 * Initializes Little Spider and adds it to a blank frame. 
 	 */

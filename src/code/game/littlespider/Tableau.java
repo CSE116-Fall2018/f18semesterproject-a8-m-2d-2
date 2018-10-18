@@ -106,20 +106,17 @@ public class Tableau implements Pile {
 		return top;
 	}
 
-	
 	/**
-	 * Returns the ArrayList of cards currently in the pile.
+	 * Returns the ArrayList of Cards in the pile.
 	 * 
-	 * @return ArrayList<Card> All cards in the pile.
+	 * @return ArrayList<Card> all cards in the ArrayList of the pile.
 	 */
-	public ArrayList<Card> getCards() {
-		return cards;
-	}
-
-	@Override
 	public ArrayList<Card> getAllCards() {
-		// TODO Auto-generated method stub
-		return null;
+		if (getNumCards() == 0) {
+			return null;
+		}
+		
+		return cards;
 	}
 
 }

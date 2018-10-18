@@ -68,7 +68,7 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 		
 		int difference = Math.abs(card.getValue() - getCard().getValue());
 		
-		if (difference == 1) {
+		if (difference == 1 || difference == 12) {
 			cards.add(0, card);
 			setIcon(card.getIcon());
 			return true;
@@ -115,21 +115,30 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		// If no tableau (card) is selected
 		if (!this.game.isTableauSelected()) {
 			return;
 		}
 		
+		// Take the top card from the Tableau
 		Card toAdd = this.game.tableauSelected().takeCard();
+		// See if it can be added to the homecell
 		boolean added = this.addCard(toAdd, false);
 		
+		// If not, add it back to the tableau
 		if (!added) {
+			// GUI.sendError("Illegal move");
 			this.game.tableauSelected().addCard(toAdd, true);
 		}
-		System.out.println(this.game.tableauSelected().getNumCards());
+
+		// Deselect the tableau & refresh
 		this.game.setTableauSelected(null);
+		toAdd.deselect();
 		this.game.refresh();
 	}
 	
+	@Override
+	public ArrayList<Card> getAllCards() { return null; }
 	/** This method is not used. */
 	@Override
 	public void mousePressed(MouseEvent e) {}
@@ -142,10 +151,5 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 	/** This method is not used. */
 	@Override
 	public void mouseExited(MouseEvent e) {}
-
-	@Override
-	public ArrayList<Card> getAllCards() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	/** This method is not used. */
 }

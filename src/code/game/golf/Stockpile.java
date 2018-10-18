@@ -8,7 +8,6 @@ import javax.swing.JLabel;
 
 import code.cards.Card;
 import code.cards.Pile;
-import code.game.gui.GUI;
 
 /**
  * Instantiates the Stockpile pile, which receives the remainder
