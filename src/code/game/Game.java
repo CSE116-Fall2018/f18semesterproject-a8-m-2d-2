@@ -7,7 +7,7 @@ import javax.swing.JLayeredPane;
 
 import code.game.gui.GUI;
 
-public class Game extends JLayeredPane {
+public abstract class Game extends JLayeredPane {
 
 	/**
 	 * Required when extending JComponents or something.
@@ -53,5 +53,6 @@ public class Game extends JLayeredPane {
 	 */
 	public void setCardSelected(boolean cardSelected) {
 		this.cardSelected = cardSelected;
-	}
+	} 
+	public abstract void refresh();
 }

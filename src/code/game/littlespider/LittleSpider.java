@@ -94,8 +94,8 @@ public class LittleSpider extends Game implements ActionListener{
 		refresh();
 	}
 	/**
-	 * This method refreshes the game pane during the little spider game 
-	 * to ensure the correct Cards are showing at all times.  called every
+	 * This method refreshes the game panel during the little spider game 
+	 * to ensure the correct Cards are showing at all times.  Called every
 	 * time a correct move is made.
 	 */
 	public void refresh() {
