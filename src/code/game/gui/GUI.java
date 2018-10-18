@@ -22,12 +22,13 @@ public class GUI {
 	
 	private JPanel panel;
 	private JFrame frame;
-	public static final Color BG_COLOR = new Color(0,100,0);
+	public static final Color DEFAULT_BG_COLOR = new Color(0,100,0);
+	Color c = new Color(150,10,100);
 	
 	public GUI() {
 		this.panel = new JPanel();
 		this.panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-		this.panel.setBackground(BG_COLOR);
+		this.panel.setBackground(c);
 	}
 
 	public JMenuBar getMenuBar() {
@@ -52,6 +53,10 @@ public class GUI {
 		menu.add(exit);
 		
 		return menuBar;
+	}
+	
+	public void refresh() {
+		
 	}
 	
 	public void runGUI() {
