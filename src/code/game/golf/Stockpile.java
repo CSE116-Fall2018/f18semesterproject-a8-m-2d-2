@@ -144,4 +144,10 @@ public class Stockpile extends JLabel implements MouseListener, Pile {
 	 */
 	@Override
 	public void mouseExited(MouseEvent e) {}
+
+	@Override
+	public ArrayList<Card> getAllCards() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

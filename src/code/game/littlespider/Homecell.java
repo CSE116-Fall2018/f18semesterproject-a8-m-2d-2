@@ -126,6 +126,11 @@ public class Homecell implements Pile {
 	public ArrayList<Card> getCards() {
 		return cards;
 	}
+	@Override
+	public ArrayList<Card> getAllCards() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 }

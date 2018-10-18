@@ -24,10 +24,6 @@ public class Golf extends Game implements ActionListener {
 	 */
 	private static final long serialVersionUID = 1L;
 	/**
-	 * Tableaus is an array containing all 7 Tableaus for the game.
-	 */
-	private Tableau[] tableaus;
-	/**
 	 * Homecell is the Homecell object where cards will be placed throughout the game.
 	 */
 	private Homecell homecell;
@@ -69,7 +65,9 @@ public class Golf extends Game implements ActionListener {
 			for (int j = 0; j < 5; j++) {
 				Card c = cards.takeCard();
 				c.setFaceUp();
+				c.setTableauNum(i);
 				t.addCard(c, true);
+				
 			}
 			
 			this.tableaus[i] = t;
@@ -126,15 +124,6 @@ public class Golf extends Game implements ActionListener {
 				this.homecell.getIcon().getIconWidth(), 
 				this.homecell.getIcon().getIconHeight());
 		this.add(this.homecell, Integer.valueOf(0), 0);
-	}
-	
-	/**
-	 * Returns an array of the tableaus in the game.
-	 * 
-	 * @return Tableau[] The array of tableaus in the game.
-	 */
-	public Tableau[] getTableaus() {
-		return tableaus;
 	}
 	
 	/**

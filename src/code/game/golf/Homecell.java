@@ -112,7 +112,7 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (!this.game.isCardSelected()) {
+		if (!this.game.isTableauSelected()) {
 			return;
 		}
 	}
@@ -129,4 +129,10 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 	/** This method is not used. */
 	@Override
 	public void mouseExited(MouseEvent e) {}
+
+	@Override
+	public ArrayList<Card> getAllCards() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

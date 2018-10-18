@@ -1,5 +1,7 @@
 package code.cards;
 
+import java.util.ArrayList;
+
 public interface Pile {
 	
 	/**
@@ -30,4 +32,6 @@ public interface Pile {
 	 * @return Card at the top of the pile.
 	 */
 	public Card takeCard();
+	
+	public ArrayList<Card> getAllCards();
 }

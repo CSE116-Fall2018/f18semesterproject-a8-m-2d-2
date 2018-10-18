@@ -6,6 +6,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLayeredPane;
 
 import code.cards.Card;
+import code.cards.Pile;
 import code.game.gui.GUI;
 
 public abstract class Game extends JLayeredPane {
@@ -21,7 +22,9 @@ public abstract class Game extends JLayeredPane {
 	/**
 	 * The card that is currently selected
 	 */
-	private Card cardSelected;
+	private Pile tableauSelected;
+	
+	protected Pile[] tableaus;
 
 	/**
 	 * A superclass of the solitaire games that takes a GUI
@@ -32,7 +35,7 @@ public abstract class Game extends JLayeredPane {
 	 */
 	public Game(GUI gui) {
 		this.gui = gui;
-		this.cardSelected = null;
+		this.tableauSelected = null;
 		setPreferredSize(new Dimension(780, 500));
 		setBackground(GUI.BG_COLOR);
 		setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40));
@@ -43,12 +46,16 @@ public abstract class Game extends JLayeredPane {
 	 * 
 	 * @return boolean whether or not a card is selected
 	 */
-	public boolean isCardSelected() {
-		return cardSelected != null;
+	public boolean isTableauSelected() {
+		return tableauSelected != null;
 	}
 	
-	public Card cardSelected() {
-		return this.cardSelected;
+	public Pile tableuaSelected() {
+		return this.tableauSelected;
+	}
+	
+	public Pile[] getTableaus() {
+		return this.tableaus;
 	}
 
 	/**
@@ -56,8 +63,8 @@ public abstract class Game extends JLayeredPane {
 	 * 
 	 * @param cardSelected set with true or false
 	 */
-	public void setCardSelected(Card card) {
-		this.cardSelected = card;
+	public void setTableauSelected(Pile tableau) {
+		this.tableauSelected = tableau;
 	} 
 	public abstract void refresh();
 }

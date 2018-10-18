@@ -42,6 +42,8 @@ public class Card extends JLabel implements MouseListener {
 	
 	private Game game;
 	
+	private int tableauNum;
+	
 	/**
 	 * The constructor of Card takes two parameters, int id and boolean faceUp.
 	 * The id must be between 0 - 51, as this determines the rank and suit of the card.
@@ -201,6 +203,14 @@ public class Card extends JLabel implements MouseListener {
 			this.game.setCardSelected(this);
 			setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		}
+	}
+	
+	public void setTableauNum(int a) {
+		this.tableauNum = a;
+	}
+	
+	public int getTableauNum() {
+		return this.tableauNum;
 	}
 
 	/** This method does nothing. */

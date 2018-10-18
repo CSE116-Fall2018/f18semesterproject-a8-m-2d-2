@@ -108,4 +108,10 @@ public class Deck implements Pile {
 		deck.remove(result);
 		return result;
 	}
+
+	@Override
+	public ArrayList<Card> getAllCards() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -116,4 +116,10 @@ public class Tableau implements Pile {
 		return cards;
 	}
 
+	@Override
+	public ArrayList<Card> getAllCards() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
