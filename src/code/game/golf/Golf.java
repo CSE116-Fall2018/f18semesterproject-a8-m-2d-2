@@ -101,6 +101,7 @@ public class Golf extends Game implements ActionListener {
 			if (cards == null) {
 				JLabel space = new JLabel();
 				space.setBounds(pos.x, pos.y, 100, 120);
+				this.add(space, depth, 0);
 				pos.x += X_OFFSET;
 				continue;
 			}
