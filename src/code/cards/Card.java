@@ -51,7 +51,7 @@ public class Card extends JLabel implements MouseListener {
 	 * @param faceUp - boolean that determines if the card is faced up or faced down.
 	 */
 	public Card(int id, Game game) {
-		
+		this.game = game;
 		this.id = id;
 		// int value of the suit
 		int suit = id / 13;
