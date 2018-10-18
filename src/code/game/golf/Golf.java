@@ -5,6 +5,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JLabel;
+
 import code.cards.Card;
 import code.cards.Deck;
 import code.game.Game;
@@ -97,7 +99,9 @@ public class Golf extends Game implements ActionListener {
 			
 			// If tableau is empty, add null & skip the next tableau
 			if (cards == null) {
-				this.add(null, 0, 0);
+				JLabel space = new JLabel();
+				space.setBounds(pos.x, pos.y, 100, 120);
+				pos.x += X_OFFSET;
 				continue;
 			}
 			
