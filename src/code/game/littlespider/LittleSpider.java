@@ -20,6 +20,11 @@ import code.game.gui.GUI;
 public class LittleSpider extends Game implements ActionListener{
 	
 	/**
+	 * Required.
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * Holds an array of Homecell instances that are used by the game.
 	 */
 	private Homecell[] homecells;

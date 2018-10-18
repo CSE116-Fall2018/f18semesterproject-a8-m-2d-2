@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import code.cards.Card;
+import code.game.gui.GUI;
 import code.game.littlespider.Homecell;
 import code.game.littlespider.LittleSpider;
 import code.game.littlespider.Tableau;
@@ -22,7 +23,8 @@ public class LittleSpiderTest {
 	
 	@Before
 	public void newGame() {
-		LittleSpider game = new LittleSpider();
+		GUI gui = new GUI();
+		LittleSpider game = new LittleSpider(gui);
 		this.game = game;
 	}
 	
