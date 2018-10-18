@@ -19,7 +19,7 @@ public abstract class Game extends JLayeredPane {
 	 */
 	protected GUI gui;
 	/**
-	 * A state boolean value for whether or not a card is currently selected.
+	 * The card that is currently selected
 	 */
 	private Card cardSelected;
 
@@ -45,6 +45,10 @@ public abstract class Game extends JLayeredPane {
 	 */
 	public boolean isCardSelected() {
 		return cardSelected != null;
+	}
+	
+	public Card cardSelected() {
+		return this.cardSelected;
 	}
 
 	/**
