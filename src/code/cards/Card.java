@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import code.game.Game;
+import code.game.golf.Golf;
 
 /**
  * Instantiates a card dependent upon the id passed to it.
@@ -185,11 +186,16 @@ public class Card extends JLabel implements MouseListener {
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (!top) {
+		if (!this.top) {
 			return;
 		}
 		
-		setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+		if (game instanceof Golf && this.game.isCardSelected()) {
+			return;
+		} else if (game instanceof Golf && !this.game.isCardSelected()) {
+			this.game.setCardSelected(this);
+			setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+		}
 	}
 
 	/** This method does nothing. */

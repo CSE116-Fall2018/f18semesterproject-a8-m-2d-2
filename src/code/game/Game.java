@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.JLayeredPane;
 
+import code.cards.Card;
 import code.game.gui.GUI;
 
 public abstract class Game extends JLayeredPane {
@@ -20,7 +21,7 @@ public abstract class Game extends JLayeredPane {
 	/**
 	 * A state boolean value for whether or not a card is currently selected.
 	 */
-	private boolean cardSelected;
+	private Card cardSelected;
 
 	/**
 	 * A superclass of the solitaire games that takes a GUI
@@ -31,7 +32,7 @@ public abstract class Game extends JLayeredPane {
 	 */
 	public Game(GUI gui) {
 		this.gui = gui;
-		this.cardSelected = false;
+		this.cardSelected = null;
 		setPreferredSize(new Dimension(780, 500));
 		setBackground(GUI.BG_COLOR);
 		setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40));
@@ -43,7 +44,7 @@ public abstract class Game extends JLayeredPane {
 	 * @return boolean whether or not a card is selected
 	 */
 	public boolean isCardSelected() {
-		return cardSelected;
+		return cardSelected != null;
 	}
 
 	/**
@@ -51,8 +52,8 @@ public abstract class Game extends JLayeredPane {
 	 * 
 	 * @param cardSelected set with true or false
 	 */
-	public void setCardSelected(boolean cardSelected) {
-		this.cardSelected = cardSelected;
+	public void setCardSelected(Card card) {
+		this.cardSelected = card;
 	} 
 	public abstract void refresh();
 }

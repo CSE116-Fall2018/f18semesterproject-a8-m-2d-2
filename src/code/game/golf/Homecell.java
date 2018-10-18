@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 
 import code.cards.Card;
 import code.cards.Pile;
+import code.game.Game;
 import code.game.gui.GUI;
 
 /**
@@ -27,11 +28,13 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 	 * Cards is the ArrayList containing all Card objects in the Homecell pile.
 	 */
 	private ArrayList<Card> cards;
+	private Game game;
 	
 	/**
 	 * Homecell initializes the ArrayList for the cards fields, which is empty.
 	 */
-	public Homecell() {
+	public Homecell(Game game) {
+		this.game = game;
 		cards = new ArrayList<>();
 		
 		addMouseListener(this);
@@ -109,8 +112,9 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		if (!this.game.isCardSelected()) {
+			return;
+		}
 	}
 	
 	/** This method is not used. */

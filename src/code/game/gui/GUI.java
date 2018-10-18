@@ -22,7 +22,7 @@ public class GUI {
 	
 	private JPanel panel;
 	private JFrame frame;
-	public static final Color DEFAULT_BG_COLOR = new Color(0,100,0);
+	public static final Color BG_COLOR = new Color(0,100,0);
 	Color c = new Color(150,10,100);
 	
 	public GUI() {
