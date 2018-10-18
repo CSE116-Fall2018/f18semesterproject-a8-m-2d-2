@@ -26,7 +26,8 @@ public class GUI {
 	
 	private JPanel panel;
 	private JFrame frame;
-	public Color BG_COLOR;
+	private Color BG_COLOR;
+	public final Font font = new Font("Arial", Font.PLAIN, 25);
 	
 	public GUI() {
 		this.panel = new JPanel();
@@ -36,7 +37,6 @@ public class GUI {
 	}
 
 	public JMenuBar getMenuBar() {
-		Font font = new Font("Arial", Font.PLAIN, 35);
         UIManager.put("Menu.font", font);
         UIManager.put("MenuItem.font", font);
 		
@@ -56,7 +56,7 @@ public class GUI {
 		exit.addActionListener(new ExitListener());  
 		menu.add(exit);
 		
-		JMenu colorMenu = new JMenu("Settings");
+		JMenu colorMenu = new JMenu("Background");
 		menuBar.add(colorMenu);
 		
 		JMenuItem defaultt = new JMenuItem("Default color");
@@ -64,23 +64,28 @@ public class GUI {
 		colorMenu.add(defaultt);
 		
 		JMenuItem purple = new JMenuItem("Purple");
-		purple.addActionListener(new ColorControl(new Color(153,11,175), this));
+		purple.addActionListener(new ColorControl(new Color(182,135,218), this));
 		colorMenu.add(purple);
 		
 		JMenuItem yellow = new JMenuItem("Yellow");
-		yellow.addActionListener(new ColorControl(new Color(236,229,25), this));
+		yellow.addActionListener(new ColorControl(new Color(247,241,153), this));
 		colorMenu.add(yellow);
 		
 		JMenuItem blue = new JMenuItem("Blue");
-		blue.addActionListener(new ColorControl(new Color(0,0,200), this));
+		blue.addActionListener(new ColorControl(new Color(106,128,215), this));
 		colorMenu.add(blue);
 		
 		JMenuItem pink = new JMenuItem("Pink");
-		pink.addActionListener(new ColorControl(new Color(225,210,210), this));
+		pink.addActionListener(new ColorControl(new Color(228,163,163), this));
 		colorMenu.add(pink);
+		
+		JMenuItem orange = new JMenuItem("Orange");
+		orange.addActionListener(new ColorControl(new Color(238,146,42), this));
+		colorMenu.add(orange);
 		
 		JMenuItem custom = new JMenuItem("Custom Color");
 		custom.addActionListener(new ColorListener(this));
+		colorMenu.addSeparator();
 		colorMenu.add(custom);
 		
 		return menuBar;
