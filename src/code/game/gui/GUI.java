@@ -3,8 +3,6 @@ package code.game.gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.net.URL;
 
 import javax.swing.BoxLayout;
@@ -21,14 +19,30 @@ import code.game.littlespider.LittleSpider;
 import code.game.gui.control.ColorControl;
 import code.game.gui.control.ColorListener;
 import code.game.gui.control.ExitListener;
-
+/**
+ * Holds initial frame and the game JPanel.
+ *
+ */
 public class GUI {
-	
+	/**
+	 * JPanel that hold all game content. Defined by Game instance.
+	 */
 	private JPanel panel;
+	/**
+	 * Frame with a JMenuBar.
+	 */
 	private JFrame frame;
+	/**
+	 * Background color.
+	 */
 	private Color BG_COLOR;
+	/**
+	 * Font that is used game wide.
+	 */
 	public final Font font = new Font("Arial", Font.PLAIN, 25);
-	
+	/**
+	 * Initializes the game frame and JPanel.
+	 */
 	public GUI() {
 		this.panel = new JPanel();
 		this.panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
@@ -36,6 +50,11 @@ public class GUI {
 		BG_COLOR = new Color(0,100,0);
 	}
 
+	/**
+	 * Menu Bar that sits at the top of the frame. Can start a new game, exit the frame, and choose a 
+	 * new background color.
+	 * @return returns the menu bar to be used by the frame.
+	 */
 	public JMenuBar getMenuBar() {
         UIManager.put("Menu.font", font);
         UIManager.put("MenuItem.font", font);
@@ -94,7 +113,10 @@ public class GUI {
 	public void refresh() {
 		
 	}
-	
+	/**
+	 * Brings all components together to be used by the Main class
+	 * and sets frame properties.
+	 */
 	public void runGUI() {
 		this.frame = new JFrame("Solitare");
 		frame.setLayout(new BorderLayout());
