@@ -3,6 +3,8 @@ package code.game.gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.URL;
 
 import javax.swing.BoxLayout;
@@ -16,19 +18,19 @@ import javax.swing.UIManager;
 
 import code.game.golf.Golf;
 import code.game.littlespider.LittleSpider;
+import code.game.gui.control.ColorControl;
 import code.game.gui.control.ExitListener;
 
 public class GUI {
 	
 	private JPanel panel;
 	private JFrame frame;
-	public static final Color BG_COLOR = new Color(0,100,0);
-	Color c = new Color(150,10,100);
+	public Color BG_COLOR;
 	
 	public GUI() {
 		this.panel = new JPanel();
 		this.panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-		this.panel.setBackground(c);
+		panel.setBackground(new Color(0,100,0));
 	}
 
 	public JMenuBar getMenuBar() {
@@ -52,6 +54,16 @@ public class GUI {
 		exit.addActionListener(new ExitListener());  
 		menu.add(exit);
 		
+		JMenu colorMenu = new JMenu("Settings");
+		menuBar.add(colorMenu);
+		
+		JMenuItem defaultt = new JMenuItem("Default color");
+		defaultt.addActionListener(new ColorControl(new Color(0,100,0), this));
+		colorMenu.add(defaultt);
+		
+		JMenuItem purple = new JMenuItem("Purple");
+		purple.addActionListener(new ColorControl(new Color(153,11,175), this));
+		colorMenu.add(purple);
 		return menuBar;
 	}
 	
@@ -67,6 +79,7 @@ public class GUI {
 		frame.setJMenuBar(this.getMenuBar());
 		frame.add(this.panel, BorderLayout.CENTER); // add game panel
 		frame.setVisible(true);
+		frame.setLocationRelativeTo(null);
 	}
 	
 	/**
@@ -97,4 +110,8 @@ public class GUI {
 		return frame;
 	}
 
+	public void setColor(Color c) {
+		BG_COLOR = c;
+	}
+	
 }
