@@ -177,7 +177,6 @@ public class Card extends JLabel implements MouseListener {
 		this.top = true;
 	}
 
-	
 	public Game getGame() {
 		return this.game;
 	}
