@@ -19,6 +19,7 @@ import javax.swing.UIManager;
 import code.game.golf.Golf;
 import code.game.littlespider.LittleSpider;
 import code.game.gui.control.ColorControl;
+import code.game.gui.control.ColorListener;
 import code.game.gui.control.ExitListener;
 
 public class GUI {
@@ -31,6 +32,7 @@ public class GUI {
 		this.panel = new JPanel();
 		this.panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		panel.setBackground(new Color(0,100,0));
+		BG_COLOR = new Color(0,100,0);
 	}
 
 	public JMenuBar getMenuBar() {
@@ -64,6 +66,23 @@ public class GUI {
 		JMenuItem purple = new JMenuItem("Purple");
 		purple.addActionListener(new ColorControl(new Color(153,11,175), this));
 		colorMenu.add(purple);
+		
+		JMenuItem yellow = new JMenuItem("Yellow");
+		yellow.addActionListener(new ColorControl(new Color(236,229,25), this));
+		colorMenu.add(yellow);
+		
+		JMenuItem blue = new JMenuItem("Blue");
+		blue.addActionListener(new ColorControl(new Color(0,0,200), this));
+		colorMenu.add(blue);
+		
+		JMenuItem pink = new JMenuItem("Pink");
+		pink.addActionListener(new ColorControl(new Color(225,210,210), this));
+		colorMenu.add(pink);
+		
+		JMenuItem custom = new JMenuItem("Custom Color");
+		custom.addActionListener(new ColorListener(this));
+		colorMenu.add(custom);
+		
 		return menuBar;
 	}
 	
@@ -113,5 +132,7 @@ public class GUI {
 	public void setColor(Color c) {
 		BG_COLOR = c;
 	}
-	
+	public Color getColor() {
+		return BG_COLOR;
+	}
 }

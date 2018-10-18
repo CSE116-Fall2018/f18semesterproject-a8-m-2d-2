@@ -20,6 +20,7 @@ public class ColorControl implements ActionListener {
 		// TODO Auto-generated method stub
 
 		gui.getPanel().setBackground(color);
+		gui.setColor(color);
 	}
 
 }
