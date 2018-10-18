@@ -16,7 +16,7 @@ public class HomecellTest {
 	private Homecell h;
 	
 	public void refresh() {
-		Card c = new Card(0);
+		Card c = new Card(0,null);
 		h = new Homecell(c);
 	}
 	
@@ -38,15 +38,15 @@ public class HomecellTest {
 	public void addCardTest() {
 		refresh();
 		//make cards for testing
-		Card d2 = new Card(1);
-		Card ha = new Card(13);
-		Card h2 = new Card(14);
-		Card h5 = new Card(17);
-		Card ck = new Card(51);
-		Card cq = new Card(50);
-		Card sk = new Card(38);
-		Card sq = new Card(37);
-		Card s9 = new Card(34);
+		Card d2 = new Card(1,null);
+		Card ha = new Card(13,null);
+		Card h2 = new Card(14,null);
+		Card h5 = new Card(17,null);
+		Card ck = new Card(51,null);
+		Card cq = new Card(50,null);
+		Card sk = new Card(38,null);
+		Card sq = new Card(37,null);
+		Card s9 = new Card(34,null);
 		
 		//test diamonds if statement
 		assertTrue("addCard returned false on a legal move", h.addCard(d2,false));
@@ -87,7 +87,7 @@ public class HomecellTest {
 	public void getNumCardsTest() {
 		refresh();
 		assertEquals("incorrect number of cards displayed", 1, h.getNumCards());
-		Card ee = new Card(1);
+		Card ee = new Card(1,null);
 		h.addCard(ee, false);
 		assertEquals("incorrect number of cards displayed", 2, h.getNumCards());
 	}
@@ -95,7 +95,7 @@ public class HomecellTest {
 	@Test
 	public void getCardTest() {
 		refresh();
-		Card c1 = new Card(1);
+		Card c1 = new Card(1,null);
 		h.addCard(c1, false);
 		assertEquals("does not return topCard", c1, h.getCard());
 	}
@@ -106,8 +106,8 @@ public class HomecellTest {
 		//test that card null is returned when last card is taken
 		assertNull(h.takeCard());
 		//test that old topCard is taken and removed
-		Card e = new Card(1);
-		Card e1 = new Card(2);
+		Card e = new Card(1,null);
+		Card e1 = new Card(2,null);
 		h.addCard(e, false);
 		h.addCard(e1, false);
 		assertEquals("did not return card that was taken", e1, h.takeCard());

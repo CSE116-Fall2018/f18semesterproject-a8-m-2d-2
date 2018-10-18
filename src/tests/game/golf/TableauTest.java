@@ -15,7 +15,7 @@ public class TableauTest {
 	
 	@Test
 	public void testAddCard() {
-		Deck d = new Deck();
+		Deck d = new Deck(null);
 		d.shuffle();
 		Tableau t = new Tableau();
 		assertTrue("Tableau should return true when adding an overridden", t.addCard(d.takeCard(), true));
@@ -24,7 +24,7 @@ public class TableauTest {
 	
 	@Test
 	public void testTakeCard() {
-		Deck d = new Deck();
+		Deck d = new Deck(null);
 		d.shuffle();
 		Tableau t = new Tableau();
 		assertNull("Tableaus should return null when trying to remove a card from an empty Tableau", t.takeCard());
@@ -43,7 +43,7 @@ public class TableauTest {
 	
 	@Test
 	public void testGetNumCards() {
-		Deck d = new Deck();
+		Deck d = new Deck(null);
 		d.shuffle();
 		Tableau t = new Tableau();
 		assertEquals("Tableaus should instantiate with zero cards", 0, t.getNumCards());
@@ -60,7 +60,7 @@ public class TableauTest {
 	
 	@Test
 	public void testGetCard() {
-		Deck d = new Deck();
+		Deck d = new Deck(null);
 		d.shuffle();
 		Tableau t = new Tableau();
 		Card c = d.takeCard();

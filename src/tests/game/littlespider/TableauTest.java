@@ -33,9 +33,9 @@ public class TableauTest {
 	@Test
 	public void addCardTest() {
 		refresh();
-		Card c = new Card(0);
-		Card c1 = new Card(1);
-		Card c2 = new Card(6);
+		Card c = new Card(0,null);
+		Card c1 = new Card(1,null);
+		Card c2 = new Card(6,null);
 		
 		//check that cards can't be added to a empty pile
 		assertFalse("addCard returned true when adding to empty pile", t.addCard(c1, false));
@@ -53,7 +53,7 @@ public class TableauTest {
 		//test wrap around function
 		refresh();
 		t.addCard(c, true);
-		Card c3 = new Card(12);
+		Card c3 = new Card(12,null);
 		assertTrue("wrap around function not working properly", t.addCard(c3, false));
 		refresh();
 		t.addCard(c3, true);
@@ -71,8 +71,8 @@ public class TableauTest {
 	@Test
 	public void getNumCardsTest() {
 		refresh();
-		Card c = new Card(0);
-		Card c1 = new Card(1);
+		Card c = new Card(0,null);
+		Card c1 = new Card(1,null);
 		t.addCard(c, true);
 		t.addCard(c1, false);
 		assertEquals(2, t.getCards().size());
@@ -82,7 +82,7 @@ public class TableauTest {
 	public void getCardTest() {
 		refresh();
 		assertNull("does not return null on empty pile", t.getCard());
-		Card c = new Card(0);
+		Card c = new Card(0,null);
 		t.addCard(c, true);
 		assertEquals("does not return topCard", c, t.getCard());
 	}
@@ -91,8 +91,8 @@ public class TableauTest {
 	public void takeCardTest() {
 		refresh();
 		assertNull("returns an object on empty pile", t.takeCard());
-		Card c = new Card(0);
-		Card c1 = new Card(1);
+		Card c = new Card(0,null);
+		Card c1 = new Card(1,null);
 		t.addCard(c, true);
 		t.addCard(c1, false);
 		assertEquals("does not take correct card", c1, t.takeCard());

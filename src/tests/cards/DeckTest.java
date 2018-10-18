@@ -24,13 +24,13 @@ public class DeckTest {
 
 	@Test
 	public void sizeTest() {
-		Deck test = new Deck();
+		Deck test = new Deck(null);
 		assertEquals("the deck's size is not 52",52,test.getNumCards());
 	}
 
 	@Test
 	public void allUnique() {
-		Deck test = new Deck();
+		Deck test = new Deck(null);
 		for(int c = 0; c < test.getNumCards(); c++) {
 			for(int d = c + 1; d < test.getNumCards(); d++) {
 				assertNotEquals("indecies " + c + " and " + d + " were the same card", test.getDeck().get(c).toString(), test.getDeck().get(d).toString() );
@@ -40,7 +40,7 @@ public class DeckTest {
 
 	@Test
 	public void validSuit() {
-		Deck test = new Deck();
+		Deck test = new Deck(null);
 		int[] suit = new int[4];
 		for(int c = 0; c < 52; c++) {
 			String Suit = test.getDeck().get(c).getSuit();
@@ -69,7 +69,7 @@ public class DeckTest {
 
 	@Test
 	public void validRank() {
-		Deck test = new Deck();
+		Deck test = new Deck(null);
 		int[] rank = new int[13];
 		for(int c = 0; c < 52; c++) {
 			String Rank = test.getDeck().get(c).getRank();
@@ -103,9 +103,9 @@ public class DeckTest {
 
 	@Test 
 	public void shuffleTest() {
-		Deck test1 = new Deck();
-		Deck test2 = new Deck();
-		Deck placeholder = new Deck();
+		Deck test1 = new Deck(null);
+		Deck test2 = new Deck(null);
+		Deck placeholder = new Deck(null);
 		double[] ratio = new double[3];
 		test1.shuffle();
 		test2.shuffle();
@@ -126,10 +126,10 @@ public class DeckTest {
 	
 	@Test
 	public void takeCardTest() {
-		Deck test = new Deck();
+		Deck test = new Deck(null);
 		ArrayList<Card> compare1 = new ArrayList<>();
 		ArrayList<Card> compare2 = new ArrayList<>();
-		for(int c = 1; c < 52; c++) compare1.add(new Card(c));
+		for(int c = 1; c < 52; c++) compare1.add(new Card(c,null));
 		Card[] removed = new Card[46];
 		removed [0] = test.takeCard();
 		
@@ -139,7 +139,7 @@ public class DeckTest {
 		assertEquals("Did not remove the top card of the deck",0,removed[0].id);
 		
 		for(int c = 0; c < removed.length-1; c++) removed[c+1] = test.takeCard();
-		for(int c = removed.length; c < 52; c++) compare2.add(new Card(c));
+		for(int c = removed.length; c < 52; c++) compare2.add(new Card(c,null));
 		
 		for(int c = 0; c < test.getDeck().size(); c++) 
 			assertEquals("takeCard fails after multiple iterations", test.getDeck().get(c).getRank(), compare2.get(c).getRank());
@@ -148,15 +148,15 @@ public class DeckTest {
 	
 	@Test
 	public void deckAddCard() {
-		Deck test = new Deck();
-		boolean check = test.addCard(new Card(33), false);
+		Deck test = new Deck(null);
+		boolean check = test.addCard(new Card(33,null), false);
 		assertFalse("addCard did not return false", check);
 		assertEquals("Deck's add card increased the size of the deck", 52, test.getDeck().size());
 	}
 	
 	@Test
 	public void getSpecificCard() {
-		Deck test = new Deck();
+		Deck test = new Deck(null);
 		Card[] removed = new Card[3];
 		
 		removed[0] = test.getSpecificCard("heart", "2");

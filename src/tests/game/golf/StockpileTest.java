@@ -17,14 +17,14 @@ public class StockpileTest {
 	
 	@Test
 	public void testStockpileInit() {
-		Deck d = new Deck();
+		Deck d = new Deck(null);
 		Stockpile s = new Stockpile(null, d.getDeck());
 		assertNotNull("Stockpile should properly initiate when given an ArrayList of cards", s);
 	}
 	
 	@Test
 	public void testAddCard() {
-		Deck d = new Deck();
+		Deck d = new Deck(null);
 		d.shuffle();
 		Stockpile s = new Stockpile(null, d.getDeck());
 		Card c = d.takeCard();
@@ -35,7 +35,7 @@ public class StockpileTest {
 	
 	@Test
 	public void testGetNumCards() {
-		Deck d = new Deck();
+		Deck d = new Deck(null);
 		d.shuffle();
 		Stockpile s = new Stockpile(null, d.getDeck());
 		Card c = d.takeCard();
@@ -53,7 +53,7 @@ public class StockpileTest {
 	
 	@Test
 	public void testGetCard() {
-		Deck d = new Deck();
+		Deck d = new Deck(null);
 		d.shuffle();
 		Stockpile s = new Stockpile(null, d.getDeck());
 		ArrayList<Card> arr = new ArrayList<>();
@@ -64,7 +64,7 @@ public class StockpileTest {
 		c = s.takeCard();
 		c = s.getCard();
 		assertEquals("getCard() should return the card at position 0", c, s.getCard());
-		d = new Deck();
+		d = new Deck(null);
 		d.shuffle();
 		// Takes all the cards from the Stockpile
 		for (int i = 0; i < 52; i++) {
@@ -75,7 +75,7 @@ public class StockpileTest {
 	
 	@Test
 	public void testTakeCard() {
-		Deck d = new Deck();
+		Deck d = new Deck(null);
 		d.shuffle();
 		Stockpile s = new Stockpile(null, d.getDeck());
 		Stockpile s2 = new Stockpile(null, new ArrayList<>());
@@ -84,7 +84,7 @@ public class StockpileTest {
 		Card c2 = s.takeCard();
 		assertEquals("takeCard() should return the card at position 0", c, c2);
 		assertEquals("takeCard() should decrease the amount of cards in the pile by one", 51, s.getNumCards());
-		d = new Deck();
+		d = new Deck(null);
 		d.shuffle();
 		for (int i = 0; i < 52; i++) {
 			c = s.takeCard();

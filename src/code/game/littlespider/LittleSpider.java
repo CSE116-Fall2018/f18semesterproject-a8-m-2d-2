@@ -56,7 +56,7 @@ public class LittleSpider extends Game implements ActionListener{
 	 */
 	private void init() {
 
-		Deck deck = new Deck();
+		Deck deck = new Deck(null);
 		deck.shuffle();
 		
 		homecells = new Homecell[4];
