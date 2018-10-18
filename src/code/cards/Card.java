@@ -192,8 +192,8 @@ public class Card extends JLabel implements MouseListener {
 			return;
 		}
 		
-		if (this.game.cardSelected() == this) {
-			this.game.setCardSelected(null);
+		if (this.game.isTableauSelected() == this.game.get) {
+			this.game.setTableauSelected(null);
 			setBorder(null);
 		}
 		
