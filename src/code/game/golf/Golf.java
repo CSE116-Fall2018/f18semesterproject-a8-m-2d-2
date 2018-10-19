@@ -139,6 +139,9 @@ public class Golf extends Game implements ActionListener {
 				this.homecell.getIcon().getIconWidth(), 
 				this.homecell.getIcon().getIconHeight());
 		this.add(this.homecell, Integer.valueOf(0), 0);
+		
+		this.gui.getPanel().validate();
+		this.gui.getPanel().repaint();
 	}
 	
 	/**
@@ -165,10 +168,10 @@ public class Golf extends Game implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		removeAll();
 		init();
 		this.gui.getPanel().removeAll();
 		this.gui.getPanel().add(this);
-		this.gui.getFrame().pack();	
+		this.gui.getPanel().validate();
+		this.gui.getPanel().repaint();
 	}
 }

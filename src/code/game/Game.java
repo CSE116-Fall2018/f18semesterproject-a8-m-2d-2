@@ -47,9 +47,8 @@ public abstract class Game extends JLayeredPane {
 		this.gui = gui;
 		this.tableauSelected = null;
 		this.homecellSelected = null;
-		setPreferredSize(new Dimension(780, 500));
+		setPreferredSize(new Dimension(GUI.WIN_WIDTH, GUI.WIN_HEIGHT));
 		setBackground(gui.getColor());
-		setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40));
 	}
 	
 	/**

@@ -2,6 +2,7 @@ package code.game.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.net.URL;
 
@@ -41,11 +42,21 @@ public class GUI {
 	 */
 	public final Font font = new Font("Arial", Font.PLAIN, 25);
 	/**
+	 * The window width.
+	 */
+	public static final int WIN_WIDTH = 925;
+	/**
+	 * The window height.
+	 */
+	public static final int WIN_HEIGHT = 925;
+	
+	/**
 	 * Initializes the game frame and JPanel.
 	 */
 	public GUI() {
 		this.panel = new JPanel();
 		this.panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
+		this.panel.setPreferredSize(new Dimension(GUI.WIN_WIDTH, GUI.WIN_HEIGHT));
 		panel.setBackground(new Color(0,100,0));
 		BG_COLOR = new Color(0,100,0);
 	}
@@ -126,7 +137,7 @@ public class GUI {
 		this.frame = new JFrame("Solitare");
 		frame.setLayout(new BorderLayout());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(1150,1200);
+		frame.setSize(GUI.WIN_WIDTH, GUI.WIN_HEIGHT);
 		frame.setJMenuBar(this.getMenuBar());
 		frame.add(this.panel, BorderLayout.CENTER); // add game panel
 		frame.setVisible(true);

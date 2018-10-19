@@ -144,6 +144,8 @@ public class LittleSpider extends Game implements ActionListener{
 			pos.y = 200;
 			pos.x += X_OFFSET_TABLEAU;
 		}
+		this.gui.getPanel().validate();
+		this.gui.getPanel().repaint();
 	}
 	/**
 	 * Returns homecell array.
@@ -162,6 +164,7 @@ public class LittleSpider extends Game implements ActionListener{
 		init();
 		this.gui.getPanel().removeAll();
 		this.gui.getPanel().add(this);
-		this.gui.getFrame().setSize(925, 925);	
+		this.gui.getPanel().validate();
+		this.gui.getPanel().repaint();
 	}
 }

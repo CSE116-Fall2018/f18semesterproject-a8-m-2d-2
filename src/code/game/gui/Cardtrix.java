@@ -1,13 +1,11 @@
 package code.game.gui;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
 
-import javax.swing.BorderFactory;
 import javax.swing.JLayeredPane;
 import javax.swing.Timer;
 
@@ -26,9 +24,7 @@ public class Cardtrix extends JLayeredPane implements ActionListener {
 	public Cardtrix(GUI gui) {
 		this.gui = gui;
 		this.rand = new Random();
-		setPreferredSize(new Dimension(780, 500));
-		setBackground(Color.BLACK);
-		setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40));
+		setPreferredSize(new Dimension(GUI.WIN_WIDTH, GUI.WIN_HEIGHT));
 	}
 
 	private void matrix() {
@@ -41,8 +37,8 @@ public class Cardtrix extends JLayeredPane implements ActionListener {
 			Card c = deck.get(i);
 			c.setFaceUp();
 
-			int x = rand.nextInt(780) - c.getIcon().getIconWidth();
-			int y = rand.nextInt(500) - 666;
+			int x = rand.nextInt(GUI.WIN_WIDTH) - c.getIcon().getIconWidth();
+			int y = rand.nextInt(GUI.WIN_HEIGHT) - (GUI.WIN_HEIGHT + 140);
 			int w = c.getIcon().getIconWidth();
 			int h = c.getIcon().getIconHeight();
 			c.setBounds(x, y, w, h);
@@ -54,12 +50,13 @@ public class Cardtrix extends JLayeredPane implements ActionListener {
 					c.setBounds(x, c.getY() + yVar, w, h);
 					self.add(c, depth++, 0);
 					
-					if (c.getY() > 641) {
+					if (c.getY() > GUI.WIN_HEIGHT) {
 						self.remove(c);
 					}
 				}});
 			timer.start();
 		}
+		depth = 0;
 	}
 	
 	@Override
@@ -71,7 +68,9 @@ public class Cardtrix extends JLayeredPane implements ActionListener {
 				matrix();
 			}});
 		timer.start();
+		this.gui.getPanel().removeAll();
 		this.gui.getPanel().add(this);
-		this.gui.getFrame().pack();	
+		this.gui.getPanel().validate();
+		this.gui.getPanel().repaint();
 	}
 }
