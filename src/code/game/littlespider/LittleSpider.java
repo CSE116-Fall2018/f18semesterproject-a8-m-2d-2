@@ -62,21 +62,25 @@ public class LittleSpider extends Game implements ActionListener{
 		c1.setFaceUp();
 		Homecell homecell1 = new Homecell(c1, this);
 		homecells[0] = homecell1;
+		homecell1.setHomecellNum(0);
 		
 		Card c2 = deck.getSpecificCard("heart", "ace");
 		c2.setFaceUp();
 		Homecell homecell2 = new Homecell(c2, this);
 		homecells[1] = homecell2;
+		homecell2.setHomecellNum(1);
 		
 		Card c3 = deck.getSpecificCard("club", "king");
 		c3.setFaceUp();
 		Homecell homecell3 = new Homecell(c3, this);
 		homecells[2] = homecell3;
+		homecell3.setHomecellNum(2);
 		
 		Card c4 = deck.getSpecificCard("spade", "king");
 		c4.setFaceUp();
 		Homecell homecell4 = new Homecell(c4, this);
 		homecells[3] = homecell4;
+		homecell4.setHomecellNum(3);
 		
 		tableaus = new Tableau[8];
 		for(int i=0; i<tableaus.length; i++) {

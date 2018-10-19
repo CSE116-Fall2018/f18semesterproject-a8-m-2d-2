@@ -1,9 +1,11 @@
 package code.game.littlespider;
 
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
 import code.cards.Card;
@@ -33,8 +35,10 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 	 * Holds the top card in the pile for use by the class.
 	 */
 	private Card topCard;
-	
+
 	private Game game;
+	/** The index of the homecell this card belongs to */
+	private int homecellNum;
 
 	/**
 	 * Constructor for LittleSpider Homecell. Adds @param as topCard and adds card to cards list.
@@ -47,7 +51,7 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 		cards.add(card);
 		topCard = card;
 		this.game = game;
-		
+
 		addMouseListener(this);
 		setHorizontalAlignment(JLabel.CENTER);
 		setVerticalAlignment(JLabel.TOP);
@@ -63,16 +67,16 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 
 	@Override
 	public boolean addCard(Card card, boolean override) {
-		
+
 		if(card == null) return false;
-		
+
 		if(override) {
 			cards.add(0,card);
 			topCard = card;
 			setIcon(topCard.getIcon());
 			return true;
 		}
-		
+
 		//groups diamonds and hearts per rules of the game
 		if(card.getSuit().equals("diamond") || card.getSuit().equals("heart")) {
 			//checks if suits match and input card is one above
@@ -136,6 +140,7 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 
 		cards.remove(0);
 		topCard = cards.get(0);
+		setIcon(topCard.getIcon());
 
 		return top;
 	}
@@ -149,30 +154,65 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 	}
 	@Override
 	public ArrayList<Card> getAllCards() {
-		return null;
+		return cards;
 	}
-	
+
+	/**
+	 * Set the homecell index that this card is part of
+	 * @param int the homecell index
+	 */
+	public void setHomecellNum(int a) {
+		this.homecellNum = a;
+	}
+
+	/**
+	 * Returns the homecell tableau number that this card of part of.
+	 * 
+	 * @return int The homecell index #
+	 */
+	public int getHomecellNum() {
+		return this.homecellNum;
+	}
+	/** Deselects the current card in the game. */
+	public void deselect() {
+		this.game.setHomecellSelected(null);
+		setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
+	}
+
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// If no tableau (card) is selected
-		if (!this.game.isTableauSelected()) {
+
+		Pile[] homecells = this.game.getHomecells();
+
+		// if homecell is already selected
+		if (game.homecellSelected() != null && game.homecellSelected().equals(homecells[homecellNum])) {
+			deselect();
 			return;
 		}
-		
-		// Take the top card from the Tableau
-		Card toAdd = this.game.tableauSelected().takeCard();
-		// See if it can be added to the homecell
-		boolean added = this.addCard(toAdd, false);
-		// If not, add it back to the tableau
-		if (!added) {
-			// GUI.sendError("Illegal move");
-			this.game.tableauSelected().addCard(toAdd, true);
-		}
 
-		// Deselect the tableau & refresh
-		this.game.setTableauSelected(null);
-		toAdd.deselect();
-		this.game.refresh();
+		// If no card is selected
+		if (!this.game.isTableauSelected() && !this.game.isHomecellSelected()) {
+			this.game.setHomecellSelected(homecells[this.homecellNum]);
+			setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+			return;
+		}
+		if(this.game.isTableauSelected()) {
+			// Take the top card from the Tableau
+			Card toAdd = this.game.tableauSelected().takeCard();
+			// See if it can be added to the homecell
+			boolean added = this.addCard(toAdd, false);
+			// If not, add it back to the tableau
+			if (!added) {
+				// GUI.sendError("Illegal move");
+				this.game.tableauSelected().addCard(toAdd, true);
+			}
+
+			// Deselect the tableau & refresh
+			this.game.setTableauSelected(null);
+			toAdd.deselect();
+			this.game.refresh();
+			return;
+		}
 	}
 	/** This method is not used. */
 	@Override

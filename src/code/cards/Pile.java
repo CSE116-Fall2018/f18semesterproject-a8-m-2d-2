@@ -34,4 +34,6 @@ public interface Pile {
 	public Card takeCard();
 	
 	public ArrayList<Card> getAllCards();
+
+
 }
