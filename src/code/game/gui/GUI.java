@@ -70,6 +70,10 @@ public class GUI {
 		JMenuItem golf = new JMenuItem("Golf");
 		golf.addActionListener(new Golf(this));
 		menu.add(golf);
+		
+		JMenuItem matrix = new JMenuItem("Matrix");
+		matrix.addActionListener(new Cardtrix(this));
+		menu.add(matrix);
 
 		JMenuItem exit = new JMenuItem("Exit");
 		exit.addActionListener(new ExitListener());

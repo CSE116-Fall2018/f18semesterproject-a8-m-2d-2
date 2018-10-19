@@ -111,5 +111,7 @@ public class Deck implements Pile {
 
 	/** This method is not used. Returns null. */
 	@Override
-	public ArrayList<Card> getAllCards() { return null; }
+	public ArrayList<Card> getAllCards() { 
+		return this.deck; 
+	}
 }
