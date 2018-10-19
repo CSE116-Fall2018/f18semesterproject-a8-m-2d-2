@@ -1,9 +1,14 @@
 package code.game.littlespider;
 
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
+
+import javax.swing.JLabel;
 
 import code.cards.Card;
 import code.cards.Pile;
+import code.game.Game;
 
 /**
  * Instances of this class are used to hold data about the homecell piles in the Little Spider game.
@@ -13,7 +18,12 @@ import code.cards.Pile;
  * @author Drew Fiutko
  * 
  */
-public class Homecell implements Pile {
+public class Homecell extends JLabel implements MouseListener, Pile {
+	/**
+	 * required.
+	 */
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * Holds all the cards that are in the pile in an ArrayList.
 	 */
@@ -23,6 +33,8 @@ public class Homecell implements Pile {
 	 * Holds the top card in the pile for use by the class.
 	 */
 	private Card topCard;
+	
+	private Game game;
 
 	/**
 	 * Constructor for LittleSpider Homecell. Adds @param as topCard and adds card to cards list.
@@ -30,10 +42,16 @@ public class Homecell implements Pile {
 	 * @param card Card that homecell pile starts faceUp with
 	 */
 
-	public Homecell(Card card) {
+	public Homecell(Card card, Game game) {
 		cards = new ArrayList<>();
 		cards.add(card);
 		topCard = card;
+		this.game = game;
+		
+		addMouseListener(this);
+		setHorizontalAlignment(JLabel.CENTER);
+		setVerticalAlignment(JLabel.TOP);
+		setIcon(topCard.getIcon());
 	}
 	/**
 	 * Takes a card and adds it to the top of the pile if and only if it follows the game rules.
@@ -51,6 +69,7 @@ public class Homecell implements Pile {
 		if(override) {
 			cards.add(0,card);
 			topCard = card;
+			setIcon(topCard.getIcon());
 			return true;
 		}
 		
@@ -61,6 +80,7 @@ public class Homecell implements Pile {
 
 				cards.add(0,card);
 				topCard = card;
+				setIcon(topCard.getIcon());
 				return true;
 			}else {
 				//cannot add card
@@ -74,6 +94,7 @@ public class Homecell implements Pile {
 			if(card.getSuit().equals(topCard.getSuit()) && card.getValue() == topCard.getValue()-1) {
 				cards.add(0,card);
 				topCard = card;
+				setIcon(topCard.getIcon());
 				return true;
 			}else {
 				//cannot add card
@@ -128,9 +149,43 @@ public class Homecell implements Pile {
 	}
 	@Override
 	public ArrayList<Card> getAllCards() {
-		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// If no tableau (card) is selected
+		if (!this.game.isTableauSelected()) {
+			return;
+		}
+		
+		// Take the top card from the Tableau
+		Card toAdd = this.game.tableauSelected().takeCard();
+		// See if it can be added to the homecell
+		boolean added = this.addCard(toAdd, false);
+		// If not, add it back to the tableau
+		if (!added) {
+			// GUI.sendError("Illegal move");
+			this.game.tableauSelected().addCard(toAdd, true);
+		}
+
+		// Deselect the tableau & refresh
+		this.game.setTableauSelected(null);
+		toAdd.deselect();
+		this.game.refresh();
+	}
+	/** This method is not used. */
+	@Override
+	public void mouseEntered(MouseEvent e) {}
+	/** This method is not used. */
+	@Override
+	public void mouseExited(MouseEvent e) {}
+	/** This method is not used. */
+	@Override
+	public void mousePressed(MouseEvent e) {}
+	/** This method is not used. */
+	@Override
+	public void mouseReleased(MouseEvent e) {}
 
 
 }

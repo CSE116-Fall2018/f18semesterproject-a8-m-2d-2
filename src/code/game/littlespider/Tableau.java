@@ -100,6 +100,10 @@ public class Tableau implements Pile {
 		Card top = topCard;
 		if(cards.size() == 0) return null;
 		
+		if(cards.size() == 1) {
+			cards.remove(0);
+			return top;
+		}
 		cards.remove(0);
 		topCard = cards.get(0);
 			

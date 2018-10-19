@@ -72,7 +72,8 @@ public class GUI {
 		menu.add(golf);
 
 		JMenuItem exit = new JMenuItem("Exit");
-		exit.addActionListener(new ExitListener());  
+		exit.addActionListener(new ExitListener());
+		menu.addSeparator();
 		menu.add(exit);
 		
 		JMenu colorMenu = new JMenu("Background");

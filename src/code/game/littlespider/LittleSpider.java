@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JLabel;
+
 import code.cards.Card;
 import code.cards.Deck;
 import code.game.Game;
@@ -58,22 +60,22 @@ public class LittleSpider extends Game implements ActionListener{
 		
 		Card c1 = deck.getSpecificCard("diamond", "ace");
 		c1.setFaceUp();
-		Homecell homecell1 = new Homecell(c1);
+		Homecell homecell1 = new Homecell(c1, this);
 		homecells[0] = homecell1;
 		
 		Card c2 = deck.getSpecificCard("heart", "ace");
 		c2.setFaceUp();
-		Homecell homecell2 = new Homecell(c2);
+		Homecell homecell2 = new Homecell(c2, this);
 		homecells[1] = homecell2;
 		
 		Card c3 = deck.getSpecificCard("club", "king");
 		c3.setFaceUp();
-		Homecell homecell3 = new Homecell(c3);
+		Homecell homecell3 = new Homecell(c3, this);
 		homecells[2] = homecell3;
 		
 		Card c4 = deck.getSpecificCard("spade", "king");
 		c4.setFaceUp();
-		Homecell homecell4 = new Homecell(c4);
+		Homecell homecell4 = new Homecell(c4, this);
 		homecells[3] = homecell4;
 		
 		tableaus = new Tableau[8];
@@ -82,6 +84,7 @@ public class LittleSpider extends Game implements ActionListener{
 			for(int j=1; j<=6; j++) {
 				Card x = deck.takeCard();
 				x.setFaceUp();
+				x.setTableauNum(i);
 				tableau.addCard(x, true);
 			}
 			tableaus[i]= tableau;
@@ -94,14 +97,14 @@ public class LittleSpider extends Game implements ActionListener{
 	 * time a correct move is made.
 	 */
 	public void refresh() {
+		removeAll();
 		// Origin starting point to place homecell cards
 		Point pos = new Point(175, 20);
 
 		// Add homecell piles to top of frame without displaying pile
 		for(int i = 0; i < this.homecells.length; i++) {
-			Card icon = this.homecells[i].getCard();
+			Homecell icon = this.homecells[i];
 			icon.setBounds(pos.x, pos.y, icon.getIcon().getIconWidth(), icon.getIcon().getIconHeight());
-			icon.setTop();
 			this.add(icon, 0, 0); // depth always 0
 			pos.x += X_OFFSET_HOMECELL;
 		}
@@ -112,7 +115,14 @@ public class LittleSpider extends Game implements ActionListener{
 		for(int i = 0; i < this.tableaus.length; i++) {
 			ArrayList<Card> cards = this.tableaus[i].getAllCards();
 			Integer depth = 0;
-
+			
+			if (cards == null) {
+				JLabel space = new JLabel();
+				space.setBounds(pos.x, pos.y, 100, 120);
+				this.add(space, depth, 0);
+				pos.x += X_OFFSET_TABLEAU;
+				continue;
+			}
 			for(int j = cards.size(); j > 0; j--) {
 				Card icon = cards.get(j - 1);
 				icon.setBounds(pos.x, pos.y, icon.getIcon().getIconWidth(), icon.getIcon().getIconHeight());
@@ -148,6 +158,6 @@ public class LittleSpider extends Game implements ActionListener{
 		init();
 		this.gui.getPanel().removeAll();
 		this.gui.getPanel().add(this);
-		this.gui.getFrame().setSize(925, 800);	
+		this.gui.getFrame().setSize(925, 925);	
 	}
 }

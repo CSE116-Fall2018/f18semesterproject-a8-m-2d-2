@@ -145,7 +145,7 @@ public class Card extends JLabel implements MouseListener {
 	public boolean isFaceUp() {
 		return this.faceUp;
 	}
-
+	
 	/**
 	 * Returns the rank of the card in the rank field.
 	 * 
@@ -179,7 +179,12 @@ public class Card extends JLabel implements MouseListener {
 	public void setTop() {
 		this.top = true;
 	}
-	
+	/**
+	 * Sets the card as under the top card.
+	 */
+	public void setUnder() {
+		this.top = false;
+	}
 	/** Deselects the current card in the game. */
 	public void deselect() {
 		this.game.setTableauSelected(null);
@@ -208,6 +213,7 @@ public class Card extends JLabel implements MouseListener {
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		System.out.println("\n Pile CLicked");
 		// Return if this card isn't the top of the tableau
 		if (!this.top) {
 			return;
@@ -222,31 +228,41 @@ public class Card extends JLabel implements MouseListener {
 			deselect();
 			return;
 		}
-		System.out.println("test0");
+		System.out.println("passed deselect");
 		// If no tableau card is selected yet, select this one
 		if (!this.game.isTableauSelected()) {
 			this.game.setTableauSelected(tableaus[this.tableauNum]);
 			setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+			System.out.println(this + "selected");
 			return;
 		}
-		System.out.println("test");
+
 		// If this is a Golf game, and a tableau is already selected, do nothing
 		if (game instanceof Golf) {
 			// GUI.sendError("Illegal move");
+			System.out.println("in golf");
 			return;
 		} 
-		System.out.println("test1");
 		// If this is a Little Spider game, and a tableau is already selected, try to add to 
 		// This card's parent tableau
 		if (game instanceof LittleSpider) {
-			System.out.println("test");
+			System.out.println("in little spider");
 			// Attempt to add the card to tableau
-			Card card = this.game.tableauSelected().takeCard();
+			Card card = this.game.tableauSelected().getCard();
 			boolean added = tableaus[this.tableauNum].addCard(card, false);
-			System.out.println("test");
-			if (!added) {
-				this.game.tableauSelected().addCard(card, true);
+			System.out.println(tableaus[this.tableauNum].getCard());
+			if (added) {
+				this.game.tableauSelected().takeCard();
+				card.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
+				tableaus[this.tableauNum].getAllCards().get(1).setUnder();
+				System.out.println(tableaus[this.tableauNum].getNumCards());
+				card.setTableauNum(this.tableauNum);
+			}else {
+				//throw error
+				card.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 			}
+			deselect();
+			System.out.println("Tableau selected: " + this.game.tableauSelected());
 			this.game.refresh();
 			return;
 		}
@@ -264,4 +280,8 @@ public class Card extends JLabel implements MouseListener {
 	/** This method does nothing. */
 	@Override
 	public void mouseExited(MouseEvent e) {}
+	
+	public String toString() {
+		return rank + suit;
+	}
 }
