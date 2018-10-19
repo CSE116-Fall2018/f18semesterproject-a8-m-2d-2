@@ -221,7 +221,7 @@ public class Card extends JLabel implements MouseListener {
 
 		// Get all of the Tableaus
 		Pile[] tableaus = this.game.getTableaus();
-
+		System.out.println(this.game.getMoves());
 		// If a tableau is selected (not null) and the same
 		// tableau is clicked again, deselect the tableau
 		if (game.tableauSelected() != null && game.tableauSelected().equals(tableaus[tableauNum])) {
@@ -237,6 +237,7 @@ public class Card extends JLabel implements MouseListener {
 				card.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 				tableaus[this.tableauNum].getAllCards().get(1).setUnder();
 				card.setTableauNum(this.tableauNum);
+				game.setMoves(game.getMoves() + 1);
 			}else {
 				this.game.homecellSelected().addCard(card, true);
 			}
@@ -271,6 +272,7 @@ public class Card extends JLabel implements MouseListener {
 					card.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 					tableaus[this.tableauNum].getAllCards().get(1).setUnder();
 					card.setTableauNum(this.tableauNum);
+					game.setMoves(game.getMoves() + 1);
 				}else {
 					//throw error
 					card.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
