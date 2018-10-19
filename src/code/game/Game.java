@@ -2,7 +2,6 @@ package code.game;
 
 import java.awt.Dimension;
 
-import javax.swing.BorderFactory;
 import javax.swing.JLayeredPane;
 
 import code.cards.Pile;
