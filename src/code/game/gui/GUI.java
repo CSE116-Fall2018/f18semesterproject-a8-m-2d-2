@@ -64,7 +64,7 @@ public class GUI {
 		this.panel.setPreferredSize(new Dimension(GUI.WIN_WIDTH, GUI.WIN_HEIGHT));
 		panel.setBackground(new Color(0,100,0));
 		BG_COLOR = new Color(0,100,0);
-		hscore= new HighScoreDisplay(this);
+		hscore = new HighScoreDisplay();
 	}
 
 	/**

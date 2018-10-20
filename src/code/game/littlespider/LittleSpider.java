@@ -94,6 +94,7 @@ public class LittleSpider extends Game implements ActionListener{
 			tableaus[i]= tableau;
 		}
 		refresh();
+		setMoves(0);
 	}
 	/**
 	 * This method refreshes the game panel during the little spider game 

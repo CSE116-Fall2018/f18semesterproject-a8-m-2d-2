@@ -9,8 +9,6 @@ import java.io.IOException;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
-import code.game.gui.GUI;
-
 public class HighScoreDisplay extends JLayeredPane {
 
 	/**
@@ -18,9 +16,13 @@ public class HighScoreDisplay extends JLayeredPane {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public HighScoreDisplay(GUI gui) {
+	/**
+	 * Sets the high score label on the JLayeredPane.
+	 * 
+	 */
+	public HighScoreDisplay() {
 		
-		JLabel header = new JLabel("High Scores:");
+		JLabel header = new JLabel("Best Scores:");
 		header.setBounds(0,50,925,400);
 		header.setFont(new Font("Arial", Font.PLAIN, 100));
 		header.setHorizontalAlignment(JLabel.CENTER);
@@ -51,10 +53,8 @@ public class HighScoreDisplay extends JLayeredPane {
 			return retVal;
 			
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;

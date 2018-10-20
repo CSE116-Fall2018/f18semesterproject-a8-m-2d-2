@@ -221,7 +221,6 @@ public class Card extends JLabel implements MouseListener {
 
 		// Get all of the Tableaus
 		Pile[] tableaus = this.game.getTableaus();
-		System.out.println(this.game.getMoves());
 		// If a tableau is selected (not null) and the same
 		// tableau is clicked again, deselect the tableau
 		if (game.tableauSelected() != null && game.tableauSelected().equals(tableaus[tableauNum])) {

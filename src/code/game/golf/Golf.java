@@ -80,6 +80,7 @@ public class Golf extends Game implements ActionListener {
 		this.stockpile = new Stockpile(this, cards.getDeck());
 		this.homecell = new Homecell(this);
 		refresh();
+		setMoves(0);
 	}
 	
 	/**
