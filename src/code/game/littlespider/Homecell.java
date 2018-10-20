@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import code.cards.Card;
 import code.cards.Pile;
 import code.game.Game;
-import code.game.gui.control.EndGame;
+
 
 /**
  * Instances of this class are used to hold data about the homecell piles in the Little Spider game.
@@ -208,7 +208,6 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 				this.game.tableauSelected().addCard(toAdd, true);
 			} else {
 				this.game.setMoves(this.game.getMoves() + 1);
-				EndGame.win(this.game);
 			}
 
 			// Deselect the tableau & refresh

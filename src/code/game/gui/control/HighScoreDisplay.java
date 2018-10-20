@@ -22,7 +22,7 @@ public class HighScoreDisplay extends JLayeredPane {
 	 */
 	public HighScoreDisplay() {
 		
-		JLabel header = new JLabel("Best Scores:");
+		JLabel header = new JLabel("Fewest Moves:");
 		header.setBounds(0,50,925,400);
 		header.setFont(new Font("Arial", Font.PLAIN, 100));
 		header.setHorizontalAlignment(JLabel.CENTER);
