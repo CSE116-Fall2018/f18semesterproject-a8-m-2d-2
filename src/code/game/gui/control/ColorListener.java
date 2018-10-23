@@ -117,7 +117,6 @@ public class ColorListener implements ActionListener{
      	colors.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
      	colors.setSize(400,200);
      	colors.setVisible(true);
-     	colors.setLocationRelativeTo(gui.getFrame());
 	}
 /**
  * Check that the JTextFields are properly formed for a color.

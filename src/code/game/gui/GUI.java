@@ -169,10 +169,6 @@ public class GUI {
 		this.panel.validate();
 		this.panel.repaint();
 	}
-	
-	public JFrame getFrame() {
-		return frame;
-	}
 
 	public void setColor(Color c) {
 		bgColor = c;
