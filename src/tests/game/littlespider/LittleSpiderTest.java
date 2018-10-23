@@ -8,10 +8,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import code.cards.Card;
+import code.cards.Pile;
 import code.game.gui.GUI;
 import code.game.littlespider.Homecell;
 import code.game.littlespider.LittleSpider;
-import code.game.littlespider.Tableau;
 
 public class LittleSpiderTest {
 
@@ -35,7 +35,7 @@ public class LittleSpiderTest {
 	@Test
 	public void initTest() {
 		Homecell[] homecells = game.getHomecells();
-		Tableau[] tableaus = game.getTableaus();
+		Pile[] tableaus = game.getTableaus();
 		int homecellSize = homecells.length;
 		int tableauSize = tableaus.length;
 		
@@ -47,8 +47,8 @@ public class LittleSpiderTest {
 		for(int i=0; i<tableaus.length; i++) {
 			int j = i +1;
 			String message = "Wrong number of cards in Tableau pile " + j;
-			Tableau x = tableaus[i];
-			ArrayList<Card> m = x.getCards();
+			Pile x = tableaus[i];
+			ArrayList<Card> m = x.getAllCards();
 			int size = m.size();
 			assertEquals(message, 6, size);
 		}

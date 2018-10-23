@@ -7,10 +7,10 @@ import org.junit.Before;
 import org.junit.Test;
 
 import code.cards.Card;
+import code.cards.Pile;
 import code.game.golf.Golf;
 import code.game.golf.Homecell;
 import code.game.golf.Stockpile;
-import code.game.golf.Tableau;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -26,13 +26,13 @@ public class GolfTest {
 	
 	@Test
 	public void testTableaus() {
-		Tableau[] t = g.getTableaus();
+		Pile[] t = g.getTableaus();
 		assertEquals("getTableaus() should return a Tableau[] array of length 7", 7, t.length);
 		// Converts Tableau[] to a list & adds it to a HashSet, which cannot accept duplicates, and checks size
 		// There should be no duplicates because every card is unique, so every Tableau should be
-		assertEquals("getTableaus() should return an array with no duplicates", 7, new HashSet<Tableau>(Arrays.asList(t)).size());
+		assertEquals("getTableaus() should return an array with no duplicates", 7, new HashSet<Pile>(Arrays.asList(t)).size());
 		
-		for (Tableau b : t) {
+		for (Pile b : t) {
 			assertNotNull("No tableaus should be null", b);
 			assertEquals("All Tableaus should be instantiated with 5 cards", 5, b.getNumCards());
 			Card[] cards = new Card[5];

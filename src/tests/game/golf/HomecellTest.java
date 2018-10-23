@@ -16,14 +16,14 @@ public class HomecellTest {
 	
 	@Test
 	public void testStockpileInit() {
-		Homecell h = new Homecell();
+	Homecell h = new Homecell(null);
 		assertNotNull("Stockpile should properly initiate when given an ArrayList of cards", h);
 	}
 	
 	@Test
 	public void testAddCard() {
 		Deck d = new Deck(null);
-		Homecell h = new Homecell(); 
+		Homecell h = new Homecell(null); 
 		Card c = d.takeCard();
 		Card c2 = d.takeCard();
 		Card c3 = d.takeCard();
@@ -45,7 +45,7 @@ public class HomecellTest {
 	@Test
 	public void testGetNumCards() {
 		Deck d = new Deck(null);
-		Homecell h = new Homecell();
+		Homecell h = new Homecell(null);
 		assertEquals("Homecell should return 0 as number of cards after at initialization", 0, h.getNumCards());
 		Card c = d.takeCard();
 		h.addCard(c, false);
@@ -58,7 +58,7 @@ public class HomecellTest {
 	@Test
 	public void testGetCard() {
 		Deck d = new Deck(null);
-		Homecell h = new Homecell();
+		Homecell h = new Homecell(null);
 		assertNull("Homecell should return null when trying to get a card from an empty Stockpile", h.getCard());
 		Card c = d.takeCard();
 		h.addCard(c, false);
@@ -77,7 +77,7 @@ public class HomecellTest {
 	@Test
 	public void testTakeCard() {
 		Deck d = new Deck(null);
-		Homecell h = new Homecell();
+		Homecell h = new Homecell(null);
 		h.addCard(d.takeCard(), false);
 		assertNull("Homecell should always return null when trying to take a card", h.takeCard());
 		d.shuffle();
