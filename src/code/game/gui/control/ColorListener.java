@@ -65,7 +65,7 @@ public class ColorListener implements ActionListener{
      	
      	JLabel error = new JLabel();
      	error.setHorizontalAlignment(JLabel.CENTER);
-     	error.setFont(gui.font);
+     	error.setFont(gui.FONT);
      	error.setForeground(Color.RED);
      	
      	button.addActionListener(new ActionListener() {
@@ -88,7 +88,7 @@ public class ColorListener implements ActionListener{
      	
      	JPanel panelPreview = new JPanel();
      	JLabel selectColor = new JLabel("                 ");
-     	selectColor.setFont(gui.font);
+     	selectColor.setFont(gui.FONT);
      	selectColor.setOpaque(true);
      	selectColor.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
      	selectColor.setBackground(current);

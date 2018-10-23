@@ -139,9 +139,6 @@ public abstract class Game extends JLayeredPane implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		init();
-		this.gui.getPanel().removeAll();
-		this.gui.getPanel().add(this);
-		this.gui.getPanel().validate();
-		this.gui.getPanel().repaint();
+		this.gui.setPanel(this);
 	}
 }

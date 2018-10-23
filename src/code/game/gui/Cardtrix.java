@@ -110,9 +110,6 @@ public class Cardtrix extends JLayeredPane implements ActionListener {
 				matrix();
 			}});
 		this.timer.start();
-		this.gui.getPanel().removeAll();
-		this.gui.getPanel().add(this);
-		this.gui.getPanel().validate();
-		this.gui.getPanel().repaint();
+		this.gui.setPanel(this);
 	}
 }

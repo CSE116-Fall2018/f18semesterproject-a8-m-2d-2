@@ -8,6 +8,7 @@ import java.net.URL;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -35,11 +36,11 @@ public class GUI {
 	/**
 	 * Background color.
 	 */
-	private Color BG_COLOR;
+	private Color bgColor;
 	/**
 	 * Font that is used game wide.
 	 */
-	public final Font font = new Font("Arial", Font.PLAIN, 25);
+	public final Font FONT = new Font("Arial", Font.PLAIN, 25);
 	/**
 	 * The window width.
 	 */
@@ -57,7 +58,7 @@ public class GUI {
 		this.panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		this.panel.setPreferredSize(new Dimension(GUI.WIN_WIDTH, GUI.WIN_HEIGHT));
 		this.panel.setBackground(new Color(0,100,0));
-		BG_COLOR = new Color(0,100,0);
+		this.bgColor = new Color(0,100,0);
 	}
 
 	/**
@@ -66,8 +67,8 @@ public class GUI {
 	 * @return returns the menu bar to be used by the frame.
 	 */
 	public JMenuBar getMenuBar() {
-        UIManager.put("Menu.font", font);
-        UIManager.put("MenuItem.font", font);
+        UIManager.put("Menu.font", FONT);
+        UIManager.put("MenuItem.font", FONT);
 		
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu = new JMenu("New Game");
@@ -161,9 +162,12 @@ public class GUI {
 	public JPanel getPanel() {
 		return panel;
 	}
-
-	public void setPanel(JPanel panel) {
-		this.panel = panel;
+	
+	public void setPanel(JLayeredPane panel) {
+		this.panel.removeAll();
+		this.panel.add(panel);
+		this.panel.validate();
+		this.panel.repaint();
 	}
 	
 	public JFrame getFrame() {
@@ -171,9 +175,10 @@ public class GUI {
 	}
 
 	public void setColor(Color c) {
-		BG_COLOR = c;
+		bgColor = c;
 	}
+	
 	public Color getColor() {
-		return BG_COLOR;
+		return bgColor;
 	}
 }
