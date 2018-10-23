@@ -56,7 +56,7 @@ public class Golf extends Game implements ActionListener {
 	private void init() {
 		Deck cards = new Deck(this);
 		cards.shuffle();
-		
+
 		this.tableaus = new Tableau[7];
 		
 		// For each Tableau, add 5 Cards from the deck

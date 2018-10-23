@@ -1,6 +1,5 @@
 package code.game.gui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -54,10 +53,10 @@ public class GUI {
 	 * Initializes the game frame and JPanel.
 	 */
 	public GUI() {
-		this.panel = new JPanel();
+		this.panel = new GameMenu(this);
 		this.panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		this.panel.setPreferredSize(new Dimension(GUI.WIN_WIDTH, GUI.WIN_HEIGHT));
-		panel.setBackground(new Color(0,100,0));
+		this.panel.setBackground(new Color(0,100,0));
 		BG_COLOR = new Color(0,100,0);
 	}
 
@@ -135,11 +134,10 @@ public class GUI {
 	 */
 	public void runGUI() {
 		this.frame = new JFrame("Solitare");
-		frame.setLayout(new BorderLayout());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(GUI.WIN_WIDTH, GUI.WIN_HEIGHT);
 		frame.setJMenuBar(this.getMenuBar());
-		frame.add(this.panel, BorderLayout.CENTER); // add game panel
+		frame.setContentPane(this.panel);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
 	}

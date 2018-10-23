@@ -37,7 +37,7 @@ public class Cardtrix extends JLayeredPane implements ActionListener {
 			Card c = deck.get(i);
 			c.setFaceUp();
 
-			int x = rand.nextInt(GUI.WIN_WIDTH) - c.getIcon().getIconWidth(),
+			int x = rand.nextInt(GUI.WIN_WIDTH) - c.getIcon().getIconWidth() / 2,
 				y = rand.nextInt(GUI.WIN_HEIGHT) - (GUI.WIN_HEIGHT + 140),
 				w = c.getIcon().getIconWidth(),
 				h = c.getIcon().getIconHeight();
@@ -45,7 +45,7 @@ public class Cardtrix extends JLayeredPane implements ActionListener {
 			c.setBounds(x, y, w, h);
 
 			Timer timer = new Timer(23, new ActionListener() {
-				int yVar = rand.nextInt(6) + 3;
+				int yVar = rand.nextInt(6) + 2;
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					c.setBounds(x, c.getY() + yVar, w, h);
