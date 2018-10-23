@@ -1,13 +1,15 @@
 package code.game;
 
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JLayeredPane;
 
 import code.cards.Pile;
 import code.game.gui.GUI;
 
-public abstract class Game extends JLayeredPane {
+public abstract class Game extends JLayeredPane implements ActionListener {
 
 	/**
 	 * Required when extending JComponents or something.
@@ -49,6 +51,17 @@ public abstract class Game extends JLayeredPane {
 		setPreferredSize(new Dimension(GUI.WIN_WIDTH, GUI.WIN_HEIGHT));
 		setBackground(gui.getColor());
 	}
+	
+	/** 
+	 * Initializes the game, shuffles a deck, and adds cards
+	 * to the appropriate piles. Calls refresh() when done.
+	 */
+	protected abstract void init();
+	
+	/** 
+	 * Initializes and/or refreshes all components placed on the GUI. 
+	 */
+	public abstract void refresh();
 	
 	/**
 	 * Returns whether or not a card is currently selected by the player.
@@ -119,6 +132,16 @@ public abstract class Game extends JLayeredPane {
 		return this.homecellSelected;
 	}
 	
-	/** Refreshes all components placed on the GUI. */
-	public abstract void refresh();
+	/**
+	 * Initializes the game and then places itself
+	 * on to the GUI frame after clearing it.
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		init();
+		this.gui.getPanel().removeAll();
+		this.gui.getPanel().add(this);
+		this.gui.getPanel().validate();
+		this.gui.getPanel().repaint();
+	}
 }
