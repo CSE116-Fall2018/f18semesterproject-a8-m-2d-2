@@ -82,7 +82,7 @@ public class GUI {
 		menu.add(golf);
 		
 		JMenuItem matrix = new JMenuItem("Matrix");
-		matrix.addActionListener(new Cardtrix(this));
+		matrix.addActionListener(new Cardtrix(this, 1));
 		menu.add(matrix);
 
 		JMenuItem exit = new JMenuItem("Exit");
