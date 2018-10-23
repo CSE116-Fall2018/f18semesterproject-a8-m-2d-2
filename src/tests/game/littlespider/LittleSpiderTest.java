@@ -2,6 +2,7 @@ package tests.game.littlespider;
 
 import static org.junit.Assert.assertEquals;
 
+import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 import org.junit.Before;
@@ -26,6 +27,10 @@ public class LittleSpiderTest {
 		GUI gui = new GUI();
 		LittleSpider game = new LittleSpider(gui);
 		this.game = game;
+		// This triggers the game's action event, triggering init()
+		game.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null) {
+			private static final long serialVersionUID = 1L;
+		});
 	}
 	
 	/**

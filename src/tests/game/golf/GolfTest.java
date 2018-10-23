@@ -1,5 +1,6 @@
 package tests.game.golf;
 
+import java.awt.event.ActionEvent;
 import java.util.Arrays;
 import java.util.HashSet;
 
@@ -11,6 +12,7 @@ import code.cards.Pile;
 import code.game.golf.Golf;
 import code.game.golf.Homecell;
 import code.game.golf.Stockpile;
+import code.game.gui.GUI;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -21,13 +23,17 @@ public class GolfTest {
 	
 	@Before
 	public void createGame() {
-		g = new Golf(null);
+		g = new Golf(new GUI());
+		// This triggers the game's action event, triggering init()
+		g.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null) {
+			private static final long serialVersionUID = 1L;
+		});
 	}
 	
 	@Test
 	public void testTableaus() {
 		Pile[] t = g.getTableaus();
-		assertEquals("getTableaus() should return a Tableau[] array of length 7", 7, t.length);
+		assertEquals("getTableaus() should return a Pile[] array of length 7", 7, t.length);
 		// Converts Tableau[] to a list & adds it to a HashSet, which cannot accept duplicates, and checks size
 		// There should be no duplicates because every card is unique, so every Tableau should be
 		assertEquals("getTableaus() should return an array with no duplicates", 7, new HashSet<Pile>(Arrays.asList(t)).size());

@@ -59,6 +59,7 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 		if (override) {
 			cards.add(0, card);
 			setIcon(card.getIcon());
+			return true;
 		}
 		
 		// No cards are currently in the Homecell
