@@ -166,7 +166,7 @@ public class ColorListener implements ActionListener{
 	/**
 	 * Checks if input string has letters. Color components must be int.
 	 * @param x String to be checked.
-	 * @return true if String is well formed, false otherwise.
+	 * @return true if String is well formed (ints), false otherwise.
 	 */
 	private boolean checkLetter(String x) {
 		x.toLowerCase();
