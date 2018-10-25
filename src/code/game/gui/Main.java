@@ -1,24 +1,16 @@
 package code.game.gui;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.SwingUtilities;
-import javax.swing.Timer;
-
+	/**
+	 * Main class that starts the game.  Main pulls the frame from the GUI class.
+	 *
+	 */
 public class Main {
-
+	/**
+	 * Runs the game.
+	 */
 	public static void main(String[] args) {
 		GUI gui = new GUI();
-		
-        Timer t = new Timer(10, new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                gui.refresh();
-            }
-        });
-
-        t.start();
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override

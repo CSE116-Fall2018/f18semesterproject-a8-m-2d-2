@@ -28,6 +28,9 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 	 * Cards is the ArrayList containing all Card objects in the Homecell pile.
 	 */
 	private ArrayList<Card> cards;
+	/**
+	 * Game instance that this homecell belongs to (needs to be a Golf instance).
+	 */
 	private Game game;
 	
 	/**
@@ -140,7 +143,9 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 		toAdd.deselect();
 		this.game.refresh();
 	}
-	
+	/**
+	 * Returns null since middle cards is not needed. Only top card is used.
+	 */
 	@Override
 	public ArrayList<Card> getAllCards() { return null; }
 	/** This method is not used. */

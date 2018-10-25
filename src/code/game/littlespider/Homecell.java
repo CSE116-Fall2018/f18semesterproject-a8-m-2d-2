@@ -36,9 +36,13 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 	 * Holds the top card in the pile for use by the class.
 	 */
 	private Card topCard;
-
+	/**
+	 * Game instance that this homecell belongs to. (Must be a littleSpider instance) 
+	 */
 	private Game game;
-	/** The index of the homecell this card belongs to */
+	/** 
+	 * The index of the homecell this card belongs to
+	 */
 	private int homecellNum;
 
 	/**
@@ -153,6 +157,11 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 	public ArrayList<Card> getCards() {
 		return cards;
 	}
+	/**
+	 * Returns an ArrayList of all the cards in the pile.
+	 * 
+	 * @return All cards in the pile in an ArrayList.
+	 */
 	@Override
 	public ArrayList<Card> getAllCards() {
 		return cards;
@@ -167,7 +176,7 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 	}
 
 	/**
-	 * Returns the homecell tableau number that this card of part of.
+	 * Returns the homecell number that this card of part of.
 	 * 
 	 * @return int The homecell index #
 	 */
@@ -179,7 +188,11 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 		this.game.setHomecellSelected(null);
 		setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 	}
-
+	/**
+	 * Determines what is done when a card is clicked.  If a tableau is already selected, the card is 
+	 * added to this homecell.  If a homecell is already selected, the error message is shown.  If no
+	 * Pile is selected, this homecell is selected.
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
 

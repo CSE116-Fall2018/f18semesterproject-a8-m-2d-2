@@ -9,7 +9,6 @@ import java.net.URL;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -168,22 +167,34 @@ public class GUI {
 		
 		return new ImageIcon(filePath);
 	}
-
+	/**
+	 * Gets the current game panel.
+	 * @return JPanel of the current game.
+	 */
 	public JPanel getPanel() {
 		return panel;
 	}
-	
+	/**
+	 * Sets the game panel to the current state of the game.
+	 * @param panel
+	 */
 	public void setPanel(JLayeredPane panel) {
 		this.panel.removeAll();
 		this.panel.add(panel);
 		this.panel.validate();
 		this.panel.repaint();
 	}
-
+	/**
+	 * Sets the background color of the frame.
+	 * @param c New color of the frame.
+	 */
 	public void setColor(Color c) {
 		bgColor = c;
 	}
-	
+	/**
+	 * Gets the current background color of the frame.
+	 * @return Color of the frame.
+	 */
 	public Color getColor() {
 		return bgColor;
 	}
