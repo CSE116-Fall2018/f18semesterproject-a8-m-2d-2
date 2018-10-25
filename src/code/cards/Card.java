@@ -229,7 +229,6 @@ public class Card extends JLabel implements MouseListener {
 		}
 		
 		if(this.game.isHomecellSelected()) {
-			System.out.println("running");
 			Card card = this.game.homecellSelected().takeCard();
 			boolean added = tableaus[this.tableauNum].addCard(card, false);
 			if(added) {
@@ -242,7 +241,6 @@ public class Card extends JLabel implements MouseListener {
 				this.game.homecellSelected().addCard(card, true);
 				this.game.setErrorText();
 			}
-			System.out.println(this.game.homecellSelected().getNumCards());
 			((Homecell) this.game.homecellSelected()).deselect();
 			
 			deselect();
