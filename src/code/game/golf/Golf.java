@@ -137,12 +137,12 @@ public class Golf extends Game {
 		
 		// Add the stockpile and homecell pile
 		if (this.getStockpile().getIcon() != null) {
-		this.stockpile.setBounds(280, 300, 
+		this.stockpile.setBounds(350, 300, 
 				this.stockpile.getIcon().getIconWidth(), 
 				this.stockpile.getIcon().getIconHeight());
 		}
 		this.add(this.stockpile, Integer.valueOf(0), 0);	
-		this.homecell.setBounds(400, 300, 
+		this.homecell.setBounds(470, 300, 
 				this.homecell.getIcon().getIconWidth(), 
 				this.homecell.getIcon().getIconHeight());
 		this.add(this.homecell, Integer.valueOf(0), 0);
