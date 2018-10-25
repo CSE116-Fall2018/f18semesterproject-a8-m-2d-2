@@ -51,9 +51,9 @@ public class LittleSpider extends Game {
 	 * Creates Homecell and Tableau piles for Little Spider.
 	 */
 	protected void init() {
-
 		Deck deck = new Deck(this);
 		deck.shuffle();
+		this.setTableauSelected(null);
 		
 		homecells = new Homecell[4];
 		

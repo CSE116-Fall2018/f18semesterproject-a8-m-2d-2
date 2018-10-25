@@ -55,6 +55,7 @@ public class Golf extends Game {
 	protected void init() {
 		Deck cards = new Deck(this);
 		cards.shuffle();
+		this.setTableauSelected(null);
 
 		this.tableaus = new Tableau[7];
 		
