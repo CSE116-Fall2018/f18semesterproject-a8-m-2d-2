@@ -144,8 +144,6 @@ public abstract class Game extends JLayeredPane implements ActionListener {
 		this.moves = moves;
 	}
 
-	/** Refreshes all components placed on the GUI. */
-	public abstract void refresh();
 	/**
 	 * Initializes the game and then places itself
 	 * on to the GUI frame after clearing it.
