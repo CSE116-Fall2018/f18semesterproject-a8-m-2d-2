@@ -1,5 +1,6 @@
 package code.game.gui.control;
 
+import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -20,6 +21,12 @@ public class EndGame {
 	 *  updated higscores
 	 */
 	public static void win(GUI gui, Game game) {
+		Cardtrix matrix = new Cardtrix(gui, game, 1);
+		// Trigger matrix
+		matrix.actionPerformed(new ActionEvent(matrix, ActionEvent.ACTION_PERFORMED, null) {
+			private static final long serialVersionUID = 1L;
+		});
+		
 		new Cardtrix(gui, game, 1);
 		int moves = game.getMoves();
 		try {

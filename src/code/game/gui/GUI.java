@@ -84,7 +84,7 @@ public class GUI {
 		menu.add(golf);
 		
 		JMenuItem matrix = new JMenuItem("Matrix");
-		matrix.addActionListener(new Cardtrix(this, new Golf(this), 1));
+		matrix.addActionListener(new Cardtrix(this, new Golf(this), Cardtrix.EASTER_EGG));
 		menu.add(matrix);
 
 		JMenuItem exit = new JMenuItem("Exit");

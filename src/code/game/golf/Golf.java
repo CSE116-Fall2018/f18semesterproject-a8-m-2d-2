@@ -95,7 +95,7 @@ public class Golf extends Game {
 		
 		removeAll();
 		// Origin starting point to place cards
-		Point pos = new Point(10, 20);
+		Point pos = new Point(80, 20);
 
 		// Iterate through all 7 tableaus
 		for(int i = 0; i < this.tableaus.length; i++) {

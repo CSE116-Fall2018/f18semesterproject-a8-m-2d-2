@@ -78,11 +78,9 @@ public abstract class Game extends JLayeredPane implements ActionListener {
 	protected boolean gameWon() {
 		for (Pile p : tableaus) {
 			if (p.getNumCards() != 0) {
-				System.out.println("did not beat");
 				return false;
 			}
 		}
-		System.out.println("beat!");
 		return true;
 	}
 	
