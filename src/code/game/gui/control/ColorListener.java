@@ -65,7 +65,7 @@ public class ColorListener implements ActionListener{
      	
      	JLabel error = new JLabel();
      	error.setHorizontalAlignment(JLabel.CENTER);
-     	error.setFont(gui.font);
+     	error.setFont(gui.FONT);
      	error.setForeground(Color.RED);
      	
      	button.addActionListener(new ActionListener() {
@@ -88,7 +88,7 @@ public class ColorListener implements ActionListener{
      	
      	JPanel panelPreview = new JPanel();
      	JLabel selectColor = new JLabel("                 ");
-     	selectColor.setFont(gui.font);
+     	selectColor.setFont(gui.FONT);
      	selectColor.setOpaque(true);
      	selectColor.setBorder(BorderFactory.createLineBorder(Color.BLACK, 1));
      	selectColor.setBackground(current);
@@ -117,7 +117,6 @@ public class ColorListener implements ActionListener{
      	colors.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
      	colors.setSize(400,200);
      	colors.setVisible(true);
-     	colors.setLocationRelativeTo(gui.getFrame());
 	}
 /**
  * Check that the JTextFields are properly formed for a color.

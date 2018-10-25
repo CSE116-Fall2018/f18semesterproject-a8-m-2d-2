@@ -25,7 +25,7 @@ public class TableauTest {
 	@Test
 	public void tableauTest() {
 		refresh();
-		assertNotNull(t.getCards());
+		assertNotNull(t.getAllCards());
 	}
 	/**
 	 * Tests addCard() method according to game rules.
@@ -43,11 +43,11 @@ public class TableauTest {
 		
 		//checks normal adds
 		assertTrue("addCard returned false when doing a legal add", t.addCard(c1, false));
-		assertEquals("did not update list after adding card", c1, t.getCards().get(0));
+		assertEquals("did not update list after adding card", c1, t.getAllCards().get(0));
 		assertEquals("did not update top card after adding card", c1, t.getCard());
 		assertFalse("returned true on an illegal add", t.addCard(c2, false));
 		assertEquals("changed topCard after an illegal add", c1, t.getCard());
-		assertEquals("changed list after illegal add", c1, t.getCards().get(0));
+		assertEquals("changed list after illegal add", c1, t.getAllCards().get(0));
 		assertEquals("did not update number of cards", 2, t.getNumCards());
 		
 		//test wrap around function
@@ -75,7 +75,7 @@ public class TableauTest {
 		Card c1 = new Card(1,null);
 		t.addCard(c, true);
 		t.addCard(c1, false);
-		assertEquals(2, t.getCards().size());
+		assertEquals(2, t.getAllCards().size());
 	}
 	
 	@Test
@@ -96,7 +96,7 @@ public class TableauTest {
 		t.addCard(c, true);
 		t.addCard(c1, false);
 		assertEquals("does not take correct card", c1, t.takeCard());
-		assertEquals("does not remove card from list", c, t.getCards().get(0));
+		assertEquals("does not remove card from list", c, t.getAllCards().get(0));
 		assertEquals("does not update top card", c, t.getCard());
 		assertEquals("did not update number of cards", 1, t.getNumCards());
 	}

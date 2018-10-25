@@ -17,7 +17,7 @@ public class HomecellTest {
 	
 	public void refresh() {
 		Card c = new Card(0,null);
-		h = new Homecell(c);
+		h = new Homecell(c, null);
 	}
 	
 	/**
@@ -58,12 +58,12 @@ public class HomecellTest {
 		assertEquals("did not update number of cards", 2, h.getNumCards());
 		
 		//test hearts
-		Homecell t2 = new Homecell(ha);
+		Homecell t2 = new Homecell(ha, null);
 		assertTrue("addCard returned false on a legal move", t2.addCard(h2, false));
 		assertFalse("addCard returned true on illegal move", t2.addCard(h5, false));
 		
 		//test clubs
-		Homecell t3 = new Homecell(ck);
+		Homecell t3 = new Homecell(ck, null);
 		assertTrue("addCard retruned false on legal move", t3.addCard(cq, false));
 		assertEquals("topCard not properly updated", cq, t3.getCard());
 		assertEquals("list not properly updated", cq, t3.getCards().get(0));
@@ -73,7 +73,7 @@ public class HomecellTest {
 		assertEquals("did not update number of cards", 2, t3.getNumCards());
 		
 		//test spades
-		Homecell t4 = new Homecell(sk);
+		Homecell t4 = new Homecell(sk, null);
 		assertTrue("addCard returned false on legal move", t4.addCard(sq, false));
 		assertFalse("addCard returned true on illegal move", t4.addCard(s9, false));
 		

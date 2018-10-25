@@ -1,6 +1,5 @@
 package code.game.gui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -9,6 +8,7 @@ import java.net.URL;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -37,11 +37,11 @@ public class GUI {
 	/**
 	 * Background color.
 	 */
-	private Color BG_COLOR;
+	private Color bgColor;
 	/**
 	 * Font that is used game wide.
 	 */
-	public final Font font = new Font("Arial", Font.PLAIN, 25);
+	public final Font FONT = new Font("Arial", Font.PLAIN, 25);
 	/**
 	 * The window width.
 	 */
@@ -59,12 +59,12 @@ public class GUI {
 	 * Initializes the game frame and JPanel.
 	 */
 	public GUI() {
-		this.panel = new JPanel();
+		this.panel = new GameMenu(this);
 		this.panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		this.panel.setPreferredSize(new Dimension(GUI.WIN_WIDTH, GUI.WIN_HEIGHT));
-		panel.setBackground(new Color(0,100,0));
-		BG_COLOR = new Color(0,100,0);
 		hscore = new HighScoreDisplay();
+		this.panel.setBackground(new Color(0,100,0));
+		this.bgColor = new Color(0,100,0);
 	}
 
 	/**
@@ -73,8 +73,8 @@ public class GUI {
 	 * @return returns the menu bar to be used by the frame.
 	 */
 	public JMenuBar getMenuBar() {
-        UIManager.put("Menu.font", font);
-        UIManager.put("MenuItem.font", font);
+        UIManager.put("Menu.font", FONT);
+        UIManager.put("MenuItem.font", FONT);
 		
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menu = new JMenu("New Game");
@@ -89,7 +89,7 @@ public class GUI {
 		menu.add(golf);
 		
 		JMenuItem matrix = new JMenuItem("Matrix");
-		matrix.addActionListener(new Cardtrix(this));
+		matrix.addActionListener(new Cardtrix(this, new Golf(this), 1));
 		menu.add(matrix);
 
 		JMenuItem exit = new JMenuItem("Exit");
@@ -141,12 +141,12 @@ public class GUI {
 	 */
 	public void runGUI() {
 		this.frame = new JFrame("Solitare");
-		frame.setLayout(new BorderLayout());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(GUI.WIN_WIDTH, GUI.WIN_HEIGHT);
 		frame.setJMenuBar(this.getMenuBar());
 		this.panel.add(hscore);
 		frame.add(this.panel, BorderLayout.CENTER); // add game panel
+		frame.setContentPane(this.panel);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
 	}
@@ -170,19 +170,19 @@ public class GUI {
 	public JPanel getPanel() {
 		return panel;
 	}
-
-	public void setPanel(JPanel panel) {
-		this.panel = panel;
-	}
 	
-	public JFrame getFrame() {
-		return frame;
+	public void setPanel(JLayeredPane panel) {
+		this.panel.removeAll();
+		this.panel.add(panel);
+		this.panel.validate();
+		this.panel.repaint();
 	}
 
 	public void setColor(Color c) {
-		BG_COLOR = c;
+		bgColor = c;
 	}
+	
 	public Color getColor() {
-		return BG_COLOR;
+		return bgColor;
 	}
 }

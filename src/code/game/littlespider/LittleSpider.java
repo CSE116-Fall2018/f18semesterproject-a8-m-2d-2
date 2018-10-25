@@ -2,8 +2,6 @@ package code.game.littlespider;
 
 
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
@@ -20,7 +18,7 @@ import code.game.gui.control.EndGame;
  * 
  * @author Drew Fiutko
  */
-public class LittleSpider extends Game implements ActionListener{
+public class LittleSpider extends Game {
 	
 	/**
 	 * Required.
@@ -52,7 +50,7 @@ public class LittleSpider extends Game implements ActionListener{
 	/**
 	 * Creates Homecell and Tableau piles for Little Spider.
 	 */
-	private void init() {
+	protected void init() {
 
 		Deck deck = new Deck(this);
 		deck.shuffle();
@@ -160,17 +158,5 @@ public class LittleSpider extends Game implements ActionListener{
 	 */
 	public Homecell[] getHomecells() {
 		return homecells;
-	}
-
-	/**
-	 * Initializes Little Spider and adds it to a blank frame. 
-	 */
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		init();
-		this.gui.getPanel().removeAll();
-		this.gui.getPanel().add(this);
-		this.gui.getPanel().validate();
-		this.gui.getPanel().repaint();
 	}
 }

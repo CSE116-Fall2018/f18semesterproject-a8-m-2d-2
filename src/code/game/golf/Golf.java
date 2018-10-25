@@ -1,8 +1,6 @@
 package code.game.golf;
 
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JLabel;
@@ -20,7 +18,7 @@ import code.game.gui.control.EndGame;
  * 
  * @author Matt Ferrera
  */
-public class Golf extends Game implements ActionListener {
+public class Golf extends Game {
 	
 	/**
 	 * Required when extending JComponents or something.
@@ -54,10 +52,10 @@ public class Golf extends Game implements ActionListener {
 	/**
 	 * Initializes the Golf game, creating the tableaus with 5 cards each, as well as the Stockpile.
 	 */
-	private void init() {
+	protected void init() {
 		Deck cards = new Deck(this);
 		cards.shuffle();
-		
+
 		this.tableaus = new Tableau[7];
 		
 		// For each Tableau, add 5 Cards from the deck
@@ -166,18 +164,5 @@ public class Golf extends Game implements ActionListener {
 	 */
 	public Stockpile getStockpile() {
 		return stockpile;
-	}
-
-	/**
-	 * Initializes the game and then places itself
-	 * on to the GUI frame after clearing it.
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		init();
-		this.gui.getPanel().removeAll();
-		this.gui.getPanel().add(this);
-		this.gui.getPanel().validate();
-		this.gui.getPanel().repaint();
 	}
 }
