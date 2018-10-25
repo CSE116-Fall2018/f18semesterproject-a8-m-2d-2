@@ -17,14 +17,27 @@ import javax.swing.JPanel;
 import code.game.golf.Golf;
 import code.game.littlespider.LittleSpider;
 
+/**
+ * The main game menu displayed when the game first opens up.
+ * 
+ * @author Matt Ferrera
+ * 
+ */
 public class GameMenu extends JPanel implements ActionListener {
 
 	/**
 	 * Required when extended JComponents or something
 	 */
 	private static final long serialVersionUID = 1L;
+	/** The current GUI instance */
 	private GUI gui;
 	
+	/**
+	 * Creates a main game menu, adding a header icon and buttons
+	 * for each respective game.
+	 * 
+	 * @param gui the current GUI instance.
+	 */
 	public GameMenu(GUI gui) {
 		this.gui = gui;
 		setLayout(new GridLayout(0, 1));
@@ -132,6 +145,11 @@ public class GameMenu extends JPanel implements ActionListener {
 		add(littleSpider);
 	}
 
+	/**
+	 * The Action that adds this class to the main GUI panel,
+	 * after removing all other elements, and then repaints and
+	 * validates.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		this.gui.getPanel().removeAll();

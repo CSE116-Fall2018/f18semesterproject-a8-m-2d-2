@@ -20,21 +20,53 @@ import javax.swing.Timer;
 import code.cards.Card;
 import code.cards.Deck;
 import code.game.Game;
+
+/**
+ * Instantiates a JLayeredPane that rains cards down onto the GUI.
+ * It can be called as an Action.
+ * 
+ * @author Matt Ferrera
+ * 
+ */
 public class Cardtrix extends JLayeredPane implements ActionListener {
 	
 	/**
 	 * Required for extended JComponents or something.
 	 */
 	private static final long serialVersionUID = 1L;
+	/** The current GUI instance */
 	private GUI gui;
+	/** The current Game instance */
 	private Game game;
+	/** A Random instance to generate random numbers */
 	private Random rand;
+	/** Varies to set the card depth layer when added to screen */
 	private Integer depth = 0;
+	/** The constant int signifying the game was lost */
 	public static final int GAME_LOST = 0;
+	/** The constant int signifying the game was won */
 	public static final int GAME_WON = 1;
+	/** The constant int signifying to show Cardtrix for fun */
 	public static final int EASTER_EGG = 2;
+	/** The timer that sends out a new deck of carsd to rain down */
 	public Timer timer;
 
+	/**
+	 * Cardtrix is an easter egg that animates cards down the screen
+	 * in a manner similar to The Matrix movie. It requires the current
+	 * GUI instance, the game instance (which can be set to null if no
+	 * game is being played), as well as the mode to display in.
+	 * 
+	 * If the mode is given as 0, or GAME_LOST, it will display a dialog
+	 * asking to retry the game (currently does not work). If the mode
+	 * is given as 1, or GAME_WON, then the card will congratulate the user
+	 * and offer to play a new game. If the mode is given as 2, or EASTER_EGG,
+	 * then no dialog is displayed.
+	 * 
+	 * @param gui the current GUI instance
+	 * @param game the current Game instance
+	 * @param mode the int mode to display with
+	 */
 	public Cardtrix(GUI gui, Game game, int mode) {
 		this.gui = gui;
 		this.game = game;
@@ -96,6 +128,13 @@ public class Cardtrix extends JLayeredPane implements ActionListener {
 		}
 	}
 
+	/**
+	 * This method creates a new deck and shuffles and sets
+	 * a timer to move each one by a random variable amount,
+	 * 2-6. After it has passed the end of the screen size,
+	 * it removes itself. Probably leaks a fair amount of 
+	 * memory if its current iteration.
+	 */
 	private void matrix() {
 		Deck d = new Deck(null);
 		d.shuffle();
@@ -136,6 +175,11 @@ public class Cardtrix extends JLayeredPane implements ActionListener {
 		depth = 0;
 	}
 	
+	/**
+	 * This method first calls matrix, and then starts a timer
+	 * that ticks every 4 seconds. On every timer tick, it calls
+	 * matrix again. It also sets this class as the panel in the GUI.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		matrix();
