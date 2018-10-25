@@ -21,13 +21,12 @@ public class EndGame {
 	 *  updated higscores
 	 */
 	public static void win(GUI gui, Game game) {
-		Cardtrix matrix = new Cardtrix(gui, game, 1);
+		Cardtrix matrix = new Cardtrix(gui, game, Cardtrix.GAME_WON);
 		// Trigger matrix
 		matrix.actionPerformed(new ActionEvent(matrix, ActionEvent.ACTION_PERFORMED, null) {
 			private static final long serialVersionUID = 1L;
 		});
 		
-		new Cardtrix(gui, game, 1);
 		int moves = game.getMoves();
 		try {
 			@SuppressWarnings("resource")
