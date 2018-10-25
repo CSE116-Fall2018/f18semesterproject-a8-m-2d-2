@@ -116,6 +116,7 @@ public class Stockpile extends JLabel implements MouseListener, Pile {
 	public void mouseClicked(MouseEvent e) {
 		if (getNumCards() == 0) {
 			this.setIcon(null);
+			this.game.setErrorText();
 			return;
 		}
 		
@@ -123,6 +124,7 @@ public class Stockpile extends JLabel implements MouseListener, Pile {
 		getCard().setFaceUp();
 		game.setMoves(game.getMoves() + 1);
 		this.game.getHomecell().addCard(takeCard(), true);
+		this.game.setBlankErrorText();
 	}
 
 	/**

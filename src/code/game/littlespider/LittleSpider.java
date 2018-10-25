@@ -149,6 +149,9 @@ public class LittleSpider extends Game {
 			pos.y = 200;
 			pos.x += X_OFFSET_TABLEAU;
 		}
+		
+		this.errorLabel.setBounds(325, 700, 300, 100);
+		this.add(this.errorLabel, 0, 0);
 		this.gui.getPanel().validate();
 		this.gui.getPanel().repaint();
 	}

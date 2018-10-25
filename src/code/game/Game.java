@@ -1,9 +1,12 @@
 package code.game;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
 import code.cards.Pile;
@@ -39,6 +42,8 @@ public abstract class Game extends JLayeredPane implements ActionListener {
 	 * Tracks the number of total legal moves in the current game.
 	 */
 	private int moves;
+	
+	protected JLabel errorLabel;
 
 
 	/**
@@ -54,6 +59,9 @@ public abstract class Game extends JLayeredPane implements ActionListener {
 		this.homecellSelected = null;
 		setPreferredSize(new Dimension(GUI.WIN_WIDTH, GUI.WIN_HEIGHT));
 		setBackground(gui.getColor());
+		this.errorLabel = new JLabel();
+		this.errorLabel.setFont(new Font("Arial", Font.PLAIN, 50));
+		this.errorLabel.setForeground(Color.RED);
 	}
 	
 	/** 
@@ -155,6 +163,13 @@ public abstract class Game extends JLayeredPane implements ActionListener {
 		this.moves = moves;
 	}
 
+	public void setErrorText() {
+		this.errorLabel.setText("Illegal move");
+	}
+	
+	public void setBlankErrorText() {
+		this.errorLabel.setText("");
+	}
 	/**
 	 * Initializes the game and then places itself
 	 * on to the GUI frame after clearing it.

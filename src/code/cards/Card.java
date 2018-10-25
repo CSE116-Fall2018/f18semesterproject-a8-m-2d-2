@@ -237,8 +237,10 @@ public class Card extends JLabel implements MouseListener {
 				tableaus[this.tableauNum].getAllCards().get(1).setUnder();
 				card.setTableauNum(this.tableauNum);
 				game.setMoves(game.getMoves() + 1);
+				this.game.setBlankErrorText();
 			}else {
 				this.game.homecellSelected().addCard(card, true);
+				this.game.setErrorText();
 			}
 			System.out.println(this.game.homecellSelected().getNumCards());
 			((Homecell) this.game.homecellSelected()).deselect();
@@ -256,7 +258,7 @@ public class Card extends JLabel implements MouseListener {
 
 		// If this is a Golf game, and a tableau is already selected, do nothing
 		if (game instanceof Golf) {
-			// GUI.sendError("Illegal move");
+			this.game.setErrorText();
 			return;
 		} 
 		// If this is a Little Spider game, and a tableau is already selected, try to add to 
@@ -272,8 +274,9 @@ public class Card extends JLabel implements MouseListener {
 					tableaus[this.tableauNum].getAllCards().get(1).setUnder();
 					card.setTableauNum(this.tableauNum);
 					game.setMoves(game.getMoves() + 1);
+					this.game.setBlankErrorText();
 				}else {
-					//throw error
+					this.game.setErrorText();
 					card.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 				}
 				deselect();

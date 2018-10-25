@@ -128,9 +128,10 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 		
 		// If not, add it back to the tableau
 		if (!added) {
-			// GUI.sendError("Illegal move");
+			this.game.setErrorText();
 			this.game.tableauSelected().addCard(toAdd, true);
 		}else {
+			this.game.setBlankErrorText();
 			game.setMoves(game.getMoves() + 1);
 		}
 
