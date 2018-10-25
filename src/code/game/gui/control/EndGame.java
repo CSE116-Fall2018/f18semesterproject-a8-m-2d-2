@@ -12,7 +12,13 @@ import code.game.gui.GUI;
 import code.game.littlespider.LittleSpider;
 
 public class EndGame {
-
+	
+	
+	/**
+	 *  Checks both little spider and golf game to see if the current highscore is greater
+	 *  than the current game's number of moves. and if it is we need to make a new file with the
+	 *  updated higscores
+	 */
 	public static void win(GUI gui, Game game) {
 		new Cardtrix(gui, game, 1);
 		int moves = game.getMoves();

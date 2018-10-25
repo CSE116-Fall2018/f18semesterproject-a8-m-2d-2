@@ -37,6 +37,10 @@ public class HighScoreDisplay extends JLayeredPane {
 		
 	}
 	
+	/**
+	 *  returns the high score label on the JLayeredPane
+	 */
+	
 	public String getHighScores() {
 		
 		try {
