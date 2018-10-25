@@ -9,6 +9,7 @@ import code.cards.Card;
 import code.cards.Deck;
 import code.game.Game;
 import code.game.gui.GUI;
+import code.game.gui.control.EndGame;
 
 /**
  * Instantiates the Golf game, create 7 Tableau piles, one Homecell
@@ -78,6 +79,7 @@ public class Golf extends Game {
 		this.stockpile = new Stockpile(this, cards.getDeck());
 		this.homecell = new Homecell(this);
 		refresh();
+		setMoves(0);
 	}
 	
 	/**
@@ -89,7 +91,11 @@ public class Golf extends Game {
 		removeAll();
 		// Origin starting point to place cards
 		Point pos = new Point(10, 20);
-		
+		if(tableaus[0].getCard() == null && tableaus[1].getCard() == null && tableaus[2].getCard() == null &&
+				tableaus[3].getCard() == null && tableaus[4].getCard() == null && tableaus[5].getCard() == null && 
+				tableaus[6].getCard() == null) {
+			EndGame.win(this);
+		}
 		// Iterate through all 7 tableaus
 		for(int i = 0; i < this.tableaus.length; i++) {
 			ArrayList<Card> cards = this.tableaus[i].getAllCards();

@@ -35,6 +35,10 @@ public abstract class Game extends JLayeredPane implements ActionListener {
 	 * The homecell in the game. Set by the Game subclass.
 	 */
 	protected Pile[] homecells;
+	/**
+	 * Tracks the number of total legal moves in the current game.
+	 */
+	private int moves;
 
 
 	/**
@@ -132,6 +136,16 @@ public abstract class Game extends JLayeredPane implements ActionListener {
 		return this.homecellSelected;
 	}
 	
+	public int getMoves() {
+		return moves;
+	}
+
+	public void setMoves(int moves) {
+		this.moves = moves;
+	}
+
+	/** Refreshes all components placed on the GUI. */
+	public abstract void refresh();
 	/**
 	 * Initializes the game and then places itself
 	 * on to the GUI frame after clearing it.

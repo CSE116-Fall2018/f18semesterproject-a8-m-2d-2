@@ -20,6 +20,7 @@ import code.game.littlespider.LittleSpider;
 import code.game.gui.control.ColorControl;
 import code.game.gui.control.ColorListener;
 import code.game.gui.control.ExitListener;
+import code.game.gui.control.HighScoreDisplay;
 /**
  * Holds initial frame and the game JPanel.
  *
@@ -49,6 +50,10 @@ public class GUI {
 	 * The window height.
 	 */
 	public static final int WIN_HEIGHT = 925;
+	/**
+	 * Used to display the high scores on start.
+	 */
+	public HighScoreDisplay hscore;
 	
 	/**
 	 * Initializes the game frame and JPanel.
@@ -57,6 +62,7 @@ public class GUI {
 		this.panel = new GameMenu(this);
 		this.panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		this.panel.setPreferredSize(new Dimension(GUI.WIN_WIDTH, GUI.WIN_HEIGHT));
+		hscore = new HighScoreDisplay();
 		this.panel.setBackground(new Color(0,100,0));
 		this.bgColor = new Color(0,100,0);
 	}
@@ -138,6 +144,8 @@ public class GUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(GUI.WIN_WIDTH, GUI.WIN_HEIGHT);
 		frame.setJMenuBar(this.getMenuBar());
+		this.panel.add(hscore);
+		frame.add(this.panel, BorderLayout.CENTER); // add game panel
 		frame.setContentPane(this.panel);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
