@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
@@ -16,6 +19,7 @@ import javax.swing.Timer;
 
 import code.cards.Card;
 import code.cards.Deck;
+import code.game.Game;
 public class Cardtrix extends JLayeredPane implements ActionListener {
 	
 	/**
@@ -23,38 +27,70 @@ public class Cardtrix extends JLayeredPane implements ActionListener {
 	 */
 	private static final long serialVersionUID = 1L;
 	private GUI gui;
+	private Game game;
 	private Random rand;
 	private Integer depth = 0;
+	public static final int GAME_LOST = 0;
+	public static final int GAME_WON = 1;
+	public static final int EASTER_EGG = 2;
 	public Timer timer;
 
-	public Cardtrix(GUI gui, int mode) {
+	public Cardtrix(GUI gui, Game game, int mode) {
 		this.gui = gui;
+		this.game = game;
 		this.rand = new Random();
 		setPreferredSize(new Dimension(GUI.WIN_WIDTH, GUI.WIN_HEIGHT));
+		
 		// The reset/new game panel
 		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		panel.setForeground(Color.GRAY);
 		panel.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 		panel.setOpaque(true);
+		
 		// Center it
-		int w = 250, h = 250;
+		int w = 250, h = 150;
 		panel.setBounds(GUI.WIN_WIDTH / 2 - w / 2, GUI.WIN_HEIGHT / 2 - h, w, h);
+		
+		// The text header of the dialog
 		JLabel text = new JLabel();
-		text.setBorder(BorderFactory.createEmptyBorder(10, 0, 30, 0));
+		text.setBorder(BorderFactory.createEmptyBorder(20, 10, 30, 10));
 		text.setFont(new Font("Arial", Font.PLAIN, 30));
+		text.setAlignmentX((float) 0.5);
+		
+		// The panel holding the buttons
+		JPanel buttons = new JPanel();
+		buttons.setLayout(new BoxLayout(buttons, BoxLayout.LINE_AXIS));
+		buttons.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));
+		buttons.add(Box.createHorizontalGlue());
+		
+		// The new game button on the dialog
+		JButton newGame = new JButton("New Game");
+		newGame.addActionListener(this.game);
+		// Main Menu button
+		JButton mainMenu = new JButton("Main Menu");
+		mainMenu.addActionListener(new GameMenu(this.gui));
 		
 		switch(mode) {
-		case 0: // game lost
+		case GAME_LOST:
 			text.setText("You lost :(");
 			panel.add(text);
+			panel.add(Box.createHorizontalGlue());
+			buttons.add(newGame);
+			buttons.add(mainMenu);
 			this.add(panel, Integer.valueOf(60));
+			panel.add(buttons);
 			break;
-		case 1: // game won
+		case GAME_WON:
 			text.setText("You won!");
 			panel.add(text);
+			panel.add(Box.createHorizontalGlue());
+			buttons.add(newGame);
+			buttons.add(mainMenu);
+			panel.add(buttons);
 			this.add(panel, Integer.valueOf(60));
 			break;
-		case 2: // for fun
+		case EASTER_EGG:
 			// do nothing
 			break;
 		}
