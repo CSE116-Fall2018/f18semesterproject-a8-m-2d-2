@@ -1,11 +1,17 @@
 package code.game.gui;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.net.URL;
 
 import javax.swing.BorderFactory;
@@ -140,11 +146,53 @@ public class GameMenu extends JPanel implements ActionListener {
 		});
 		littleSpider.addActionListener(new LittleSpider(this.gui));
 		
+		JLabel HSheader = new JLabel("Fewest Moves:");
+		HSheader.setFont(new Font("Arial", Font.PLAIN, 50));
+		HSheader.setForeground(Color.LIGHT_GRAY);
+		HSheader.setAlignmentX(CENTER_ALIGNMENT);
+		HSheader.setBorder(BorderFactory.createEmptyBorder(50, 0, 10, 0));
+		
+		JLabel hs = new JLabel();
+		hs.setText(getHighScores());
+		hs.setFont(new Font("Arial", Font.PLAIN, 40));
+		hs.setForeground(Color.LIGHT_GRAY);
+		hs.setAlignmentX(CENTER_ALIGNMENT);
+		hs.setHorizontalAlignment(JLabel.CENTER);
+
 		add(header);
 		add(golf);
 		add(littleSpider);
+		add(HSheader);
+		add(hs);
 	}
 
+	/**
+	 *  returns the high score label on the JLayeredPane
+	 */
+	
+	public String getHighScores() {
+		
+		try {
+			@SuppressWarnings("resource")
+			BufferedReader brTest = new BufferedReader(new FileReader("resources/highscore.csv"));
+			String data1 = brTest.readLine();
+			String[] data = data1.split(",");
+			String golf = data[0];
+			String littlespider = data[1];
+			String newGame = data[2];
+			String retVal = "<html>Golf: " + golf + "<br/>" + 
+					"Little Spider: " + littlespider + "<br/>" + 
+					"Game to be Added: " + newGame + "</html>";
+			return retVal;
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
 	/**
 	 * The Action that adds this class to the main GUI panel,
 	 * after removing all other elements, and then repaints and
