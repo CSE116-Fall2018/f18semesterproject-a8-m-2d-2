@@ -101,14 +101,15 @@ public class LittleSpider extends Game {
 	 * time a correct move is made.
 	 */
 	public void refresh() {
+		if (gameWon()) {
+			EndGame.win(this.gui, this);
+			return;
+		}
+		
 		removeAll();
 		// Origin starting point to place homecell cards
 		Point pos = new Point(175, 20);
-		if(tableaus[0].getCard() == null && tableaus[1].getCard() == null && tableaus[2].getCard() == null &&
-				tableaus[3].getCard() == null && tableaus[4].getCard() == null && tableaus[5].getCard() == null && 
-				tableaus[6].getCard() == null && tableaus[7].getCard() == null) {
-			EndGame.win(this);
-		}
+
 		// Add homecell piles to top of frame without displaying pile
 		for(int i = 0; i < this.homecells.length; i++) {
 			Homecell icon = this.homecells[i];

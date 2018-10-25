@@ -88,14 +88,15 @@ public class Golf extends Game {
 	 * successful move.
 	 */
 	public void refresh() {
+		if (gameWon()) {
+			EndGame.win(this.gui, this);
+			return;
+		}
+		
 		removeAll();
 		// Origin starting point to place cards
 		Point pos = new Point(10, 20);
-		if(tableaus[0].getCard() == null && tableaus[1].getCard() == null && tableaus[2].getCard() == null &&
-				tableaus[3].getCard() == null && tableaus[4].getCard() == null && tableaus[5].getCard() == null && 
-				tableaus[6].getCard() == null) {
-			EndGame.win(this);
-		}
+
 		// Iterate through all 7 tableaus
 		for(int i = 0; i < this.tableaus.length; i++) {
 			ArrayList<Card> cards = this.tableaus[i].getAllCards();
@@ -135,9 +136,11 @@ public class Golf extends Game {
 		}
 		
 		// Add the stockpile and homecell pile
+		if (this.getStockpile().getIcon() != null) {
 		this.stockpile.setBounds(280, 300, 
 				this.stockpile.getIcon().getIconWidth(), 
 				this.stockpile.getIcon().getIconHeight());
+		}
 		this.add(this.stockpile, Integer.valueOf(0), 0);	
 		this.homecell.setBounds(400, 300, 
 				this.homecell.getIcon().getIconWidth(), 

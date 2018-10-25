@@ -7,11 +7,14 @@ import java.io.IOException;
 
 import code.game.Game;
 import code.game.golf.Golf;
+import code.game.gui.Cardtrix;
+import code.game.gui.GUI;
 import code.game.littlespider.LittleSpider;
 
 public class EndGame {
 
-	public static void win(Game game) {
+	public static void win(GUI gui, Game game) {
+		new Cardtrix(gui, game, 1);
 		int moves = game.getMoves();
 		try {
 			@SuppressWarnings("resource")
