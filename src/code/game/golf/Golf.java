@@ -9,6 +9,7 @@ import code.cards.Card;
 import code.cards.Deck;
 import code.game.Game;
 import code.game.gui.GUI;
+import code.game.gui.control.EndGame;
 
 /**
  * Instantiates the Golf game, create 7 Tableau piles, one Homecell
@@ -54,6 +55,7 @@ public class Golf extends Game {
 	protected void init() {
 		Deck cards = new Deck(this);
 		cards.shuffle();
+		this.setTableauSelected(null);
 
 		this.tableaus = new Tableau[7];
 		
@@ -78,6 +80,7 @@ public class Golf extends Game {
 		this.stockpile = new Stockpile(this, cards.getDeck());
 		this.homecell = new Homecell(this);
 		refresh();
+		setMoves(0);
 	}
 	
 	/**
@@ -86,10 +89,15 @@ public class Golf extends Game {
 	 * successful move.
 	 */
 	public void refresh() {
+		if (gameWon()) {
+			EndGame.win(this.gui, this);
+			return;
+		}
+		
 		removeAll();
 		// Origin starting point to place cards
-		Point pos = new Point(10, 20);
-		
+		Point pos = new Point(80, 20);
+
 		// Iterate through all 7 tableaus
 		for(int i = 0; i < this.tableaus.length; i++) {
 			ArrayList<Card> cards = this.tableaus[i].getAllCards();
@@ -129,15 +137,19 @@ public class Golf extends Game {
 		}
 		
 		// Add the stockpile and homecell pile
-		this.stockpile.setBounds(280, 300, 
+		if (this.getStockpile().getIcon() != null) {
+		this.stockpile.setBounds(350, 300, 
 				this.stockpile.getIcon().getIconWidth(), 
 				this.stockpile.getIcon().getIconHeight());
+		}
 		this.add(this.stockpile, Integer.valueOf(0), 0);	
-		this.homecell.setBounds(400, 300, 
+		this.homecell.setBounds(470, 300, 
 				this.homecell.getIcon().getIconWidth(), 
 				this.homecell.getIcon().getIconHeight());
 		this.add(this.homecell, Integer.valueOf(0), 0);
 		
+		this.errorLabel.setBounds(325, 700, 300, 100);
+		this.add(this.errorLabel, 0, 0);
 		this.gui.getPanel().validate();
 		this.gui.getPanel().repaint();
 	}

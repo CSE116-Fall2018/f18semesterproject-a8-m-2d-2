@@ -1,5 +1,6 @@
 package code.game.gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -83,7 +84,7 @@ public class GUI {
 		menu.add(golf);
 		
 		JMenuItem matrix = new JMenuItem("Matrix");
-		matrix.addActionListener(new Cardtrix(this, new Golf(this), 1));
+		matrix.addActionListener(new Cardtrix(this, new Golf(this), Cardtrix.EASTER_EGG));
 		menu.add(matrix);
 
 		JMenuItem exit = new JMenuItem("Exit");
@@ -138,6 +139,7 @@ public class GUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(GUI.WIN_WIDTH, GUI.WIN_HEIGHT);
 		frame.setJMenuBar(this.getMenuBar());
+		frame.add(this.panel, BorderLayout.CENTER); // add game panel
 		frame.setContentPane(this.panel);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
@@ -158,22 +160,34 @@ public class GUI {
 		
 		return new ImageIcon(filePath);
 	}
-
+	/**
+	 * Gets the current game panel.
+	 * @return JPanel of the current game.
+	 */
 	public JPanel getPanel() {
 		return panel;
 	}
-	
+	/**
+	 * Sets the game panel to the current state of the game.
+	 * @param panel
+	 */
 	public void setPanel(JLayeredPane panel) {
 		this.panel.removeAll();
 		this.panel.add(panel);
 		this.panel.validate();
 		this.panel.repaint();
 	}
-
+	/**
+	 * Sets the background color of the frame.
+	 * @param c New color of the frame.
+	 */
 	public void setColor(Color c) {
 		bgColor = c;
 	}
-	
+	/**
+	 * Gets the current background color of the frame.
+	 * @return Color of the frame.
+	 */
 	public Color getColor() {
 		return bgColor;
 	}

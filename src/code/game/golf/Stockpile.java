@@ -116,13 +116,15 @@ public class Stockpile extends JLabel implements MouseListener, Pile {
 	public void mouseClicked(MouseEvent e) {
 		if (getNumCards() == 0) {
 			this.setIcon(null);
+			this.game.setErrorText();
 			return;
 		}
 		
 		// Set the card going to homecell pile face up
 		getCard().setFaceUp();
-		
+		game.setMoves(game.getMoves() + 1);
 		this.game.getHomecell().addCard(takeCard(), true);
+		this.game.setBlankErrorText();
 	}
 
 	/**
@@ -146,6 +148,9 @@ public class Stockpile extends JLabel implements MouseListener, Pile {
 	@Override
 	public void mouseExited(MouseEvent e) {}
 
+	/**
+	 * Returns null since middle of cards are not used. Only top card is used.
+	 */
 	@Override
 	public ArrayList<Card> getAllCards() {
 		// TODO Auto-generated method stub

@@ -10,6 +10,7 @@ import code.cards.Card;
 import code.cards.Deck;
 import code.game.Game;
 import code.game.gui.GUI;
+import code.game.gui.control.EndGame;
 
 
 /**
@@ -50,9 +51,9 @@ public class LittleSpider extends Game {
 	 * Creates Homecell and Tableau piles for Little Spider.
 	 */
 	protected void init() {
-
 		Deck deck = new Deck(this);
 		deck.shuffle();
+		this.setTableauSelected(null);
 		
 		homecells = new Homecell[4];
 		
@@ -92,6 +93,7 @@ public class LittleSpider extends Game {
 			tableaus[i]= tableau;
 		}
 		refresh();
+		setMoves(0);
 	}
 	/**
 	 * This method refreshes the game panel during the little spider game 
@@ -99,6 +101,11 @@ public class LittleSpider extends Game {
 	 * time a correct move is made.
 	 */
 	public void refresh() {
+		if (gameWon()) {
+			EndGame.win(this.gui, this);
+			return;
+		}
+		
 		removeAll();
 		// Origin starting point to place homecell cards
 		Point pos = new Point(175, 20);
@@ -142,6 +149,9 @@ public class LittleSpider extends Game {
 			pos.y = 200;
 			pos.x += X_OFFSET_TABLEAU;
 		}
+		
+		this.errorLabel.setBounds(325, 700, 300, 100);
+		this.add(this.errorLabel, 0, 0);
 		this.gui.getPanel().validate();
 		this.gui.getPanel().repaint();
 	}

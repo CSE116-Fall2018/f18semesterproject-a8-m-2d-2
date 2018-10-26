@@ -25,9 +25,7 @@ public class Deck implements Pile {
 	public Deck (Game game) {
 		for(int c = 0; c < 52; c++) {
 			this.deck.add(new Card(c, game));
-			
 		}
-		
 	}
 
 	/**

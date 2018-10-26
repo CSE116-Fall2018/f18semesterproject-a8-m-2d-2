@@ -1,9 +1,12 @@
 package code.game;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
 import code.cards.Pile;
@@ -35,6 +38,12 @@ public abstract class Game extends JLayeredPane implements ActionListener {
 	 * The homecell in the game. Set by the Game subclass.
 	 */
 	protected Pile[] homecells;
+	/**
+	 * Tracks the number of total legal moves in the current game.
+	 */
+	private int moves;
+	
+	protected JLabel errorLabel;
 
 
 	/**
@@ -50,6 +59,9 @@ public abstract class Game extends JLayeredPane implements ActionListener {
 		this.homecellSelected = null;
 		setPreferredSize(new Dimension(GUI.WIN_WIDTH, GUI.WIN_HEIGHT));
 		setBackground(gui.getColor());
+		this.errorLabel = new JLabel();
+		this.errorLabel.setFont(new Font("Arial", Font.PLAIN, 50));
+		this.errorLabel.setForeground(Color.RED);
 	}
 	
 	/** 
@@ -62,6 +74,15 @@ public abstract class Game extends JLayeredPane implements ActionListener {
 	 * Initializes and/or refreshes all components placed on the GUI. 
 	 */
 	public abstract void refresh();
+	
+	protected boolean gameWon() {
+		for (Pile p : tableaus) {
+			if (p.getNumCards() != 0) {
+				return false;
+			}
+		}
+		return true;
+	}
 	
 	/**
 	 * Returns whether or not a card is currently selected by the player.
@@ -132,6 +153,21 @@ public abstract class Game extends JLayeredPane implements ActionListener {
 		return this.homecellSelected;
 	}
 	
+	public int getMoves() {
+		return moves;
+	}
+
+	public void setMoves(int moves) {
+		this.moves = moves;
+	}
+
+	public void setErrorText() {
+		this.errorLabel.setText("Illegal move");
+	}
+	
+	public void setBlankErrorText() {
+		this.errorLabel.setText("");
+	}
 	/**
 	 * Initializes the game and then places itself
 	 * on to the GUI frame after clearing it.
