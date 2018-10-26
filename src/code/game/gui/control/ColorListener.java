@@ -38,23 +38,24 @@ public class ColorListener implements ActionListener{
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		// Initializing the JComponents on which the color selection window will be displayed
 		JFrame colors = new JFrame("Background Color Select");
      	JPanel panelSet = new JPanel();
      	Color current = gui.getColor();
-     	
+     	// Initializing the JTextField for the red value of the color to be set
      	JTextField red = new JTextField(3);
      	red.setDocument(new LengthLimitedDocument(3));
      	red.setText(String.valueOf(current.getRed()));
-     	
+     	// Initializing the JTextField for the blue value of the color to be set
      	JTextField green = new JTextField(3);
      	green.setDocument(new LengthLimitedDocument(3));
      	green.setText(String.valueOf(current.getGreen()));
-     	
+     	// Initializing the JTextField for the green value of the color to be set
      	JTextField blue = new JTextField(3);
      	blue.setDocument(new LengthLimitedDocument(3));
      	blue.setText(String.valueOf(current.getBlue()));
      	
+     	// Adding the JComponents to be displayed on the panel
      	panelSet.add(new JLabel("R"));
      	panelSet.add(red);
      	panelSet.add(new JLabel("G"));
@@ -63,19 +64,25 @@ public class ColorListener implements ActionListener{
      	panelSet.add(blue);
      	JButton button = new JButton("SET");
      	
+     	//Creating the display for an invalid color entry
      	JLabel error = new JLabel();
      	error.setHorizontalAlignment(JLabel.CENTER);
      	error.setFont(gui.FONT);
      	error.setForeground(Color.RED);
      	
+     	// Creating the button that allows you to set the color
      	button.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
+				// If specified Color(red, green, blue) is improperly formatted,
+				// an error message will appear
 				if(!checkALL(red, green, blue)) {
 					error.setText("ILL FORMATTED COLOR");
-				} else {
+				} 
+				// If specified Color(red, green, blue) is properly formatted,
+				// the game's background color will be set and the frame will close.
+				else {
 					Color color = new Color(Integer.valueOf(red.getText()), Integer.valueOf(green.getText()), Integer.valueOf(blue.getText()));
 					gui.setColor(color);
 					gui.getPanel().setBackground(color);
@@ -86,6 +93,7 @@ public class ColorListener implements ActionListener{
      	});
      	panelSet.add(button);
      	
+     	//Creating the panel displaying a preview of 
      	JPanel panelPreview = new JPanel();
      	JLabel selectColor = new JLabel("                 ");
      	selectColor.setFont(gui.FONT);
@@ -98,9 +106,14 @@ public class ColorListener implements ActionListener{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				// If specified Color(red, green, blue) is improperly formatted,
+				// an error message will appear
 				if(!checkALL(red, green, blue)) {
 					error.setText("ILL FORMATTED COLOR");
-				}else {
+				}
+				// If specified Color(red, green, blue) is properly formatted,
+				// the preview color will be set
+				else {
 					error.setText("");
 					Color color = new Color(Integer.valueOf(red.getText()), Integer.valueOf(green.getText()), Integer.valueOf(blue.getText()));
 					selectColor.setBackground(color);
@@ -129,6 +142,8 @@ public class ColorListener implements ActionListener{
 		String r;
 		String g;
 		String b;
+		
+		//If any of the input parameters are null, the method will return false
 		try {
 		r = red.getText();
 		g = green.getText();
@@ -137,42 +152,27 @@ public class ColorListener implements ActionListener{
 			return false;
 		}
 		
-		if(!checkLetter(r)) return false;
-		if(!checkLetter(g)) return false;
-		if(!checkLetter(b)) return false;
-		
-		int rint = Integer.valueOf(r);
-		int gint = Integer.valueOf(g);
-		int bint = Integer.valueOf(b);
-		
-		if(!checkINT(rint)) return false;
-		if(!checkINT(gint)) return false;
-		if(!checkINT(bint)) return false;
-		
-		return true;
-	}
-	/**
-	 * Checks if an int is in the range for a color (0<=x<=255).
-	 * @param x int to be checked.
-	 * @return true if int is well formed, false otherwise.
-	 */
-	private boolean checkINT(int x) {
-		if(x > 255 || x < 0) {
+		int rint;
+		int gint;
+		int bint;
+		try {
+			rint = Integer.valueOf(r);
+			gint = Integer.valueOf(g);
+			bint = Integer.valueOf(b);
+		}catch(NumberFormatException e) {
 			return false;
 		}
+		
+		if(rint > 255) red.setText("255");
+		else if(rint < 0) red.setText("0");
+		
+		if(gint > 255) green.setText("255");
+		else if(gint < 0) green.setText("0");
+		
+		if(bint > 255) blue.setText("255");
+		else if(bint < 0) blue.setText("0");
+		
 		return true;
-	}
-	/**
-	 * Checks if input string has letters. Color components must be int.
-	 * @param x String to be checked.
-	 * @return true if String is well formed (ints), false otherwise.
-	 */
-	private boolean checkLetter(String x) {
-		x.toLowerCase();
-		if (x.matches("[0-9]+") && x.length() >= 1) {
-			return true;
-		}
-		return false;
 	}
 	
 }
