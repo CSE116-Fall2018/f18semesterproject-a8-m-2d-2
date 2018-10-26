@@ -2,6 +2,13 @@ package code.cards;
 
 import java.util.ArrayList;
 
+/**
+ * The pile interface contains methods that copy or are
+ * useful to how a pile of cards is interacted with in the real world.
+ * 
+ * @author Matt Ferrera
+ *
+ */
 public interface Pile {
 	
 	/**
@@ -33,7 +40,10 @@ public interface Pile {
 	 */
 	public Card takeCard();
 	
+	/**
+	 * Returns the ArrayList containing all the Cards in this pile.
+	 * 
+	 * @return ArrayList<Card> all of the cards in the pile.
+	 */
 	public ArrayList<Card> getAllCards();
-
-
 }

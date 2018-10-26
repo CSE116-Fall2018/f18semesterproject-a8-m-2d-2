@@ -39,7 +39,6 @@ public class Tableau implements Pile {
 			return true;
 		}
 		
-		System.out.println("Cannot add cards to this pile.");
 		return false;
 	}
 

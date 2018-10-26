@@ -106,14 +106,13 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 	}
 
 	/**
-	 * In the future, will disallow cards to be removed from the pile.
+	 * Does not sallow cards to be removed from the pile.
 	 * 
 	 * @return Card returns null, as this is not a legal operation.
 	 */
 	@Override
 	public Card takeCard() {
-		// TODO Placeholder functionality until GUI
-		System.out.println("Cannot remove cards from the Homecell pile.");
+		this.game.setErrorText();
 		return null;
 	}
 
@@ -143,8 +142,9 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 		toAdd.deselect();
 		this.game.refresh();
 	}
+	
 	/**
-	 * Returns null since middle cards is not needed. Only top card is used.
+	 * Returns null since middle cards are not needed. Only top card is used.
 	 */
 	@Override
 	public ArrayList<Card> getAllCards() { return null; }

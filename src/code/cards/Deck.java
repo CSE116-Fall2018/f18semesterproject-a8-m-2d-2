@@ -20,7 +20,10 @@ public class Deck implements Pile {
 	ArrayList<Card> deck = new ArrayList<>();
 
 	/**
-	 * Constructor for Deck that takes no parameters and calls initialize().
+	 * Constructor for Deck that a Game parameter and passes
+	 * it to every card it creates.
+	 * 
+	 * @param game The current game instance.
 	 */
 	public Deck (Game game) {
 		for(int c = 0; c < 52; c++) {
@@ -107,7 +110,11 @@ public class Deck implements Pile {
 		return result;
 	}
 
-	/** This method is not used. Returns null. */
+	/** 
+	 * Returns the ArrayList<Card> containing the entire deck.
+	 * 
+	 * @return ArrayList<Card> deck The deck of cards.
+	 */
 	@Override
 	public ArrayList<Card> getAllCards() { 
 		return this.deck; 

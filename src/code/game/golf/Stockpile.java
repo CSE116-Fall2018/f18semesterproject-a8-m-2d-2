@@ -55,7 +55,7 @@ public class Stockpile extends JLabel implements MouseListener, Pile {
 	 */
 	@Override
 	public boolean addCard(Card card, boolean override) {
-		System.out.println("Cannot add cards to this pile.");
+		this.game.setErrorText();
 		return false;
 	}
 
@@ -121,7 +121,7 @@ public class Stockpile extends JLabel implements MouseListener, Pile {
 		}
 		
 		// Set the card going to homecell pile face up
-		getCard().setFaceUp();
+		getCard().flip();
 		game.setMoves(game.getMoves() + 1);
 		this.game.getHomecell().addCard(takeCard(), true);
 		this.game.setBlankErrorText();
@@ -153,7 +153,6 @@ public class Stockpile extends JLabel implements MouseListener, Pile {
 	 */
 	@Override
 	public ArrayList<Card> getAllCards() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

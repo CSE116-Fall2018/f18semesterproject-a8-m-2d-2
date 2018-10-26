@@ -58,25 +58,25 @@ public class LittleSpider extends Game {
 		homecells = new Homecell[4];
 		
 		Card c1 = deck.getSpecificCard("diamond", "ace");
-		c1.setFaceUp();
+		c1.flip();
 		Homecell homecell1 = new Homecell(c1, this);
 		homecells[0] = homecell1;
 		homecell1.setHomecellNum(0);
 		
 		Card c2 = deck.getSpecificCard("heart", "ace");
-		c2.setFaceUp();
+		c2.flip();
 		Homecell homecell2 = new Homecell(c2, this);
 		homecells[1] = homecell2;
 		homecell2.setHomecellNum(1);
 		
 		Card c3 = deck.getSpecificCard("club", "king");
-		c3.setFaceUp();
+		c3.flip();
 		Homecell homecell3 = new Homecell(c3, this);
 		homecells[2] = homecell3;
 		homecell3.setHomecellNum(2);
 		
 		Card c4 = deck.getSpecificCard("spade", "king");
-		c4.setFaceUp();
+		c4.flip();
 		Homecell homecell4 = new Homecell(c4, this);
 		homecells[3] = homecell4;
 		homecell4.setHomecellNum(3);
@@ -86,7 +86,7 @@ public class LittleSpider extends Game {
 			Tableau tableau = new Tableau();
 			for(int j=1; j<=6; j++) {
 				Card x = deck.takeCard();
-				x.setFaceUp();
+				x.flip();
 				x.setTableauNum(i);
 				tableau.addCard(x, true);
 			}
