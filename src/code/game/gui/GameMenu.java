@@ -181,17 +181,15 @@ public class GameMenu extends JPanel implements ActionListener {
 			String littlespider = data[1];
 			String newGame = data[2];
 			String retVal = "<html>Golf: " + golf + "<br/>" + 
-					"Little Spider: " + littlespider + "<br/>" + 
-					"Game to be Added: " + newGame + "</html>";
+					"Little Spider: " + littlespider + "<br/>";
+			//+ "Game to be Added: " + newGame + "</html>";
 			return retVal;
 			
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			return "No \"\\highscore.csv\" file found";
 		} catch (IOException e) {
-			e.printStackTrace();
+			return "Error reading file";
 		}
-		return null;
-		
 	}
 	/**
 	 * The Action that adds this class to the main GUI panel,
