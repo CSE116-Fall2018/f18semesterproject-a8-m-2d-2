@@ -9,8 +9,8 @@ import java.net.URL;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
-import javax.swing.JLayeredPane;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -160,11 +160,20 @@ public class GUI {
 		return panel;
 	}
 	
+	/** Attempts to sets the main game panel as the original
+	 * main menu. Currently does not work.
+	 */
+	public void mainMenu() {
+		this.panel = new GameMenu(this);
+		this.panel.repaint();
+		this.panel.validate();
+	}
+	
 	/**
 	 * Sets the game panel to the current state of the game.
 	 * @param panel
 	 */
-	public void setPanel(JLayeredPane panel) {
+	public void setPanel(JComponent panel) {
 		Component[] components = this.panel.getComponents();
 		
 		// Clear Cardtrix & stop its main timer if it is the current panel

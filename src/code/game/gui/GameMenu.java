@@ -68,9 +68,11 @@ public class GameMenu extends JPanel implements ActionListener {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		golf.setAlignmentX((float) 0.5);
+		golf.setContentAreaFilled(false);
+		golf.setOpaque(false);
+		golf.setBorderPainted(false);
 		golf.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+		golf.setAlignmentX((float) 0.5);
 		golf.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {}
@@ -111,8 +113,11 @@ public class GameMenu extends JPanel implements ActionListener {
 			e.printStackTrace();
 		}
 		
-		littleSpider.setAlignmentX((float) 0.5);
+		littleSpider.setContentAreaFilled(false);
+		littleSpider.setOpaque(false);
+		littleSpider.setBorderPainted(false);
 		littleSpider.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+		littleSpider.setAlignmentX((float) 0.5);
 		littleSpider.addMouseListener(new MouseListener() {
 			@Override
 			public void mouseClicked(MouseEvent e) {}
@@ -198,7 +203,7 @@ public class GameMenu extends JPanel implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		this.gui.getPanel().removeAll();
-		this.gui.getPanel().add(this);
+		this.gui.setPanel(this);
 		this.gui.getPanel().validate();
 		this.gui.getPanel().repaint();
 	}

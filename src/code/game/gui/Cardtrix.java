@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -101,7 +103,22 @@ public class Cardtrix extends JLayeredPane implements ActionListener {
 		newGame.addActionListener(this.game);
 		// Main Menu button
 		JButton mainMenu = new JButton("Main Menu");
-		mainMenu.addActionListener(new GameMenu(this.gui));
+		mainMenu.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				gui.mainMenu();
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseExited(MouseEvent e) {}
+		});
 		
 		switch(mode) {
 		case GAME_LOST:
