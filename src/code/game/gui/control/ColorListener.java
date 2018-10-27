@@ -13,23 +13,25 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import code.game.gui.GUI;
+
 /**
  * Used to set the background of the game to a custom color.
  *
  */
 public class ColorListener implements ActionListener{
 	
-/**
- *  Holds GUI instance for use by the listener.
- */
+	/** Holds GUI instance for use by the listener. */
 	private GUI gui;
+	
 	/**
 	 * Constructor for listener that initializes GUI instance.
+	 * 
 	 * @param gui GUI for use in class.
 	 */
 	public ColorListener(GUI gui) {
 		this.gui = gui;
 	}
+	
 	/**
 	 * When the menu item is clicked that this listener controls, a window will pop up 
 	 * and give options for creating a new color. This had 3 JTextFields that hold the RGB
@@ -118,13 +120,15 @@ public class ColorListener implements ActionListener{
      	colors.setSize(400,200);
      	colors.setVisible(true);
 	}
-/**
- * Check that the JTextFields are properly formed for a color.
- * @param red JTextField for the red component.
- * @param green JTextField for the green component.
- * @param blue JTextField for the blue component.
- * @return Returns true if color is well formed, false otherwise.
- */
+	
+	/**
+	 * Check that the JTextFields are properly formed for a color.
+	 * 
+	 * @param red JTextField for the red component.
+	 * @param green JTextField for the green component.
+	 * @param blue JTextField for the blue component.
+	 * @return Returns true if color is well formed, false otherwise.
+	 */
 	private boolean checkALL(JTextField red, JTextField green ,JTextField blue) {
 		String r;
 		String g;
@@ -151,8 +155,10 @@ public class ColorListener implements ActionListener{
 		
 		return true;
 	}
+	
 	/**
 	 * Checks if an int is in the range for a color (0<=x<=255).
+	 * 
 	 * @param x int to be checked.
 	 * @return true if int is well formed, false otherwise.
 	 */
@@ -162,8 +168,10 @@ public class ColorListener implements ActionListener{
 		}
 		return true;
 	}
+	
 	/**
 	 * Checks if input string has letters. Color components must be int.
+	 * 
 	 * @param x String to be checked.
 	 * @return true if String is well formed (ints), false otherwise.
 	 */

@@ -1,6 +1,5 @@
 package code.game.littlespider;
 
-
 import java.awt.Point;
 import java.util.ArrayList;
 
@@ -12,7 +11,6 @@ import code.game.Game;
 import code.game.gui.GUI;
 import code.game.gui.control.EndGame;
 
-
 /**
  * This class holds the code for the Little Spider game. Its constructor initializes four homecell piles and eight tableau piles.
  * 
@@ -20,33 +18,24 @@ import code.game.gui.control.EndGame;
  */
 public class LittleSpider extends Game {
 	
-	/**
-	 * Required.
-	 */
+	/** Required. */
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * Holds an array of Homecell instances that are used by the game.
-	 */
+	/** Holds an array of Homecell instances that are used by the game. */
 	private Homecell[] homecells;
-	/**
-	 * The amount of vertical offset per card in same pile.
-	 */
+	/** The amount of vertical offset per card in same pile. */
 	private static final int Y_OFFSET = 25;
-	/**
-	 * The horizontal offset to the right of each tableau.
-	 */
+	/** The horizontal offset to the right of each tableau. */
 	private static final int X_OFFSET_TABLEAU = 110;
-	/**
-	 * The horizontal offset to the right of each homecell.
-	 */
+	/** The horizontal offset to the right of each homecell. */
 	private static final int X_OFFSET_HOMECELL = 150;
-	/**
-	 * Starts a little spider game.
+	
+	/** 
+	 * Starts a little spider game. 
 	 */
 	public LittleSpider(GUI gui) {
 		super(gui);
 	}
+	
 	/**
 	 * Creates Homecell and Tableau piles for Little Spider.
 	 */
@@ -95,6 +84,7 @@ public class LittleSpider extends Game {
 		refresh();
 		setMoves(0);
 	}
+	
 	/**
 	 * This method refreshes the game panel during the little spider game 
 	 * to ensure the correct Cards are showing at all times.  Called every
@@ -155,6 +145,7 @@ public class LittleSpider extends Game {
 		this.gui.getPanel().validate();
 		this.gui.getPanel().repaint();
 	}
+	
 	/**
 	 * Returns homecell array.
 	 * 

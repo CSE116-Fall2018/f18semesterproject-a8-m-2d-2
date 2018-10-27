@@ -3,7 +3,10 @@ package code.game.gui.control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ExitListener implements ActionListener{
+/**
+ * This class is just an ActionListener that exits the game when called.
+ */
+public class ExitListener implements ActionListener {
 
 	/**
 	 * Stops listening when player ends game
@@ -12,6 +15,4 @@ public class ExitListener implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		System.exit(0);
 	}
-	
-
 }

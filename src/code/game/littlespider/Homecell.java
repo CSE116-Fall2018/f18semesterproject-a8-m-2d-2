@@ -22,35 +22,24 @@ import code.game.Game;
  * 
  */
 public class Homecell extends JLabel implements MouseListener, Pile {
-	/**
-	 * required.
-	 */
+	
+	/** required. */
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * Holds all the cards that are in the pile in an ArrayList.
-	 */
+	/** Holds all the cards that are in the pile in an ArrayList. */
 	private ArrayList<Card> cards;
-
-	/**
-	 * Holds the top card in the pile for use by the class.
-	 */
+	/** Holds the top card in the pile for use by the class. */
 	private Card topCard;
-	/**
-	 * Game instance that this homecell belongs to. (Must be a littleSpider instance) 
-	 */
+	/** Game instance that this homecell belongs to. (Must be a littleSpider instance) */
 	private Game game;
-	/** 
-	 * The index of the homecell this card belongs to
-	 */
+	/** The index of the homecell this card belongs to */
 	private int homecellNum;
 
 	/**
 	 * Constructor for LittleSpider Homecell. Adds @param as topCard and adds card to cards list.
 	 * 
+	 * @param game The LittleSpider game instance
 	 * @param card Card that homecell pile starts faceUp with
 	 */
-
 	public Homecell(Card card, Game game) {
 		cards = new ArrayList<>();
 		cards.add(card);
@@ -62,6 +51,7 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 		setVerticalAlignment(JLabel.TOP);
 		setIcon(topCard.getIcon());
 	}
+	
 	/**
 	 * Takes a card and adds it to the top of the pile if and only if it follows the game rules.
 	 * 
@@ -69,7 +59,6 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 	 * @param override Boolean value used to bypass the add card rules.
 	 * @return {@code true} if {@code card} was successfully added to the pile. {@code false} if {@code card} was an illegal add and was not added to the pile.
 	 */
-
 	@Override
 	public boolean addCard(Card card, boolean override) {
 
@@ -123,6 +112,7 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 	public int getNumCards() {
 		return cards.size();
 	}
+	
 	/**
 	 * Returns the top card in the pile.
 	 * 
@@ -132,6 +122,7 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 	public Card getCard() {
 		return topCard;
 	}
+	
 	/**
 	 * Removes the top card and returns the top card for use by another method.
 	 * If its the last card, {@code takeCard()} returns null as this is an invalid move.
@@ -149,6 +140,7 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 
 		return top;
 	}
+	
 	/**
 	 * Returns an ArrayList of all the cards in the pile.
 	 * 
@@ -157,6 +149,7 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 	public ArrayList<Card> getCards() {
 		return cards;
 	}
+	
 	/**
 	 * Returns an ArrayList of all the cards in the pile.
 	 * 
@@ -183,11 +176,13 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 	public int getHomecellNum() {
 		return this.homecellNum;
 	}
+	
 	/** Deselects the current card in the game. */
 	public void deselect() {
 		this.game.setHomecellSelected(null);
 		setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 	}
+	
 	/**
 	 * Determines what is done when a card is clicked.  If a tableau is already selected, the card is 
 	 * added to this homecell.  If a homecell is already selected, the error message is shown.  If no
@@ -231,6 +226,7 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 			return;
 		}
 	}
+	
 	/** This method is not used. */
 	@Override
 	public void mouseEntered(MouseEvent e) {}
@@ -243,6 +239,4 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 	/** This method is not used. */
 	@Override
 	public void mouseReleased(MouseEvent e) {}
-
-
 }

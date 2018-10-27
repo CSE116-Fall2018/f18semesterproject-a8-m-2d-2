@@ -19,23 +19,18 @@ import code.cards.Pile;
  */
 public class Stockpile extends JLabel implements MouseListener, Pile {
 
-	/**
-	 * Required when extending JComponents or something.
-	 */
+	/** Required when extending JComponents or something. */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * Cards is the ArrayList containing all Card objects in the Stockpile pile.
-	 */
+	/** Cards is the ArrayList containing all Card objects in the Stockpile pile. */
 	private ArrayList<Card> cards;
-	/**
-	 * The current game instance passed from Golf init
-	 */
+	/** The current game instance passed from Golf init */
 	private Golf game;
 	
 	/**
 	 * The Stockpile constructor takes all of the deck not disbursed to tableaus and sets it to the cards field.
 	 * 
-	 * @param remainingDeck
+	 * @param game the Golf game instance
+	 * @param remainingDeck the ArrayList contained the remainder of cards
 	 */
 	public Stockpile(Golf game, ArrayList<Card> remainingDeck) {
 		this.addMouseListener(this);
@@ -128,31 +123,23 @@ public class Stockpile extends JLabel implements MouseListener, Pile {
 	}
 
 	/**
-	 * This method is not used.
-	 */
-	@Override
-	public void mousePressed(MouseEvent e) {}
-	/**
-	 * This method is not used.
-	 */
-	@Override
-	public void mouseReleased(MouseEvent e) {}
-	/**
-	 * This method is not used.
-	 */
-	@Override
-	public void mouseEntered(MouseEvent e) {}
-	/**
-	 * This method is not used.
-	 */
-	@Override
-	public void mouseExited(MouseEvent e) {}
-
-	/**
 	 * Returns null since middle of cards are not used. Only top card is used.
 	 */
 	@Override
 	public ArrayList<Card> getAllCards() {
 		return null;
 	}
+	
+	/** This method is not used. */
+	@Override
+	public void mousePressed(MouseEvent e) {}
+	/** This method is not used. */
+	@Override
+	public void mouseReleased(MouseEvent e) {}
+	/** This method is not used. */
+	@Override
+	public void mouseEntered(MouseEvent e) {}
+	/** This method is not used. */
+	@Override
+	public void mouseExited(MouseEvent e) {}
 }

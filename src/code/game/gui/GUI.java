@@ -22,34 +22,24 @@ import code.game.littlespider.LittleSpider;
 import code.game.gui.control.ColorControl;
 import code.game.gui.control.ColorListener;
 import code.game.gui.control.ExitListener;
+
 /**
  * Holds initial frame and the game JPanel.
  *
  */
 public class GUI {
-	/**
-	 * JPanel that hold all game content. Defined by Game instance.
-	 */
+	
+	/** JPanel that hold all game content. Defined by Game instance. */
 	private JPanel panel;
-	/**
-	 * Frame with a JMenuBar.
-	 */
+	/** Frame with a JMenuBar. */
 	private JFrame frame;
-	/**
-	 * Background color.
-	 */
+	/** Background color. */
 	private Color bgColor;
-	/**
-	 * Font that is used game wide.
-	 */
+	/** Font that is used game wide. */
 	public final Font FONT = new Font("Arial", Font.PLAIN, 25);
-	/**
-	 * The window width.
-	 */
+	/** The window width. */
 	public static final int WIN_WIDTH = 925;
-	/**
-	 * The window height.
-	 */
+	/** The window height. */
 	public static final int WIN_HEIGHT = 925;
 	
 	/**
@@ -66,7 +56,8 @@ public class GUI {
 	/**
 	 * Menu Bar that sits at the top of the frame. Can start a new game, exit the frame, and choose a 
 	 * new background color.
-	 * @return returns the menu bar to be used by the frame.
+	 * 
+	 * @return JMenuBar returns the menu bar to be used by the frame.
 	 */
 	public JMenuBar getMenuBar() {
         UIManager.put("Menu.font", FONT);
@@ -128,9 +119,6 @@ public class GUI {
 		return menuBar;
 	}
 	
-	public void refresh() {
-		
-	}
 	/**
 	 * Brings all components together to be used by the Main class
 	 * and sets frame properties.

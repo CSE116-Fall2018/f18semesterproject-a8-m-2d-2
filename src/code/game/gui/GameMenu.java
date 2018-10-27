@@ -31,9 +31,7 @@ import code.game.littlespider.LittleSpider;
  */
 public class GameMenu extends JPanel implements ActionListener {
 
-	/**
-	 * Required when extended JComponents or something
-	 */
+	/** Required when extended JComponents or something */
 	private static final long serialVersionUID = 1L;
 	/** The current GUI instance */
 	private GUI gui;
@@ -58,7 +56,7 @@ public class GameMenu extends JPanel implements ActionListener {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+		// Center it & add spacing around it
 		header.setAlignmentX((float) 0.5);
 		header.setBorder(BorderFactory.createEmptyBorder(50, 0, 50, 0));
 		
@@ -167,9 +165,10 @@ public class GameMenu extends JPanel implements ActionListener {
 	}
 
 	/**
-	 *  returns the high score label on the JLayeredPane
+	 *  Returns the high score text on the JLayeredPane
+	 *  
+	 *  @return String the high score text
 	 */
-	
 	public String getHighScores() {
 		
 		try {
@@ -179,7 +178,7 @@ public class GameMenu extends JPanel implements ActionListener {
 			String[] data = data1.split(",");
 			String golf = data[0];
 			String littlespider = data[1];
-			String newGame = data[2];
+//			String newGame = data[2];
 			String retVal = "<html>Golf: " + golf + "<br/>" + 
 					"Little Spider: " + littlespider + "<br/>";
 			//+ "Game to be Added: " + newGame + "</html>";

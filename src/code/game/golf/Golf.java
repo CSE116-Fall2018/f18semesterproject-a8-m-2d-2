@@ -20,25 +20,15 @@ import code.game.gui.control.EndGame;
  */
 public class Golf extends Game {
 	
-	/**
-	 * Required when extending JComponents or something.
-	 */
+	/** Required when extending JComponents or something. */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * Homecell is the Homecell object where cards will be placed throughout the game.
-	 */
+	/** Homecell is the Homecell object where cards will be placed throughout the game. */
 	private Homecell homecell;
-	/**
-	 * Stockpile is the game's Stockpile object.
-	 */
+	/** Stockpile is the game's Stockpile object. */
 	private Stockpile stockpile;
-	/**
-	 * The amount of vertical offset per card per tableau.
-	 */
+	/** The amount of vertical offset per card per tableau. */
 	private static final int Y_OFFSET = 25;
-	/**
-	 * The horizontal offset to the right of each tableau.
-	 */
+	/** The horizontal offset to the right of each tableau. */
 	private static final int X_OFFSET = 110;
 
 	/**
