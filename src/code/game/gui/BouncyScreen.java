@@ -36,10 +36,17 @@ public class BouncyScreen extends JLayeredPane implements ActionListener {
 	private double b = 0.999;
 
 	private Deck deck;
+	/**
+	 * The Cards that need to be drawn and their respective x and y coordinates
+	 */
 	ArrayList<Card> draw = new ArrayList<>();
 	ArrayList<Integer> xInt = new ArrayList<>();
 	ArrayList<Integer> yInt = new ArrayList<>();
+	/**
+	 * Number of times actionPerformed has been triggered in Timer t
+	 */
 	private int count = 0;
+	
 
 
 	/**
@@ -78,6 +85,9 @@ public class BouncyScreen extends JLayeredPane implements ActionListener {
 		this.gui.setPanel(this);
 	}
 
+	/**
+	 * Draws the Cards
+	 */
 	private void redraw() {
 		Card c = deck.getAllCards().get(0);
 		for(int a = 0; a < draw.size(); a++) {
