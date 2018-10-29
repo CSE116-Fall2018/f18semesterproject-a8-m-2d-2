@@ -11,23 +11,21 @@ import javax.swing.text.PlainDocument;
  */
 public class LengthLimitedDocument extends PlainDocument {
 
-	/**
-	 * Required.
-	 */
+	/** Required. */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * Number of characters to be limited to.
-	 */
+	/** Number of characters to be limited to. */
 	private int _limit;
 
 	/**
 	 * Constructor that takes in the limit number of characters.
+	 * 
 	 * @param limit Max number of characters.
 	 */
     public LengthLimitedDocument(int limit) {
         super();
         _limit = limit;
     }
+    
     /**
      * Inserts content into the document.
      */

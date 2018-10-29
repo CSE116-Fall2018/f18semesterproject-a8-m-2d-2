@@ -12,8 +12,15 @@ import code.game.gui.Cardtrix;
 import code.game.gui.GUI;
 import code.game.littlespider.LittleSpider;
 
+/**
+ * The EndGame class is called only when a game has been finished.
+ * In our case, when it has been won. It's only purpose is to display
+ * Cardtrix and add to the low score CSV if it's a new high score.
+ * 
+ * @author Drew Fiutko
+ *
+ */
 public class EndGame {
-	
 	
 	/**
 	 *  Checks both little spider and golf game to see if the current highscore is greater
@@ -54,12 +61,7 @@ public class EndGame {
 			fw.write(newScores);
 			fw.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 	}
-	
-	
 }

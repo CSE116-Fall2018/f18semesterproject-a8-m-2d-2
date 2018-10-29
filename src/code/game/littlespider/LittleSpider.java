@@ -1,6 +1,5 @@
 package code.game.littlespider;
 
-
 import java.awt.Point;
 import java.util.ArrayList;
 
@@ -12,7 +11,6 @@ import code.game.Game;
 import code.game.gui.GUI;
 import code.game.gui.control.EndGame;
 
-
 /**
  * This class holds the code for the Little Spider game. Its constructor initializes four homecell piles and eight tableau piles.
  * 
@@ -20,33 +18,24 @@ import code.game.gui.control.EndGame;
  */
 public class LittleSpider extends Game {
 	
-	/**
-	 * Required.
-	 */
+	/** Required. */
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * Holds an array of Homecell instances that are used by the game.
-	 */
+	/** Holds an array of Homecell instances that are used by the game. */
 	private Homecell[] homecells;
-	/**
-	 * The amount of vertical offset per card in same pile.
-	 */
+	/** The amount of vertical offset per card in same pile. */
 	private static final int Y_OFFSET = 25;
-	/**
-	 * The horizontal offset to the right of each tableau.
-	 */
+	/** The horizontal offset to the right of each tableau. */
 	private static final int X_OFFSET_TABLEAU = 110;
-	/**
-	 * The horizontal offset to the right of each homecell.
-	 */
+	/** The horizontal offset to the right of each homecell. */
 	private static final int X_OFFSET_HOMECELL = 150;
-	/**
-	 * Starts a little spider game.
+	
+	/** 
+	 * Starts a little spider game. 
 	 */
 	public LittleSpider(GUI gui) {
 		super(gui);
 	}
+	
 	/**
 	 * Creates Homecell and Tableau piles for Little Spider.
 	 */
@@ -58,25 +47,25 @@ public class LittleSpider extends Game {
 		homecells = new Homecell[4];
 		
 		Card c1 = deck.getSpecificCard("diamond", "ace");
-		c1.setFaceUp();
+		c1.flip();
 		Homecell homecell1 = new Homecell(c1, this);
 		homecells[0] = homecell1;
 		homecell1.setHomecellNum(0);
 		
 		Card c2 = deck.getSpecificCard("heart", "ace");
-		c2.setFaceUp();
+		c2.flip();
 		Homecell homecell2 = new Homecell(c2, this);
 		homecells[1] = homecell2;
 		homecell2.setHomecellNum(1);
 		
 		Card c3 = deck.getSpecificCard("club", "king");
-		c3.setFaceUp();
+		c3.flip();
 		Homecell homecell3 = new Homecell(c3, this);
 		homecells[2] = homecell3;
 		homecell3.setHomecellNum(2);
 		
 		Card c4 = deck.getSpecificCard("spade", "king");
-		c4.setFaceUp();
+		c4.flip();
 		Homecell homecell4 = new Homecell(c4, this);
 		homecells[3] = homecell4;
 		homecell4.setHomecellNum(3);
@@ -86,7 +75,7 @@ public class LittleSpider extends Game {
 			Tableau tableau = new Tableau();
 			for(int j=1; j<=6; j++) {
 				Card x = deck.takeCard();
-				x.setFaceUp();
+				x.flip();
 				x.setTableauNum(i);
 				tableau.addCard(x, true);
 			}
@@ -95,6 +84,7 @@ public class LittleSpider extends Game {
 		refresh();
 		setMoves(0);
 	}
+	
 	/**
 	 * This method refreshes the game panel during the little spider game 
 	 * to ensure the correct Cards are showing at all times.  Called every
@@ -155,6 +145,7 @@ public class LittleSpider extends Game {
 		this.gui.getPanel().validate();
 		this.gui.getPanel().repaint();
 	}
+	
 	/**
 	 * Returns homecell array.
 	 * 

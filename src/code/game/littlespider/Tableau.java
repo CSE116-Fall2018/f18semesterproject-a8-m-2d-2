@@ -15,19 +15,14 @@ import code.cards.Pile;
  */
 public class Tableau implements Pile {
 
-	/**
-	 * Holds all the cards in the pile in an ArrayList.
-	 */
+	/** Holds all the cards in the pile in an ArrayList. */
 	private ArrayList<Card> cards;
-	
-	/**
-	 * Holds the top card for use in the class.
-	 */
+	/** Holds the top card for use in the class. */
 	private Card topCard;
 	
-	
 	/**
-	 * Instantiates the ArrayList of cards in the pile and sets {@code canUseAddFirstCard} to true so that the first 6 cards can be added to the pile.
+	 * Instantiates the ArrayList of cards in the pile and sets {@code canUseAddFirstCard} to true so that the first 
+	 * 6 cards can be added to the pile.
 	 */
 	public Tableau() {
 		cards = new ArrayList<>();

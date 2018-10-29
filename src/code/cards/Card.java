@@ -23,9 +23,7 @@ import code.game.littlespider.LittleSpider;
  */
 public class Card extends JLabel implements MouseListener {
 
-	/** 
-	 * Required when extending JComponents or something. 
-	 */
+	/** Required when extending JComponents or something. */
 	private static final long serialVersionUID = 1L;
 	/** The suit the card is in (e.g. heart)*/
 	private String suit;
@@ -40,7 +38,9 @@ public class Card extends JLabel implements MouseListener {
 	/** If the card is at the top of its pile or not */
 	private boolean top;
 	/** The file path of the image icon */
-	private URL iconPath;	
+	private URL cardIcon;
+	/** The back of the card */
+	private URL cardBack;
 	/** The current Game instance */
 	private Game game;
 	/** The index of the Tableau this card belongs to */
@@ -105,37 +105,38 @@ public class Card extends JLabel implements MouseListener {
 			imgFile = this.rank + this.suit.charAt(0);
 		}
 
-		this.iconPath = getClass().getResource("/" + imgFile + ".png");
-		if (this.iconPath == null) {
-			throw new IllegalArgumentException("Could not find card image file " + imgFile);
+		// Set this card's actual cardface & back of the card
+		try {
+			this.cardIcon = getClass().getResource("/" + imgFile + ".png");
+			this.cardBack = getClass().getResource("/b.png");
+		} catch (Exception ex) {
+			ex.printStackTrace();
 		}
 
 		// Is not set as top card of pile
 		this.top = false;
+		// Card defaults to face down
+		this.faceUp = false;
+
 		// Add self as mouseListener
 		addMouseListener(this);
-
-		// Set default image as back of card
-		URL path = getClass().getResource("/b.png");
-		if (path == null) {
-			throw new IllegalArgumentException("Could not find card image file " + path);
-		}
-
-		setIcon(new ImageIcon(path));
+		setIcon(new ImageIcon(this.cardBack));
 		setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 		setHorizontalAlignment(JLabel.CENTER);
 		setVerticalAlignment(JLabel.TOP);
-
-		// Card defaults to face down
-		this.faceUp = false;
 	}
 
 	/**
-	 * Sets the field faceUp as true.
+	 * Flips the card over.
 	 */
-	public void setFaceUp() {
-		setIcon(new ImageIcon(this.iconPath));
-		this.faceUp = true;
+	public void flip() {
+		this.faceUp = !this.faceUp;
+		
+		if (this.faceUp) {
+			setIcon(new ImageIcon(this.cardIcon));
+		} else {
+			setIcon(new ImageIcon(this.cardBack));
+		}
 	}
 
 	/**
@@ -180,12 +181,14 @@ public class Card extends JLabel implements MouseListener {
 	public void setTop() {
 		this.top = true;
 	}
+	
 	/**
 	 * Sets the card as under the top card.
 	 */
 	public void setUnder() {
 		this.top = false;
 	}
+	
 	/** Deselects the current card in the game. */
 	public void deselect() {
 		this.game.setTableauSelected(null);
@@ -221,6 +224,7 @@ public class Card extends JLabel implements MouseListener {
 
 		// Get all of the Tableaus
 		Pile[] tableaus = this.game.getTableaus();
+		
 		// If a tableau is selected (not null) and the same
 		// tableau is clicked again, deselect the tableau
 		if (game.tableauSelected() != null && game.tableauSelected().equals(tableaus[tableauNum])) {
@@ -247,6 +251,7 @@ public class Card extends JLabel implements MouseListener {
 			this.game.refresh();
 			return;
 		}
+		
 		// If no tableau card is selected yet, select this one
 		if (!this.game.isTableauSelected()) {
 			this.game.setTableauSelected(tableaus[this.tableauNum]);
@@ -259,6 +264,7 @@ public class Card extends JLabel implements MouseListener {
 			this.game.setErrorText();
 			return;
 		} 
+		
 		// If this is a Little Spider game, and a tableau is already selected, try to add to 
 		// This card's parent tableau
 		if (game instanceof LittleSpider) {
@@ -297,8 +303,4 @@ public class Card extends JLabel implements MouseListener {
 	/** This method does nothing. */
 	@Override
 	public void mouseExited(MouseEvent e) {}
-
-	public String toString() {
-		return rank + suit;
-	}
 }

@@ -5,6 +5,8 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -101,7 +103,22 @@ public class Cardtrix extends JLayeredPane implements ActionListener {
 		newGame.addActionListener(this.game);
 		// Main Menu button
 		JButton mainMenu = new JButton("Main Menu");
-		mainMenu.addActionListener(new GameMenu(this.gui));
+		mainMenu.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				gui.mainMenu();
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {}
+			@Override
+			public void mouseReleased(MouseEvent e) {}
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+			@Override
+			public void mouseExited(MouseEvent e) {}
+		});
 		
 		switch(mode) {
 		case GAME_LOST:
@@ -123,7 +140,7 @@ public class Cardtrix extends JLayeredPane implements ActionListener {
 			this.add(panel, Integer.valueOf(60));
 			break;
 		case EASTER_EGG:
-			// do nothing
+			// add nothing else
 			break;
 		}
 	}
@@ -133,7 +150,7 @@ public class Cardtrix extends JLayeredPane implements ActionListener {
 	 * a timer to move each one by a random variable amount,
 	 * 2-6. After it has passed the end of the screen size,
 	 * it removes itself. Probably leaks a fair amount of 
-	 * memory if its current iteration.
+	 * memory in its current iteration.
 	 */
 	private void matrix() {
 		Deck d = new Deck(null);
@@ -144,7 +161,7 @@ public class Cardtrix extends JLayeredPane implements ActionListener {
 			// Carry `this` in method scope
 			JLayeredPane self = this;
 			Card c = deck.get(i);
-			c.setFaceUp();
+			c.flip();
 
 			// Give a random x-coord and set y-coord just above frame
 			int w = c.getIcon().getIconWidth(),
@@ -154,10 +171,12 @@ public class Cardtrix extends JLayeredPane implements ActionListener {
 			// Set these as the bounds
 			c.setBounds(x, y, w, h);
 
-			// Timer hits every 23 ms
-			Timer timer = new Timer(20, new ActionListener() {
+			// Timer hits every 20 ms
+			Timer t = new Timer(20, null);
+			t.addActionListener(new ActionListener() {
 				// Create a random `yVar` to move card by every tick, randomly 2-6
 				int yVar = rand.nextInt(6) + 2;
+
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// Move the card down yVar. This is a constant speed
@@ -165,14 +184,15 @@ public class Cardtrix extends JLayeredPane implements ActionListener {
 					// Remove the element after it's past the bottom of the window
 					if (c.getY() > GUI.WIN_HEIGHT) {
 						self.remove(c);
+						t.stop();
 					}
 				}});
 			// Add it & increment depth for next card
-			this.add(c, depth++, 0);
-			timer.start();
+			this.add(c, this.depth++, 0);
+			t.start();
 		}
 		// Reset depth back to 0 after this deck has been placed
-		depth = 0;
+		this.depth = 0;
 	}
 	
 	/**

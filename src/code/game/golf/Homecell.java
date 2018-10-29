@@ -20,21 +20,17 @@ import code.game.gui.GUI;
  */
 public class Homecell extends JLabel implements MouseListener, Pile {
 
-	/**
-	 * Required when extending JComponents or something.
-	 */
+	/** Required when extending JComponents or something. */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * Cards is the ArrayList containing all Card objects in the Homecell pile.
-	 */
+	/** Cards is the ArrayList containing all Card objects in the Homecell pile. */
 	private ArrayList<Card> cards;
-	/**
-	 * Game instance that this homecell belongs to (needs to be a Golf instance).
-	 */
+	/** Game instance that this homecell belongs to (needs to be a Golf instance). */
 	private Game game;
 	
 	/**
 	 * Homecell initializes the ArrayList for the cards fields, which is empty.
+	 * 
+	 * @param game The Golf game instance
 	 */
 	public Homecell(Game game) {
 		this.game = game;
@@ -106,21 +102,26 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 	}
 
 	/**
-	 * In the future, will disallow cards to be removed from the pile.
+	 * Does not sallow cards to be removed from the pile.
 	 * 
 	 * @return Card returns null, as this is not a legal operation.
 	 */
 	@Override
 	public Card takeCard() {
-		// TODO Placeholder functionality until GUI
-		System.out.println("Cannot remove cards from the Homecell pile.");
+		this.game.setErrorText();
 		return null;
 	}
 
+	/**
+	 * The mouseClick handler for this class, which extends MouseListener.
+	 * When clicked, it checks if a tableau is selected, and if not it does
+	 * nothing. If a tableau is selected, it attempts to add the card to itself.
+	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// If no tableau (card) is selected
+		// If no tableau (card) is selected, this is an illegal move
 		if (!this.game.isTableauSelected()) {
+			this.game.setErrorText();
 			return;
 		}
 		
@@ -133,7 +134,7 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 		if (!added) {
 			this.game.setErrorText();
 			this.game.tableauSelected().addCard(toAdd, true);
-		}else {
+		} else {
 			this.game.setBlankErrorText();
 			game.setMoves(game.getMoves() + 1);
 		}
@@ -143,11 +144,13 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 		toAdd.deselect();
 		this.game.refresh();
 	}
+	
 	/**
-	 * Returns null since middle cards is not needed. Only top card is used.
+	 * Returns null since middle cards are not needed. Only top card is used.
 	 */
 	@Override
 	public ArrayList<Card> getAllCards() { return null; }
+	
 	/** This method is not used. */
 	@Override
 	public void mousePressed(MouseEvent e) {}

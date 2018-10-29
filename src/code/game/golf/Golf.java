@@ -20,25 +20,15 @@ import code.game.gui.control.EndGame;
  */
 public class Golf extends Game {
 	
-	/**
-	 * Required when extending JComponents or something.
-	 */
+	/** Required when extending JComponents or something. */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * Homecell is the Homecell object where cards will be placed throughout the game.
-	 */
+	/** Homecell is the Homecell object where cards will be placed throughout the game. */
 	private Homecell homecell;
-	/**
-	 * Stockpile is the game's Stockpile object.
-	 */
+	/** Stockpile is the game's Stockpile object. */
 	private Stockpile stockpile;
-	/**
-	 * The amount of vertical offset per card per tableau.
-	 */
+	/** The amount of vertical offset per card per tableau. */
 	private static final int Y_OFFSET = 25;
-	/**
-	 * The horizontal offset to the right of each tableau.
-	 */
+	/** The horizontal offset to the right of each tableau. */
 	private static final int X_OFFSET = 110;
 
 	/**
@@ -66,7 +56,7 @@ public class Golf extends Game {
 			// Set every card in the tableau face up before adding
 			for (int j = 0; j < 5; j++) {
 				Card c = cards.takeCard();
-				c.setFaceUp();
+				c.flip();
 				// Set the tableau # the card is a child of
 				c.setTableauNum(i);
 				t.addCard(c, true);
@@ -98,6 +88,7 @@ public class Golf extends Game {
 		// Origin starting point to place cards
 		Point pos = new Point(80, 20);
 
+		int w = 100, h = 140;
 		// Iterate through all 7 tableaus
 		for(int i = 0; i < this.tableaus.length; i++) {
 			ArrayList<Card> cards = this.tableaus[i].getAllCards();
@@ -106,7 +97,7 @@ public class Golf extends Game {
 			// If tableau is empty, add null & skip the next tableau
 			if (cards == null) {
 				JLabel space = new JLabel();
-				space.setBounds(pos.x, pos.y, 100, 120);
+				space.setBounds(pos.x, pos.y, w, h);
 				this.add(space, depth, 0);
 				pos.x += X_OFFSET;
 				continue;
@@ -117,9 +108,7 @@ public class Golf extends Game {
 				// Must be Integer object to denote layer in pane
 				Card icon = cards.get(j - 1);
 				// Set bounds of this JLabel at (x,y) to width & height of icon
-				icon.setBounds(pos.x, pos.y, 
-						icon.getIcon().getIconWidth(), 
-						icon.getIcon().getIconHeight());
+				icon.setBounds(pos.x, pos.y, w, h);
 				
 				// Set the last card as the top card
 				if (j == 1) {
@@ -138,14 +127,10 @@ public class Golf extends Game {
 		
 		// Add the stockpile and homecell pile
 		if (this.getStockpile().getIcon() != null) {
-		this.stockpile.setBounds(350, 300, 
-				this.stockpile.getIcon().getIconWidth(), 
-				this.stockpile.getIcon().getIconHeight());
+				this.stockpile.setBounds(350, 300, w, h);
 		}
 		this.add(this.stockpile, Integer.valueOf(0), 0);	
-		this.homecell.setBounds(470, 300, 
-				this.homecell.getIcon().getIconWidth(), 
-				this.homecell.getIcon().getIconHeight());
+		this.homecell.setBounds(470, 300, w, h);
 		this.add(this.homecell, Integer.valueOf(0), 0);
 		
 		this.errorLabel.setBounds(325, 700, 300, 100);
