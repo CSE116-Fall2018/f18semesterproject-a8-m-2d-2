@@ -9,6 +9,8 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class BouncyScreen extends JLayeredPane implements ActionListener {
 
@@ -21,11 +23,11 @@ public class BouncyScreen extends JLayeredPane implements ActionListener {
 	/**
 	 * Values associated with the vertical position
 	 */
-	private double yVelo = 1; private int yMin = GUI.WIN_HEIGHT-400; private double y = 0; 
+	private double yVelo = 1; private int yMin = GUI.WIN_HEIGHT-360; private double y = 0; 
 	/**
 	 * Values associated with the horizontal position
 	 */
-	private double xVelo = 5; private int xMin = 10; private double x = xMin; private int xMax = GUI.WIN_WIDTH-100;
+	private double xVelo = 10; private int xMin = 10; private double x = xMin; private int xMax = GUI.WIN_WIDTH-100;
 	/**
 	 * Acceleration due to gravity
 	 */
@@ -39,14 +41,15 @@ public class BouncyScreen extends JLayeredPane implements ActionListener {
 	/**
 	 * The Cards that need to be drawn and their respective x and y coordinates
 	 */
-	ArrayList<Card> draw = new ArrayList<>();
-	ArrayList<Integer> xInt = new ArrayList<>();
-	ArrayList<Integer> yInt = new ArrayList<>();
+	LinkedList<Card> draw;
+	ArrayList<Integer> xInt;
+	ArrayList<Integer> yInt;
 	/**
 	 * Number of times actionPerformed has been triggered in Timer t
 	 */
-	private int count = 0;
-	
+	private int count;
+	private	int iter = 0;
+
 
 
 	/**
@@ -55,32 +58,50 @@ public class BouncyScreen extends JLayeredPane implements ActionListener {
 	Timer t = new Timer(20, new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			if(count%10 == 0)
+			if(count < 51) {
 				draw.add(deck.takeCard());
-			if(count < 510) {
 				count++;
 				advance();
 				redraw();
 			}
-			else
+			else {
+				Deck BobRoss = new Deck(null);
+				for(int c = 0; c < 52; c++) {
+					BobRoss.getAllCards().get(c).flip();
+				}
+				setDeck(BobRoss);
+				if(iter<4) 
+					iter++;
+				setCount(0);
+			}
+			if(iter == 4) {
+				removeHead();
+				//System.out.println("why isn't this working");
+			}
+			if(Math.abs(xVelo) < 1)
 				t.stop();
 		}
+
+
 	});
 
 	public BouncyScreen(GUI gui) {
 		this.gui = gui;
 		setPreferredSize(new Dimension(GUI.WIN_WIDTH, GUI.WIN_HEIGHT));
-		deck = new Deck(null);
-		deck.shuffle();
-		for(int c = 0; c < 52; c++) {
-			xInt.add(0);
-			yInt.add(0);
-			deck.getAllCards().get(c).flip();
-		}
+
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		this.count = 0;
+		this.draw = new LinkedList<>();
+		this.xInt = new ArrayList<>();
+		this.yInt = new ArrayList<>();
+		deck = new Deck(null);
+		deck.shuffle();
+		for(int c = 0; c < 52; c++) {
+			deck.getAllCards().get(c).flip();
+		}
 		startTimer();
 		this.gui.setPanel(this);
 	}
@@ -90,18 +111,34 @@ public class BouncyScreen extends JLayeredPane implements ActionListener {
 	 */
 	private void redraw() {
 		Card c = deck.getAllCards().get(0);
-		for(int a = 0; a < draw.size(); a++) {
+		for(int a = 0; a < 1; a++) {
 			c.setBounds((int)x, (int)y, c.getIcon().getIconWidth(), c.getIcon().getIconHeight());
 			this.add(c,a,0);
 		}
 	}
 
+	public void removeHead() {
+		draw.removeFirst();
+	}
+	
+	public GUI getGUI() {
+		return this.gui;
+	}
 
+	private void setCount(int i) {
+		this.count = i;
+	}
 
-
+	public void setDeck(Deck RossBob) {
+		this.deck = RossBob;
+	}
 
 	public void startTimer() {
 		t.start();
+	}
+	
+	public void removeAll() {
+		this.removeAll();
 	}
 
 	/**
@@ -114,11 +151,11 @@ public class BouncyScreen extends JLayeredPane implements ActionListener {
 		}
 		y += yVelo;
 		if(y >= yMin) {
-			yVelo *= -0.95;
+			yVelo *= -1;
 			y = yMin-1;
 		}
-		xInt.set(draw.size(),(int) x);
-		yInt.set(draw.size(),(int) y);
+		xInt.add(draw.size()-1,(int) x);
+		yInt.add(draw.size()-1,(int) y);
 		xVelo *= b;
 		yVelo *= b;
 		yVelo += g;
