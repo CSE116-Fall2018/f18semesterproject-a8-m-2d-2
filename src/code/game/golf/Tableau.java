@@ -89,9 +89,7 @@ public class Tableau implements Pile {
 			return null;
 		}
 		
-		Card card = getCard();
-		cards.remove(0);
-		return card;
+		return cards.remove(0);
 	}
 
 }

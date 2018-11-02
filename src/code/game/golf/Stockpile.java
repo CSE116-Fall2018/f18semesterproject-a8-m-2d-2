@@ -89,8 +89,7 @@ public class Stockpile extends JLabel implements MouseListener, Pile {
 			return null;
 		}
 		
-		Card card = getCard();
-		this.cards.remove(0);
+		Card card = this.cards.remove(0);
 		
 		// Set new top card face up & set new icon
 		if (getNumCards() == 0) {

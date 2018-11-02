@@ -170,6 +170,17 @@ public class Cardtrix extends JLayeredPane implements ActionListener {
 				y = rand.nextInt(GUI.WIN_HEIGHT) - GUI.WIN_HEIGHT - h;
 			// Set these as the bounds
 			c.setBounds(x, y, w, h);
+			c.addMouseListener(new MouseListener() {
+
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					c.flip();
+				}
+				public void mousePressed(MouseEvent e) {}
+				public void mouseReleased(MouseEvent e) {}
+				public void mouseEntered(MouseEvent e) {}
+				public void mouseExited(MouseEvent e) {}
+			});
 
 			// Timer hits every 20 ms
 			Timer t = new Timer(20, null);

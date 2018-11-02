@@ -38,9 +38,9 @@ public class Card extends JLabel implements MouseListener {
 	/** If the card is at the top of its pile or not */
 	private boolean top;
 	/** The file path of the image icon */
-	private URL cardIcon;
+	private ImageIcon cardIcon;
 	/** The back of the card */
-	private URL cardBack;
+	private ImageIcon cardBack;
 	/** The current Game instance */
 	private Game game;
 	/** The index of the Tableau this card belongs to */
@@ -107,8 +107,10 @@ public class Card extends JLabel implements MouseListener {
 
 		// Set this card's actual cardface & back of the card
 		try {
-			this.cardIcon = getClass().getResource("/" + imgFile + ".png");
-			this.cardBack = getClass().getResource("/b.png");
+			URL icon = getClass().getResource("/" + imgFile + ".png");
+			this.cardIcon = new ImageIcon(icon);
+			URL back = getClass().getResource("/b.png");
+			this.cardBack = new ImageIcon(back);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -120,7 +122,7 @@ public class Card extends JLabel implements MouseListener {
 
 		// Add self as mouseListener
 		addMouseListener(this);
-		setIcon(new ImageIcon(this.cardBack));
+		setIcon(this.cardBack);
 		setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 		setHorizontalAlignment(JLabel.CENTER);
 		setVerticalAlignment(JLabel.TOP);
@@ -133,9 +135,9 @@ public class Card extends JLabel implements MouseListener {
 		this.faceUp = !this.faceUp;
 		
 		if (this.faceUp) {
-			setIcon(new ImageIcon(this.cardIcon));
+			setIcon(this.cardIcon);
 		} else {
-			setIcon(new ImageIcon(this.cardBack));
+			setIcon(this.cardBack);
 		}
 	}
 
@@ -199,8 +201,8 @@ public class Card extends JLabel implements MouseListener {
 	 * Set the tableau index that this card is part of
 	 * @param int the tableau index
 	 */
-	public void setTableauNum(int a) {
-		this.tableauNum = a;
+	public void setTableauNum(int num) {
+		this.tableauNum = num;
 	}
 
 	/**
