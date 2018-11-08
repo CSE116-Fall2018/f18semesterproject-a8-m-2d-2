@@ -17,6 +17,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
+import code.game.fortythieves.FortyThieves;
 import code.game.golf.Golf;
 import code.game.littlespider.LittleSpider;
 import code.game.gui.control.ColorControl;
@@ -74,6 +75,10 @@ public class GUI {
 		JMenuItem golf = new JMenuItem("Golf");
 		golf.addActionListener(new Golf(this));
 		menu.add(golf);
+		
+		JMenuItem fortyThieves = new JMenuItem("Forty Thieves");
+		fortyThieves.addActionListener(new FortyThieves(this));
+		menu.add(fortyThieves);
 		
 		JMenuItem matrix = new JMenuItem("Matrix");
 		matrix.addActionListener(new Cardtrix(this, new Golf(this), Cardtrix.EASTER_EGG));
