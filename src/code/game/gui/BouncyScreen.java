@@ -55,7 +55,7 @@ public class BouncyScreen extends JLayeredPane implements ActionListener {
 	/**
 	 * Runs advance() every 30 milliseconds
 	 */
-	Timer t = new Timer(30, new ActionListener() {
+	Timer t = new Timer(3, new ActionListener() {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			if(count < 51) {
@@ -76,9 +76,8 @@ public class BouncyScreen extends JLayeredPane implements ActionListener {
 			}
 			if(iter == 4) {
 				removeHead();
-				//System.out.println("why isn't this working");
 			}
-			if(Math.abs(xVelo) < 1)
+			if(Math.abs(xVelo) < 2)
 				t.stop();
 		}
 
@@ -151,12 +150,14 @@ public class BouncyScreen extends JLayeredPane implements ActionListener {
 		}
 		y += yVelo;
 		if(y >= yMin) {
-			yVelo *= -1;
+			yVelo *= -1/b;
 			y = yMin-1;
+			if(-yVelo < 2)
+				yVelo = 0;
 		}
 		xInt.add(draw.size()-1,(int) x);
 		yInt.add(draw.size()-1,(int) y);
-		xVelo *= .99;
+		xVelo *= b;
 		yVelo *= b;
 		yVelo += g;
 	}
