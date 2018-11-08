@@ -1,6 +1,5 @@
 package code.game.fortythieves;
 
-import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -166,40 +165,30 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
-		Pile[] homecells = this.game.getHomecells();
-
-		// if homecell is already selected
-		if (game.homecellSelected() != null && game.homecellSelected().equals(homecells[homecellNum])) {
-			deselect();
+		// If no tableau (card) is selected, this is an illegal move
+		if (!this.game.isTableauSelected()) {
+			this.game.setErrorText();
 			return;
 		}
 
-		// If no card is selected
-		if (!this.game.isTableauSelected() && !this.game.isHomecellSelected()) {
-			this.game.setHomecellSelected(homecells[this.homecellNum]);
-			setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-			return;
-		}
-		if(this.game.isTableauSelected()) {
-			// Take the top card from the Tableau
-			Card toAdd = this.game.tableauSelected().takeCard();
-			// See if it can be added to the homecell
-			boolean added = this.addCard(toAdd, false);
-			// If not, add it back to the tableau
-			if (!added) {
-				this.game.setErrorText();
-				this.game.tableauSelected().addCard(toAdd, true);
-			} else {
-				this.game.setBlankErrorText();
-				this.game.setMoves(this.game.getMoves() + 1);
-			}
+		// Take the top card from the Tableau
+		Card toAdd = this.game.tableauSelected().takeCard();
+		// See if it can be added to the homecell
+		boolean added = this.addCard(toAdd, false);
 
-			// Deselect the tableau & refresh
-			this.game.setTableauSelected(null);
-			toAdd.deselect();
-			this.game.refresh();
-			return;
+		// If not, add it back to the tableau
+		if (!added) {
+			this.game.setErrorText();
+			this.game.tableauSelected().addCard(toAdd, true);
+		} else {
+			this.game.setBlankErrorText();
+			game.setMoves(game.getMoves() + 1);
 		}
+
+		// Deselect the tableau & refresh
+		this.game.setTableauSelected(null);
+		toAdd.deselect();
+		this.game.refresh();
 	}
 
 	/** This method is not used. */
