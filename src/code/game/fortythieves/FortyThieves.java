@@ -47,7 +47,6 @@ public class FortyThieves extends Game {
 	 */
 	protected void init() {
 		homecells = new Homecell[8];
-		wastepile = new Wastepile(this);
 		this.setTableauSelected(null);
 		
 		ArrayList<Card> allCards = new ArrayList<>();
@@ -194,5 +193,9 @@ public class FortyThieves extends Game {
 	 */
 	public Homecell[] getHomecells() {
 		return homecells;
+	}
+
+	public Wastepile getWastepile() {
+		return wastepile;
 	}
 }
