@@ -35,6 +35,8 @@ public abstract class Game extends JLayeredPane implements ActionListener {
 	private Pile homecellSelected;
 	/** The homecell in the game. Set by the Game subclass. */
 	protected Pile[] homecells;
+	/**  The card/wastePile that is currently selected */
+	protected Pile waste;
 	/** Tracks the number of total legal moves in the current game. */
 	private int moves;
 	/** The JLabel that displays error messages on the GUI */
@@ -148,7 +150,6 @@ public abstract class Game extends JLayeredPane implements ActionListener {
 	public boolean isHomecellSelected() {
 		return homecellSelected != null;
 	}
-	
 	/**
 	 * Returns the homecell pile that is currently selected.
 	 * 
@@ -157,6 +158,32 @@ public abstract class Game extends JLayeredPane implements ActionListener {
 	public Pile homecellSelected() {
 		return this.homecellSelected;
 	}
+	/**
+	 * Returns whether or not a card is currently selected by the player.
+	 * 
+	 * @return boolean whether or not a wastePile card is selected
+	 */
+	public void setWasteSelected(Pile waste) {
+		this.waste = waste;
+	} 
+	
+	/**
+	 * Returns whether or not a card is currently selected by the player.
+	 * 
+	 * @return boolean whether or not a waste card is selected
+	 */
+	public boolean isWasteSelected() {
+		return waste != null;
+	}
+	/**
+	 * Returns the wastePile pile that is currently selected.
+	 * 
+	 * @return Pile the currently selected wastePile.
+	 */
+	public Pile wasteSelected() {
+		return this.waste;
+	}
+
 	
 	/**
 	 * Returns the number of moves that have been made

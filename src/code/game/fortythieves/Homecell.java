@@ -166,29 +166,50 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 	public void mouseClicked(MouseEvent e) {
 
 		// If no tableau (card) is selected, this is an illegal move
-		if (!this.game.isTableauSelected()) {
+		if (!this.game.isTableauSelected() && !this.game.isWasteSelected()) {
 			this.game.setErrorText();
+			System.out.println("test1");
 			return;
 		}
+		if(this.game.isTableauSelected()) {
+			// Take the top card from the Tableau
+			Card toAdd = this.game.tableauSelected().takeCard();
+			// See if it can be added to the homecell
+			boolean added = this.addCard(toAdd, false);
 
-		// Take the top card from the Tableau
-		Card toAdd = this.game.tableauSelected().takeCard();
-		// See if it can be added to the homecell
-		boolean added = this.addCard(toAdd, false);
+			// If not, add it back to the tableau
+			if (!added) {
+				this.game.setErrorText();
+				this.game.tableauSelected().addCard(toAdd, true);
+			} else {
+				this.game.setBlankErrorText();
+				game.setMoves(game.getMoves() + 1);
+			}
 
-		// If not, add it back to the tableau
-		if (!added) {
-			this.game.setErrorText();
-			this.game.tableauSelected().addCard(toAdd, true);
-		} else {
-			this.game.setBlankErrorText();
-			game.setMoves(game.getMoves() + 1);
+			// Deselect the tableau & refresh
+			this.game.setTableauSelected(null);
+			toAdd.deselect();
+			this.game.refresh();
 		}
+		if(this.game.isWasteSelected()) {
+			// Take the top card from the Tableau
+			Card toAdd = this.game.wasteSelected().takeCard();
+			// See if it can be added to the homecell
+			boolean added = this.addCard(toAdd, false);
+			// If not, add it back to the tableau
+			if (!added) {
+				this.game.setErrorText();
+				this.game.wasteSelected().addCard(toAdd, true);
+			} else {
+				this.game.setBlankErrorText();
+				game.setMoves(game.getMoves() + 1);
+			}
 
-		// Deselect the tableau & refresh
-		this.game.setTableauSelected(null);
-		toAdd.deselect();
-		this.game.refresh();
+			// Deselect the tableau & refresh
+			this.game.setWasteSelected(null);
+			toAdd.deselect();
+			this.game.refresh();
+		}
 	}
 
 	/** This method is not used. */

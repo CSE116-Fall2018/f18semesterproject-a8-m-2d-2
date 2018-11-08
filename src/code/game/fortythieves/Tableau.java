@@ -48,13 +48,7 @@ public class Tableau implements Pile {
 		
 		if(cards.size() == 0) return false;
 		
-		int difference = Math.abs(card.getValue() - topCard.getValue());
-		if(difference == 1) {
-			cards.add(0, card);
-			topCard = card;
-			return true;
-		}
-		else if (difference == 12) {
+		if(card.getSuit().equals(topCard.getSuit()) && card.getValue() == topCard.getValue() - 1) {
 			cards.add(0, card);
 			topCard = card;
 			return true;

@@ -1,9 +1,11 @@
 package code.game.fortythieves;
 
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
 import code.cards.Card;
@@ -55,24 +57,12 @@ public class Wastepile extends JLabel implements MouseListener, Pile {
 			return false;
 		}
 		
-		if (override) {
+		if (override || !override) {
 			cards.add(0, card);
 			setIcon(card.getIcon());
 			return true;
 		}
 		
-		// No cards are currently in the Homecell
-		if (cards.size() == 0 && !override) {
-			return false;
-		}	
-		
-		int difference = Math.abs(card.getValue() - getCard().getValue());
-		
-		if (difference == 1 || difference == 12) {
-			cards.add(0, card);
-			setIcon(card.getIcon());
-			return true;
-		}
 		
 		return false;
 	}
@@ -108,8 +98,18 @@ public class Wastepile extends JLabel implements MouseListener, Pile {
 	 */
 	@Override
 	public Card takeCard() {
-		this.game.setErrorText();
-		return null;
+		Card top = cards.get(0);
+		if(cards.size() == 0) return null;
+
+		cards.remove(0);
+		setIcon(cards.get(0).getIcon());
+
+		return top;
+	}
+	/** Deselects the current card in the game. */
+	public void deselect() {
+		this.game.setWasteSelected(null);
+		setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 	}
 
 	/**
@@ -119,30 +119,24 @@ public class Wastepile extends JLabel implements MouseListener, Pile {
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		// If no tableau (card) is selected, this is an illegal move
-		if (!this.game.isTableauSelected()) {
+		if (getNumCards() == 0) {
+			this.setIcon(null);
 			this.game.setErrorText();
 			return;
 		}
 		
-		// Take the top card from the Tableau
-		Card toAdd = this.game.tableauSelected().takeCard();
-		// See if it can be added to the homecell
-		boolean added = this.addCard(toAdd, false);
-		
-		// If not, add it back to the tableau
-		if (!added) {
+		// If tableau (card) is selected, this is an illegal move
+		if (this.game.isTableauSelected() || this.game.isHomecellSelected()) {
 			this.game.setErrorText();
-			this.game.tableauSelected().addCard(toAdd, true);
-		} else {
-			this.game.setBlankErrorText();
-			game.setMoves(game.getMoves() + 1);
+			return;
+		}else if(this.game.isWasteSelected()) {
+			deselect();
+		}else {
+			this.game.setWasteSelected(this);
+			setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+			return;
 		}
-
-		// Deselect the tableau & refresh
-		this.game.setTableauSelected(null);
-		toAdd.deselect();
-		this.game.refresh();
+		
 	}
 	
 	/**
