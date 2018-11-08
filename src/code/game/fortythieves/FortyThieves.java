@@ -186,6 +186,7 @@ public class FortyThieves extends Game {
 		if (this.getStockpile().getIcon() != null) {
 			this.stockpile.setBounds(350, 450, w, h);
 		}
+		
 		this.add(this.stockpile, Integer.valueOf(0), 0);	
 		this.wastepile.setBounds(470, 450, w, h);
 		this.add(this.wastepile, Integer.valueOf(0), 0);
