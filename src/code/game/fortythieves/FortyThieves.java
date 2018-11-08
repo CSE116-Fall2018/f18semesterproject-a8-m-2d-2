@@ -120,6 +120,7 @@ public class FortyThieves extends Game {
 			tableaus[i]= tableau;
 		}
 		
+		this.wastepile = new Wastepile(this);
 		this.stockpile = new Stockpile(this, allCards);
 		refresh();
 		setMoves(0);
@@ -180,6 +181,15 @@ public class FortyThieves extends Game {
 			pos.x += X_OFFSET_TABLEAU;
 		}
 		
+		int w = 100, h = 140;
+		// Add the stockpile and wastepile pile
+		if (this.getStockpile().getIcon() != null) {
+			this.stockpile.setBounds(350, 450, w, h);
+		}
+		this.add(this.stockpile, Integer.valueOf(0), 0);	
+		this.wastepile.setBounds(470, 450, w, h);
+		this.add(this.wastepile, Integer.valueOf(0), 0);
+
 		this.errorLabel.setBounds(325, 700, 300, 100);
 		this.add(this.errorLabel, 0, 0);
 		this.gui.getPanel().validate();
@@ -195,7 +205,21 @@ public class FortyThieves extends Game {
 		return homecells;
 	}
 
+	/**
+	 * Returns the Homecell pile.
+	 * 
+	 * @return Homecell The homecell pile.
+	 */
 	public Wastepile getWastepile() {
 		return wastepile;
+	}
+	
+	/**
+	 * Returns the Stockpile pile.
+	 * 
+	 * @return Stockpile The stockpile pile.
+	 */
+	public Stockpile getStockpile() {
+		return stockpile;
 	}
 }
