@@ -22,7 +22,7 @@ import code.game.Game;
  * 
  */
 public class Homecell extends JLabel implements MouseListener, Pile {
-	
+
 	/** required. */
 	private static final long serialVersionUID = 1L;
 	/** Holds all the cards that are in the pile in an ArrayList. */
@@ -51,7 +51,7 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 		setVerticalAlignment(JLabel.TOP);
 		setIcon(topCard.getIcon());
 	}
-	
+
 	/**
 	 * Takes a card and adds it to the top of the pile if and only if it follows the game rules.
 	 * 
@@ -71,35 +71,16 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 			return true;
 		}
 
-		//groups diamonds and hearts per rules of the game
-		if(card.getSuit().equals("diamond") || card.getSuit().equals("heart")) {
-			//checks if suits match and input card is one above
-			if(card.getSuit().equals(topCard.getSuit()) && card.getValue() == topCard.getValue()+1) {
-
-				cards.add(0,card);
-				topCard = card;
-				setIcon(topCard.getIcon());
-				return true;
-			}else {
-				//cannot add card
-				return false;
-			}
-
+		//checks if suits match and input card is one below
+		if(card.getSuit().equals(topCard.getSuit()) && card.getValue() == topCard.getValue() + 1) {
+			cards.add(0,card);
+			topCard = card;
+			setIcon(topCard.getIcon());
+			return true;
+		}else {
+			//cannot add card
+			return false;
 		}
-		//groups spades and clubs per rules of the game
-		if(card.getSuit().equals("spade") || card.getSuit().equals("club")) {
-			//checks if suits match and input card is one below
-			if(card.getSuit().equals(topCard.getSuit()) && card.getValue() == topCard.getValue()-1) {
-				cards.add(0,card);
-				topCard = card;
-				setIcon(topCard.getIcon());
-				return true;
-			}else {
-				//cannot add card
-				return false;
-			}
-		}
-		return false;
 	}
 
 
@@ -112,7 +93,7 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 	public int getNumCards() {
 		return cards.size();
 	}
-	
+
 	/**
 	 * Returns the top card in the pile.
 	 * 
@@ -122,7 +103,7 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 	public Card getCard() {
 		return topCard;
 	}
-	
+
 	/**
 	 * Removes the top card and returns the top card for use by another method.
 	 * If its the last card, {@code takeCard()} returns null as this is an invalid move.
@@ -131,16 +112,10 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 	 */
 	@Override
 	public Card takeCard() {
-		Card top = topCard;
-		if(cards.size() == 1) return null;
-
-		cards.remove(0);
-		topCard = cards.get(0);
-		setIcon(topCard.getIcon());
-
-		return top;
+		this.game.setErrorText();
+		return null;
 	}
-	
+
 	/**
 	 * Returns an ArrayList of all the cards in the pile.
 	 * 
@@ -149,7 +124,7 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 	public ArrayList<Card> getCards() {
 		return cards;
 	}
-	
+
 	/**
 	 * Returns an ArrayList of all the cards in the pile.
 	 * 
@@ -176,13 +151,13 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 	public int getHomecellNum() {
 		return this.homecellNum;
 	}
-	
+
 	/** Deselects the current card in the game. */
 	public void deselect() {
 		this.game.setHomecellSelected(null);
 		setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 	}
-	
+
 	/**
 	 * Determines what is done when a card is clicked.  If a tableau is already selected, the card is 
 	 * added to this homecell.  If a homecell is already selected, the error message is shown.  If no
@@ -226,7 +201,7 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 			return;
 		}
 	}
-	
+
 	/** This method is not used. */
 	@Override
 	public void mouseEntered(MouseEvent e) {}
