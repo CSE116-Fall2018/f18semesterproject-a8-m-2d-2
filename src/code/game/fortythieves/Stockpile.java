@@ -117,7 +117,7 @@ public class Stockpile extends JLabel implements MouseListener, Pile {
 		// Set the card going to homecell pile face up
 		getCard().flip();
 		game.setMoves(game.getMoves() + 1);
-		this.game.getHomecell().addCard(takeCard(), true);
+		this.game.getHomecells().addCard(takeCard(), true);
 		this.game.setBlankErrorText();
 	}
 
