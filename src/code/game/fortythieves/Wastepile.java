@@ -98,12 +98,18 @@ public class Wastepile extends JLabel implements MouseListener, Pile {
 	 */
 	@Override
 	public Card takeCard() {
-		Card top = cards.get(0);
 		if(cards.size() == 0) return null;
-
-		cards.remove(0);
-		setIcon(cards.get(0).getIcon());
-
+		
+		Card top = cards.get(0);
+		
+		if(cards.size() == 1) {
+			cards.remove(0);
+			setIcon(GUI.getEmptyIcon());
+		}else {
+			cards.remove(0);
+			setIcon(cards.get(0).getIcon());
+		}
+		
 		return top;
 	}
 	/** Deselects the current card in the game. */
