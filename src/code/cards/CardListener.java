@@ -7,15 +7,18 @@ import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 
 import code.game.Game;
+import code.game.fortythieves.FortyThieves;
+import code.game.fortythieves.Wastepile;
 import code.game.golf.Golf;
 import code.game.littlespider.Homecell;
 import code.game.littlespider.LittleSpider;
 
 public class CardListener implements MouseListener {
+	@SuppressWarnings("unused")
 	private int id;
 	private Game game;
 	private Card card;
-	
+
 	public CardListener(int id1, Game game1, Card card1) {
 		id=id1;
 		game=game1;
@@ -34,21 +37,21 @@ public class CardListener implements MouseListener {
 
 		// Get all of the Tableaus
 		Pile[] tableaus = this.game.getTableaus();
-		
+
 		// If a tableau is selected (not null) and the same
 		// tableau is clicked again, deselect the tableau
-		if (game.tableauSelected() != null && game.tableauSelected().equals(tableaus[card.getTableauNum()])) {
+		if (game.tableauSelected() != null && game.tableauSelected().equals(tableaus[this.card.getTableauNum()])) {
 			this.card.deselect();
 			return;
 		}
-		
+
 		if(this.game.isHomecellSelected()) {
 			Card card = this.game.homecellSelected().takeCard();
 			boolean added = tableaus[this.card.getTableauNum()].addCard(card, false);
 			if(added) {
 				card.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
-				tableaus[card.getTableauNum()].getAllCards().get(1).setUnder();
-				card.setTableauNum(card.getTableauNum());
+				tableaus[this.card.getTableauNum()].getAllCards().get(1).setUnder();
+				card.setTableauNum(this.card.getTableauNum());
 				game.setMoves(game.getMoves() + 1);
 				this.game.setBlankErrorText();
 			}else {
@@ -56,16 +59,36 @@ public class CardListener implements MouseListener {
 				this.game.setErrorText();
 			}
 			((Homecell) this.game.homecellSelected()).deselect();
-			
-			card.deselect();
+
+			this.card.deselect();
 			this.game.refresh();
 			return;
 		}
-		
+		if(this.game.isWasteSelected()) {
+			Card card = this.game.wasteSelected().getCard();
+			boolean added = tableaus[this.card.getTableauNum()].addCard(card, false);
+			if(added) {
+				this.game.wasteSelected().takeCard();
+				card.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
+				tableaus[this.card.getTableauNum()].getAllCards().get(1).setUnder();
+				card.setTableauNum(this.card.getTableauNum());
+				game.setMoves(game.getMoves() + 1);
+				this.game.setBlankErrorText();
+			}else {
+				this.game.wasteSelected().addCard(card, true);
+				this.game.setErrorText();
+			}
+			((Wastepile) this.game.wasteSelected()).deselect();
+
+			this.card.deselect();
+			this.game.refresh();
+			return;
+		}
+
 		// If no tableau card is selected yet, select this one
 		if (!this.game.isTableauSelected()) {
-			this.game.setTableauSelected(tableaus[card.getTableauNum()]);
-			card.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+			this.game.setTableauSelected(tableaus[this.card.getTableauNum()]);
+			this.card.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 			return;
 		}
 
@@ -74,30 +97,30 @@ public class CardListener implements MouseListener {
 			this.game.setErrorText();
 			return;
 		} 
-		
+
 		// If this is a Little Spider game, and a tableau is already selected, try to add to 
 		// This card's parent tableau
-		if (game instanceof LittleSpider) {
+		if (game instanceof LittleSpider || game instanceof FortyThieves) {
 			if(this.game.isTableauSelected()) {
 				// Attempt to add the card to tableau
 				Card card = this.game.tableauSelected().getCard();
-				boolean added = tableaus[card.getTableauNum()].addCard(card, false);
+				boolean added = tableaus[this.card.getTableauNum()].addCard(card, false);
 				if (added) {
 					this.game.tableauSelected().takeCard();
 					card.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
-					tableaus[card.getTableauNum()].getAllCards().get(1).setUnder();
-					card.setTableauNum(card.getTableauNum());
+					tableaus[this.card.getTableauNum()].getAllCards().get(1).setUnder();
+					card.setTableauNum(this.card.getTableauNum());
 					game.setMoves(game.getMoves() + 1);
 					this.game.setBlankErrorText();
 				}else {
 					this.game.setErrorText();
 					card.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 				}
-				card.deselect();
+				this.card.deselect();
 				this.game.refresh();
 				return;
 			}
-			
+
 		}
 	}
 
@@ -113,6 +136,6 @@ public class CardListener implements MouseListener {
 	/** This method does nothing. */
 	@Override
 	public void mouseExited(MouseEvent e) {}
-	
-	
+
+
 }

@@ -51,6 +51,7 @@ public class TableauTest {
 		t.addCard(d.takeCard(), true);
 		t.addCard(d.takeCard(), true);
 		assertEquals("testGetNumCards should return 3 cards when 3 are added", 3, t.getNumCards());
+		@SuppressWarnings("unused")
 		Card c = t.takeCard();
 		c = t.takeCard();
 		assertEquals("testGetNumCards should return 2 cards when 2 are added and 1 is removed", 1, t.getNumCards());

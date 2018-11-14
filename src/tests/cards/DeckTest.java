@@ -100,7 +100,6 @@ public class DeckTest {
 		Deck test1 = new Deck(null);
 		Deck test2 = new Deck(null);
 		Deck placeholder = new Deck(null);
-		double[] ratio = new double[3];
 		test1.shuffle();
 		test2.shuffle();
 		int[] counter = new int[3];

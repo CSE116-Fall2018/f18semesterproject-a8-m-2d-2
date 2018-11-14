@@ -1,8 +1,5 @@
 package code.cards;
 
-import java.awt.Color;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.net.URL;
 
 import javax.swing.BorderFactory;
@@ -10,9 +7,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import code.game.Game;
-import code.game.golf.Golf;
-import code.game.littlespider.Homecell;
-import code.game.littlespider.LittleSpider;
 
 /**
  * Instantiates a card dependent upon the id passed to it.
