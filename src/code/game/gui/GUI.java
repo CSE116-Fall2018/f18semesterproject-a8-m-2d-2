@@ -39,7 +39,7 @@ public class GUI {
 	/** Font that is used game wide. */
 	public final Font FONT = new Font("Arial", Font.PLAIN, 25);
 	/** The window width. */
-	public static final int WIN_WIDTH = 925;
+	public static final int WIN_WIDTH = 1475;
 	/** The window height. */
 	public static final int WIN_HEIGHT = 925;
 	

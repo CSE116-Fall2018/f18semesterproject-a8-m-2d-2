@@ -33,7 +33,7 @@ public class FortyThieves extends Game {
 	/** The horizontal offset to the right of each tableau. */
 	private static final int X_OFFSET_TABLEAU = 110;
 	/** The horizontal offset to the right of each homecell. */
-	private static final int X_OFFSET_HOMECELL = 150;
+	private static final int X_OFFSET_HOMECELL = 130;
 	
 	/** 
 	 * Starts a little spider game. 
@@ -139,7 +139,7 @@ public class FortyThieves extends Game {
 		
 		removeAll();
 		// Origin starting point to place homecell cards
-		Point pos = new Point(175, 20);
+		Point pos = new Point(420, 20);
 
 		// Add homecell piles to top of frame without displaying pile
 		for(int i = 0; i < this.homecells.length; i++) {
@@ -184,11 +184,11 @@ public class FortyThieves extends Game {
 		int w = 100, h = 140;
 		// Add the stockpile and wastepile pile
 		if (this.getStockpile().getIcon() != null) {
-			this.stockpile.setBounds(350, 450, w, h);
+			this.stockpile.setBounds(110, 20, w, h);
 		}
 		
 		this.add(this.stockpile, Integer.valueOf(0), 0);	
-		this.wastepile.setBounds(470, 450, w, h);
+		this.wastepile.setBounds(235, 20, w, h);
 		this.add(this.wastepile, Integer.valueOf(0), 0);
 
 		this.errorLabel.setBounds(325, 700, 300, 100);

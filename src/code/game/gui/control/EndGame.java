@@ -7,6 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import code.game.Game;
+import code.game.fortythieves.FortyThieves;
 import code.game.golf.Golf;
 import code.game.gui.Cardtrix;
 import code.game.gui.GUI;
@@ -42,7 +43,7 @@ public class EndGame {
 			String[] data = data1.split(",");
 			String golf = data[0];
 			String littlespider = data[1];
-			String newGame = data[2];
+			String fortythieves = data[2];
 			if(game instanceof Golf) {
 				if(Integer.valueOf(golf) > moves) {
 					golf = String.valueOf(moves);
@@ -53,9 +54,13 @@ public class EndGame {
 					littlespider = String.valueOf(moves);
 				}
 			}
-			// handle next game
+			if(game instanceof FortyThieves) {
+				if(Integer.valueOf(fortythieves) > moves) {
+					fortythieves = String.valueOf(moves);
+				}
+			}
 			
-			String newScores = golf + "," + littlespider + "," + newGame;
+			String newScores = golf + "," + littlespider + "," + fortythieves;
 			
 			FileWriter fw = new FileWriter("resources/highscore.csv", false);
 			fw.write(newScores);

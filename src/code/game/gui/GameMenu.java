@@ -183,10 +183,10 @@ public class GameMenu extends JPanel implements ActionListener {
 			String[] data = data1.split(",");
 			String golf = data[0];
 			String littlespider = data[1];
-//			String newGame = data[2];
+			String fortythieves = data[2];
 			String retVal = "<html>Golf: " + golf + "<br/>" + 
-					"Little Spider: " + littlespider + "<br/>";
-			//+ "Game to be Added: " + newGame + "</html>";
+					"Little Spider: " + littlespider + "<br/>"
+					+ "Forty Thieves: " + fortythieves + "</html>";
 			return retVal;
 			
 		} catch (FileNotFoundException e) {
