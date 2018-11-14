@@ -21,7 +21,7 @@ import code.game.littlespider.LittleSpider;
  * @author Mitch Thurston
  * 
  */
-public class Card extends JLabel implements MouseListener {
+public class Card extends JLabel {
 
 	/** Required when extending JComponents or something. */
 	private static final long serialVersionUID = 1L;
@@ -116,12 +116,12 @@ public class Card extends JLabel implements MouseListener {
 		}
 
 		// Is not set as top card of pile
-		this.top = false;
+		this.setTop(false);
 		// Card defaults to face down
 		this.faceUp = false;
 
-		// Add self as mouseListener
-		addMouseListener(this);
+		// Add CardListener as mouseListener
+		addMouseListener(new CardListener(rank, game, this));
 		setIcon(this.cardBack);
 		setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
 		setHorizontalAlignment(JLabel.CENTER);
@@ -188,7 +188,7 @@ public class Card extends JLabel implements MouseListener {
 	 * Sets the card as under the top card.
 	 */
 	public void setUnder() {
-		this.top = false;
+		this.setTop(false);
 	}
 	
 	/** Deselects the current card in the game. */
@@ -214,95 +214,12 @@ public class Card extends JLabel implements MouseListener {
 		return this.tableauNum;
 	}
 
-	/**
-	 * Determines what it done when the card is clicked.
-	 */
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// Return if this card isn't the top of the tableau
-		if (!this.top) {
-			return;
-		}
-
-		// Get all of the Tableaus
-		Pile[] tableaus = this.game.getTableaus();
-		
-		// If a tableau is selected (not null) and the same
-		// tableau is clicked again, deselect the tableau
-		if (game.tableauSelected() != null && game.tableauSelected().equals(tableaus[tableauNum])) {
-			deselect();
-			return;
-		}
-		
-		if(this.game.isHomecellSelected()) {
-			Card card = this.game.homecellSelected().takeCard();
-			boolean added = tableaus[this.tableauNum].addCard(card, false);
-			if(added) {
-				card.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
-				tableaus[this.tableauNum].getAllCards().get(1).setUnder();
-				card.setTableauNum(this.tableauNum);
-				game.setMoves(game.getMoves() + 1);
-				this.game.setBlankErrorText();
-			}else {
-				this.game.homecellSelected().addCard(card, true);
-				this.game.setErrorText();
-			}
-			((Homecell) this.game.homecellSelected()).deselect();
-			
-			deselect();
-			this.game.refresh();
-			return;
-		}
-		
-		// If no tableau card is selected yet, select this one
-		if (!this.game.isTableauSelected()) {
-			this.game.setTableauSelected(tableaus[this.tableauNum]);
-			setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-			return;
-		}
-
-		// If this is a Golf game, and a tableau is already selected, do nothing
-		if (game instanceof Golf) {
-			this.game.setErrorText();
-			return;
-		} 
-		
-		// If this is a Little Spider game, and a tableau is already selected, try to add to 
-		// This card's parent tableau
-		if (game instanceof LittleSpider) {
-			if(this.game.isTableauSelected()) {
-				// Attempt to add the card to tableau
-				Card card = this.game.tableauSelected().getCard();
-				boolean added = tableaus[this.tableauNum].addCard(card, false);
-				if (added) {
-					this.game.tableauSelected().takeCard();
-					card.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
-					tableaus[this.tableauNum].getAllCards().get(1).setUnder();
-					card.setTableauNum(this.tableauNum);
-					game.setMoves(game.getMoves() + 1);
-					this.game.setBlankErrorText();
-				}else {
-					this.game.setErrorText();
-					card.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
-				}
-				deselect();
-				this.game.refresh();
-				return;
-			}
-			
-		}
+	public boolean isTop() {
+		return top;
 	}
 
-	/** This method does nothing. */
-	@Override
-	public void mousePressed(MouseEvent e) {}
-	/** This method does nothing. */
-	@Override
-	public void mouseReleased(MouseEvent e) {}
-	/** This method does nothing. */
-	@Override
-	public void mouseEntered(MouseEvent e) {}
-	/** This method does nothing. */
-	@Override
-	public void mouseExited(MouseEvent e) {}
+	public void setTop(boolean top) {
+		this.top = top;
+	}
+	
 }
