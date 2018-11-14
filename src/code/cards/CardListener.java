@@ -84,9 +84,14 @@ public class CardListener implements MouseListener {
 			this.game.refresh();
 			return;
 		}
+		
 
 		// If no tableau card is selected yet, select this one
 		if (!this.game.isTableauSelected()) {
+			if(tableaus[this.card.getTableauNum()].getNumCards() == 0) {
+				this.game.setErrorText();
+				return;
+			}
 			this.game.setTableauSelected(tableaus[this.card.getTableauNum()]);
 			this.card.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 			return;

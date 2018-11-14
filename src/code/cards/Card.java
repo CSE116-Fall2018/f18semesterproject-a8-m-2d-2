@@ -7,6 +7,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 import code.game.Game;
+import code.game.gui.GUI;
 
 /**
  * Instantiates a card dependent upon the id passed to it.
@@ -51,6 +52,16 @@ public class Card extends JLabel {
 	public Card(int id, Game game) {
 		this.game = game;
 		this.id = id;
+		if(id == 53) {
+			addMouseListener(new CardListener(53, game, this));
+			setIcon(GUI.getEmptyIcon());
+			setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
+			setHorizontalAlignment(JLabel.CENTER);
+			setVerticalAlignment(JLabel.TOP);
+			this.value = 53;
+			return;
+		}
+		
 		// int value of the suit
 		int suit = id / 13;
 		// int value of the rank

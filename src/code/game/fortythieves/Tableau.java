@@ -40,13 +40,16 @@ public class Tableau implements Pile {
 		
 		if(card == null) return false;
 		
-		if(override) {
+		if(override || cards.size() == 1) {
 			cards.add(0, card);
 			topCard = card;
 			return true;
 		}
 		
 		if(cards.size() == 0) return false;
+		if(card.getValue() == 53) {
+			return false;
+		}
 		
 		if(card.getSuit().equals(topCard.getSuit()) && card.getValue() == topCard.getValue() - 1) {
 			cards.add(0, card);
@@ -63,7 +66,7 @@ public class Tableau implements Pile {
 	 */
 	@Override
 	public int getNumCards() {
-		return cards.size();
+		return cards.size() - 1;
 	}
 	 
 	/**
@@ -75,7 +78,7 @@ public class Tableau implements Pile {
 	public Card getCard() {
 		
 		if(cards.size() == 0) return null;
-		return topCard;
+		return cards.get(0);
 	}
 
 	/**
@@ -89,10 +92,6 @@ public class Tableau implements Pile {
 		Card top = topCard;
 		if(cards.size() == 0) return null;
 		
-		if(cards.size() == 1) {
-			cards.remove(0);
-			return top;
-		}
 		cards.remove(0);
 		topCard = cards.get(0);
 			
@@ -105,7 +104,7 @@ public class Tableau implements Pile {
 	 * @return ArrayList<Card> all cards in the ArrayList of the pile.
 	 */
 	public ArrayList<Card> getAllCards() {
-		if (getNumCards() == 0) {
+		if (cards.size() == 0) {
 			return null;
 		}
 		

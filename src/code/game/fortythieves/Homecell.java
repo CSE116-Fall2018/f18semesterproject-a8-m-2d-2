@@ -172,7 +172,7 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 		}
 		if(this.game.isTableauSelected()) {
 			// Take the top card from the Tableau
-			Card toAdd = this.game.tableauSelected().takeCard();
+			Card toAdd = this.game.tableauSelected().getCard();
 			// See if it can be added to the homecell
 			boolean added = this.addCard(toAdd, false);
 
@@ -181,6 +181,7 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 				this.game.setErrorText();
 				this.game.tableauSelected().addCard(toAdd, true);
 			} else {
+				this.game.tableauSelected().takeCard();
 				this.game.setBlankErrorText();
 				game.setMoves(game.getMoves() + 1);
 			}
@@ -192,7 +193,7 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 		}
 		if(this.game.isWasteSelected()) {
 			// Take the top card from the Tableau
-			Card toAdd = this.game.wasteSelected().takeCard();
+			Card toAdd = this.game.wasteSelected().getCard();
 			// See if it can be added to the homecell
 			boolean added = this.addCard(toAdd, false);
 			// If not, add it back to the tableau
@@ -200,6 +201,7 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 				this.game.setErrorText();
 				this.game.wasteSelected().addCard(toAdd, true);
 			} else {
+				this.game.tableauSelected().takeCard();
 				this.game.setBlankErrorText();
 				game.setMoves(game.getMoves() + 1);
 			}
