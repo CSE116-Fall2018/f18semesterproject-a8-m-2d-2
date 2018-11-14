@@ -168,7 +168,6 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 		// If no tableau (card) is selected, this is an illegal move
 		if (!this.game.isTableauSelected() && !this.game.isWasteSelected()) {
 			this.game.setErrorText();
-			System.out.println("test1");
 			return;
 		}
 		if(this.game.isTableauSelected()) {
