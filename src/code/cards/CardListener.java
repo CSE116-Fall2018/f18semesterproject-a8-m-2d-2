@@ -88,7 +88,7 @@ public class CardListener implements MouseListener {
 
 		// If no tableau card is selected yet, select this one
 		if (!this.game.isTableauSelected()) {
-			if(tableaus[this.card.getTableauNum()].getNumCards() == 0) {
+			if(tableaus[this.card.getTableauNum()].getNumCards() == 0 && this.game instanceof FortyThieves) {
 				this.game.setErrorText();
 				return;
 			}

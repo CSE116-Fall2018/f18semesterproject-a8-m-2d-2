@@ -179,7 +179,6 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 			// If not, add it back to the tableau
 			if (!added) {
 				this.game.setErrorText();
-				this.game.tableauSelected().addCard(toAdd, true);
 			} else {
 				this.game.tableauSelected().takeCard();
 				this.game.setBlankErrorText();
@@ -199,9 +198,8 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 			// If not, add it back to the tableau
 			if (!added) {
 				this.game.setErrorText();
-				this.game.wasteSelected().addCard(toAdd, true);
 			} else {
-				this.game.tableauSelected().takeCard();
+				this.game.wasteSelected().takeCard();
 				this.game.setBlankErrorText();
 				game.setMoves(game.getMoves() + 1);
 			}
