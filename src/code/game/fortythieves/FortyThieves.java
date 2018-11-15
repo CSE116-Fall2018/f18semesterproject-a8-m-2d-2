@@ -2,6 +2,7 @@ package code.game.fortythieves;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.JLabel;
 
@@ -107,6 +108,7 @@ public class FortyThieves extends Game {
 		homecell4.setHomecellNum(7);
 		
 		allCards.addAll(deck.getAllCards());
+		Collections.shuffle(allCards);
 		
 		tableaus = new Tableau[13];
 		for(int i=0; i<tableaus.length; i++) {
