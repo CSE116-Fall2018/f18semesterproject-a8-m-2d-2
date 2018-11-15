@@ -136,6 +136,7 @@ public class Wastepile extends JLabel implements MouseListener, Pile {
 			this.game.setErrorText();
 			return;
 		}else if(this.game.isWasteSelected()) {
+			setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
 			deselect();
 		}else {
 			this.game.setWasteSelected(this);

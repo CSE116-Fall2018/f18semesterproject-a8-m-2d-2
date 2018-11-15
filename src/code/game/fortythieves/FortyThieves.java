@@ -2,6 +2,7 @@ package code.game.fortythieves;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.swing.JLabel;
 
@@ -107,10 +108,14 @@ public class FortyThieves extends Game {
 		homecell4.setHomecellNum(7);
 		
 		allCards.addAll(deck.getAllCards());
+		Collections.shuffle(allCards);
 		
 		tableaus = new Tableau[13];
 		for(int i=0; i<tableaus.length; i++) {
 			Tableau tableau = new Tableau();
+			Card blank = new Card(53, this);
+			blank.setTableauNum(i);
+			tableau.addCard(blank, true);
 			for(int j=1; j<=3; j++) {
 				Card x = allCards.remove(0);
 				x.flip();
@@ -132,7 +137,7 @@ public class FortyThieves extends Game {
 	 * time a correct move is made.
 	 */
 	public void refresh() {
-		if (gameWon()) {
+		if (gameWon() && wastepile.getNumCards() == 0 && stockpile.getNumCards() == 0) {
 			EndGame.win(this.gui, this);
 			return;
 		}
@@ -156,14 +161,17 @@ public class FortyThieves extends Game {
 			ArrayList<Card> cards = this.tableaus[i].getAllCards();
 			Integer depth = 0;
 			
-			if (cards == null) {
-				JLabel space = new JLabel();
-				space.setBounds(pos.x, pos.y, 100, 120);
-				this.add(space, depth, 0);
-				pos.x += X_OFFSET_TABLEAU;
-				continue;
-			}
 			for(int j = cards.size(); j > 0; j--) {
+				if(cards.size() == j) {
+					Card icon = cards.get(j - 1);
+					icon.setBounds(pos.x, pos.y, icon.getIcon().getIconWidth(), icon.getIcon().getIconHeight());
+					this.add(icon, depth, 0);
+					depth++;
+					if(j == 1) {
+						icon.setTop();
+					}
+					continue;
+				}
 				Card icon = cards.get(j - 1);
 				icon.setBounds(pos.x, pos.y, icon.getIcon().getIconWidth(), icon.getIcon().getIconHeight());
 
