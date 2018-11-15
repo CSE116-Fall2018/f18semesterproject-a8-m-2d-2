@@ -135,7 +135,7 @@ public class FortyThieves extends Game {
 	 * time a correct move is made.
 	 */
 	public void refresh() {
-		if (gameWon()) {
+		if (gameWon() && wastepile.getNumCards() == 0 && stockpile.getNumCards() == 0) {
 			EndGame.win(this.gui, this);
 			return;
 		}
