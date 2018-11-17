@@ -50,7 +50,10 @@ public class Stockpile extends JLabel implements MouseListener, Pile {
 	 */
 	@Override
 	public boolean addCard(Card card, boolean override) {
-		this.game.setErrorText();
+		// Quick hack so preserve test
+		if (game != null) {
+			this.game.setErrorText();
+		}
 		return false;
 	}
 

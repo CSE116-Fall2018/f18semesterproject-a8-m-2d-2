@@ -77,7 +77,7 @@ public class Tableau implements Pile {
 	@Override
 	public Card getCard() {
 		
-		if(cards.size() == 0) return null;
+		if(cards.size() <= 1) return null;
 		return cards.get(0);
 	}
 
@@ -90,7 +90,7 @@ public class Tableau implements Pile {
 	@Override
 	public Card takeCard() {
 		Card top = topCard;
-		if(cards.size() == 0) return null;
+		if(cards.size() <= 1) return null;
 		
 		cards.remove(0);
 		topCard = cards.get(0);

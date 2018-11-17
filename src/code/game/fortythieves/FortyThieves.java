@@ -4,7 +4,6 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import javax.swing.JLabel;
 
 import code.cards.Card;
 import code.cards.Deck;

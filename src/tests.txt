@@ -1,3 +1,54 @@
+# Forty Thieves Tests
+
+Tableau pile tests: [18 points]
+    Tableau piles in Forty Thieves initially hold 3 cards [2 points]
+    	* package: test.game.fortythieves.FortyThieves.initTest()
+    Forty Thieves tableau pile method correctly determines if adding a specific card is legal or illegal. [4 points]
+    	* package: test.game.fortythieves.TableauTest.addCardTest()
+    Forty Thieves tableau pile method correctly determines if removing a specific card is legal or illegal. [4 points]
+    	* package: test.game.fortythieves.TableauTest.takeCardTest()
+    Adding a card to Forty Thieves tableau pile increases its number of cards and results in that card being the tableau pile's new top card [4 points]
+    	* package: test.game.fortythieves.TableauTest.getNumCardsTest()
+    Removing a card from Forty Thieves tableau pile decreases its number of cards and results in following card being the new top card [4 points]
+    	* package: test.game.fortythieves.TableauTest.takeCardTest()
+
+Homecell pile tests: [8 points]
+    Forty Thieves homecell piles initially hold 1 card [2 points]
+    	* package: test.game.fortythieves.HomecellTest.sizeTest()
+    Forty Thieves homecell pile correctly determines if adding a specific card is legal or illegal [2 points]
+    	* package: test.game.fortythieves.HomecellTest.addTest()
+    Forty Thieves homecell pile correctly returns if removing top card is legal or illegal (e.g., always illegal) [2 points]
+    	* package: test.game.fortythieves.HomecellTest.removeTest()
+    Adding a card to Forty Thieves homecell pile increases its number of cards and results in that card being the homecell pile's new top card [2 points]
+    	* package: test.game.fortythieves.HomecellTest.addTest()
+
+Stock pile tests: [5 points]
+    Forty Thieves stock pile initially holds 57 cards [1 points]
+    	* package: test.game.fortythieves.FortyThieves.initTest()
+    Forty Thieves stock pile correctly returns if adding a specific card is legal or illegal (e.g., always illegal) [1 points]
+    	* package: test.game.fortythieves.StockpileTest.testAddCard()
+    Forty Thieves stock pile correctly returns if removing a specific card is legal or illegal (e.g., legal if the stock pile is not empty) [1 points]
+    	* package: test.game.fortythieves.StockpileTest.testTakeCard()
+    Dealing cards from Forty Thieves stock pile removes the top card from the pile, results in the next card being the new top card in the stock pile, and makes the removed card the new top card on the waste pile [1 points]
+    	* package: test.game.fortythieves.StockpileTest.testTakeCard()
+
+Waste pile tests: [4 points]
+    Forty Thieves waste pile initially holds 0 cards [1 points]
+    	* package: test.game.fortythieves.FortyThieves.initTest()
+    Forty Thieves waste pile correctly returns if adding a specific card is legal or illegal (e.g., always illegal since we use another approach for this) [1 points]
+    	* package: test.game.fortythieves.WastepileTest.testAddCard()
+    Forty Thieves waste pile correctly returns if removing a specific card is legal or illegal (e.g., always legal) [1 points]
+    	* package: test.game.fortythieves.WastepileTest.testTakeCard()
+    Removing a card from Forty Thieves waste pile decreases its number of cards and results in the following card being the new top card [1 points]
+    	* package: test.game.fortythieves.WastepileTest.testTakeCard()
+    	* package: test.game.fortythieves.WastepileTest.testGetNumCards()
+
+
+
+###############################
+####### Previous tests ########
+###############################
+
 Defines Deck class which creates 52 Card instances. Each Card instance has unique combination of suit & rank [6 points]
 	package: tests.cards class: DeckTest
 
