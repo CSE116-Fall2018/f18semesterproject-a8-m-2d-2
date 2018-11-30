@@ -14,7 +14,8 @@ import code.game.gui.GUI;
 import code.game.gui.control.EndGame;
 
 /**
- * This class holds the code for the Little Spider game. Its constructor initializes four homecell piles and eight tableau piles.
+ * This class holds the code for the Forty Thieves game. 
+ * Its constructor initializes 8 homecell piles, 13 tableau piles, a waste pile, and a stockpile.
  * 
  * @author Drew Fiutko
  */
@@ -24,7 +25,7 @@ public class FortyThieves extends Game {
 	private static final long serialVersionUID = 1L;
 	/** Holds an array of Homecell instances that are used by the game. */
 	private Homecell[] homecells;
-	/** Homecell is the Homecell object where cards will be placed throughout the game. */
+	/** Wastepile is the wastepile object where cards will be placed throughout the game. */
 	private Wastepile wastepile;
 	/** Stockpile is the game's Stockpile object. */
 	private Stockpile stockpile;
@@ -36,14 +37,14 @@ public class FortyThieves extends Game {
 	private static final int X_OFFSET_HOMECELL = 130;
 	
 	/** 
-	 * Starts a little spider game. 
+	 * Starts a Forty Thieves game.. 
 	 */
 	public FortyThieves(GUI gui) {
 		super(gui);
 	}
 	
 	/**
-	 * Creates Homecell and Tableau piles for Little Spider.
+	 * Creates Homecell, Tableau, Wastepile, Stockpile piles for Forty Thieves.
 	 */
 	protected void init() {
 		homecells = new Homecell[8];
@@ -131,7 +132,7 @@ public class FortyThieves extends Game {
 	}
 	
 	/**
-	 * This method refreshes the game panel during the little spider game 
+	 * This method refreshes the game panel during the forty thieves game 
 	 * to ensure the correct Cards are showing at all times.  Called every
 	 * time a correct move is made.
 	 */
@@ -214,9 +215,9 @@ public class FortyThieves extends Game {
 	}
 
 	/**
-	 * Returns the Homecell pile.
+	 * Returns the Wastepile pile.
 	 * 
-	 * @return Homecell The homecell pile.
+	 * @return Wastepile The wastepile pile.
 	 */
 	public Wastepile getWastepile() {
 		return wastepile;

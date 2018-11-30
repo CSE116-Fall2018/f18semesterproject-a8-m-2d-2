@@ -14,7 +14,7 @@ import code.game.Game;
 import code.game.gui.GUI;
 
 /**
- * Instantiates the Homecell pile, which initiates with an
+ * Instantiates the Wastepile, which initiates with an
  * empty ArrayList of cards. Cards are added to this class
  * throughout the game in accordance with the rules of the game.
  * 
@@ -24,15 +24,15 @@ public class Wastepile extends JLabel implements MouseListener, Pile {
 
 	/** Required when extending JComponents or something. */
 	private static final long serialVersionUID = 1L;
-	/** Cards is the ArrayList containing all Card objects in the Homecell pile. */
+	/** Cards is the ArrayList containing all Card objects in the Wastepile. */
 	private ArrayList<Card> cards;
-	/** Game instance that this homecell belongs to (needs to be a Golf instance). */
+	/** Game instance that this wastepile belongs to (needs to be a Golf instance). */
 	private Game game;
 	
 	/**
-	 * Homecell initializes the ArrayList for the cards fields, which is empty.
+	 * Wastepile initializes the ArrayList for the cards fields, which is empty.
 	 * 
-	 * @param game The Golf game instance
+	 * @param game The FortyThieves game instance
 	 */
 	public Wastepile(Game game) {
 		this.game = game;
@@ -45,8 +45,8 @@ public class Wastepile extends JLabel implements MouseListener, Pile {
 	}
 	
 	/**
-	 * Adds a card to the pile iff the homecell is empty, or if the rank of the card
-	 * at the top of the Homecell differs by 1 from the top card in the pile.
+	 * Adds a card to the pile iff the wastepile is empty, or if the rank of the card
+	 * at the top of the Wastepile differs by 1 from the top card in the pile.
 	 * 
 	 * @param card The card to be added.
 	 */
@@ -68,9 +68,9 @@ public class Wastepile extends JLabel implements MouseListener, Pile {
 	}
 
 	/**
-	 * Returns an int of the number of cards in the Homecell pile.
+	 * Returns an int of the number of cards in the Wastepile pile.
 	 * 
-	 * @return int number of cards in the Homecell pile.
+	 * @return int number of cards in the Wastepile pile.
 	 */
 	@Override
 	public int getNumCards() {
@@ -78,9 +78,9 @@ public class Wastepile extends JLabel implements MouseListener, Pile {
 	}
 
 	/**
-	 * Returns the face-up card at the top of the Homecell pile.
+	 * Returns the face-up card at the top of the Wastepile pile.
 	 * 
-	 * @return Card at the top of the Homecell pile.
+	 * @return Card at the top of the Wastepile pile.
 	 */
 	@Override
 	public Card getCard() {

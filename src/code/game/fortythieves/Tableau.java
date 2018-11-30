@@ -6,7 +6,7 @@ import code.cards.Card;
 import code.cards.Pile;
 
 /**
- * Instances of this class are used to hold data about the tableau piles in the Little Spider game.
+ * Instances of this class are used to hold data about the tableau piles in the Forty Thieves game.
  * It implements the pile interface to reflect the game rules given in the project
  * specifications.
  * 

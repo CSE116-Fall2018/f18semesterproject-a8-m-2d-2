@@ -13,7 +13,7 @@ import code.game.Game;
 
 
 /**
- * Instances of this class are used to hold data about the homecell piles in the Little Spider game.
+ * Instances of this class are used to hold data about the homecell piles in the Forty Thieves game.
  * It implements the pile interface to reflect the game rules given in the project
  * specifications.
  * 
@@ -34,9 +34,9 @@ public class Homecell extends JLabel implements MouseListener, Pile {
 	private int homecellNum;
 
 	/**
-	 * Constructor for LittleSpider Homecell. Adds @param as topCard and adds card to cards list.
+	 * Constructor for Forty Thieves Homecell. Adds @param as topCard and adds card to cards list.
 	 * 
-	 * @param game The LittleSpider game instance
+	 * @param game The FortyThieves game instance
 	 * @param card Card that homecell pile starts faceUp with
 	 */
 	public Homecell(Card card, Game game) {

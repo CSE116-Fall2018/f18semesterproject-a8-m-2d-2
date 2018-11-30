@@ -29,7 +29,7 @@ public class Stockpile extends JLabel implements MouseListener, Pile {
 	/**
 	 * The Stockpile constructor takes all of the deck not disbursed to tableaus and sets it to the cards field.
 	 * 
-	 * @param game the Golf game instance
+	 * @param game the FortyThieves game instance
 	 * @param remainingDeck the ArrayList contained the remainder of cards
 	 */
 	public Stockpile(FortyThieves game, ArrayList<Card> remainingDeck) {
